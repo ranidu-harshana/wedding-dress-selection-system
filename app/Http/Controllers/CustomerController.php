@@ -156,8 +156,11 @@ class CustomerController extends Controller
 
     function postpone(Request $request, $id) {
         $customer = Customer::find($id);
+        $function_date = $customer->function_date;
+
         $result = $customer->update([
-            'postponed' => $request->postpone_date,
+            'function_date' => $request->postpone_date,
+            'postponed' => $function_date,
         ]);
 
         if($result) {
@@ -186,6 +189,35 @@ class CustomerController extends Controller
         $values = array_values($data->toArray());
 
         return response()->json($values);
+    }
+
+    public function get_all_func_dates() {
+        $all_dates = Customer::select('function_date')->get();
+        $dates = array_values($all_dates->toArray());
+        $date_arr = [];
+        foreach ($dates as $key => $value) {
+            array_push($date_arr, $value['function_date']);
+        }
+        return response()->json($date_arr);
+    }
+
+    public function get_functions_of_day(Request $request) {
+        $arr = [];
+        $customers = Customer::where('function_date', '=', "{$request->date}")->get();
+        foreach ($customers as $customer) {
+            $data_arr = [];
+            $name = $customer->name;
+            $postponed = $customer->postponed;
+            if ($postponed == NULL) {
+                $postponed = "NO";
+            }
+            $data_arr['name'] = $name;
+            $data_arr['postponed'] = $postponed;
+            $data_arr['customer_id'] = $customer->id;
+            $data_arr['bill_number'] = $customer->bill_number;
+            array_push($arr, $data_arr);
+        }
+        return response()->json($arr);
     }
     
 }

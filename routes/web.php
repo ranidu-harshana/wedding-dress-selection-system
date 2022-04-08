@@ -49,20 +49,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('intering_payment', InteringPaymentController::class);
 
     Route::post('measurement/store/update', [MeasurementController::class, 'store_update_measurements'])->name('measurement.store');
-    Route::post('/test', function(Request $request) {
-        $arr = [];
-        $customers = Customer::where('function_date', '=', "2022-04-05")->get();
-        foreach ($customers as $customer) {
-            $data_arr = [];
-            $name = $customer->name;
-            $postponed = $customer->postponed;
-            if ($postponed == NULL) {
-                $postponed = "NO";
-            }
-            $data_arr['name'] = $name;
-            $data_arr['postponed'] = $postponed;
-            array_push($arr, $data_arr);
-        }
-        return response()->json($arr);
-    });
+    Route::post('/get_functions_of_day', [CustomerController::class, 'get_functions_of_day'])->name('get_functions_of_day');
+
+    Route::post('/get_all_func_dates', [CustomerController::class, 'get_all_func_dates'])->name('get_all_func_dates');
 });

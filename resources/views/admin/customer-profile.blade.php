@@ -22,11 +22,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    @if ($customer->postponed == NULL)
-                                        <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}">
-                                    @else
-                                        <input class="form-control" type="date" name="postpone_date" value="{{ $customer->postponed }}">
-                                    @endif
+                                    <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}">
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -86,12 +82,12 @@
                                     @else
                                         <li>
                                             <span class="title">Function Date</span>
-                                            <span class="text">{{ $customer->postponed }}</span>
+                                            <span class="text">{{ $customer->function_date }}</span>
                                         </li>
 
                                         <li>
                                             <span class="title">Postponed From</span>
-                                            <span class="text">{{ $customer->function_date }}</span>
+                                            <span class="text">{{ $customer->postponed }}</span>
                                         </li>
                                     @endif
                                     
