@@ -42,6 +42,7 @@
 
     <script>
         $(document).ready(function(){
+            localStorage.clear();
             $.ajax({
                 url: "../get_all_func_dates",
                 type: "POST",
