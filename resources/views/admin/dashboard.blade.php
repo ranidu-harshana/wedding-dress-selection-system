@@ -59,7 +59,7 @@
                     date_arr = data
                     
                     for (let index = 0; index < date_arr.length; index++) {
-                        console.log(date_arr[index].replace(/-0+/g, '-'));
+                        // console.log(date_arr[index].replace(/-0+/g, '-'));
                         events.push({
                             date: date_arr[index].replace(/-0+/g, '-'),
                             title: 'There are functions',
