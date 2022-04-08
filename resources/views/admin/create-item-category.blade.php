@@ -59,7 +59,7 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Edit</th>
-                                    <th>Delete</th>
+                                    {{-- <th>Delete</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,13 +72,13 @@
                                                 <button class="btn btn-primary btn-sm">Edit</button>
                                             </a>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <form action="{{ route('item_category.destroy', $category->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>    
                                 @endforeach
                             </tbody>
