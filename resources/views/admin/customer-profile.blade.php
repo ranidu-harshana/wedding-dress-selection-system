@@ -167,47 +167,47 @@
                                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="head" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="head" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="shoulder" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="chest" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="chest" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="weist" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="weist" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="tlength" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="tlength" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="ssize" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="ssize" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="arm" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="arm" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="jheight" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="jheight" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="number" name="other" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="other" required class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
@@ -230,47 +230,47 @@
                                                     <td>BESTMAN - {{$i}}</td>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="head" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="shoulder" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="chest" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="weist" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="tlength" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="ssize" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="arm" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="jheight" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="other" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" required class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
@@ -293,47 +293,47 @@
                                                     <td>PAGEBOY - {{$i+1}}</td>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="head" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="shoulder" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="chest" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="weist" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="tlength" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="ssize" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="arm" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="jheight" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="number" name="other" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" required id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
