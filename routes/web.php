@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DressSelection;
 use App\Http\Controllers\InteringPaymentController;
@@ -52,4 +53,6 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::post('/get_functions_of_day', [CustomerController::class, 'get_functions_of_day'])->name('get_functions_of_day');
     Route::post('/get_all_func_dates', [CustomerController::class, 'get_all_func_dates'])->name('get_all_func_dates');
+
+    Route::resource('/branch', BranchController::class);
 });

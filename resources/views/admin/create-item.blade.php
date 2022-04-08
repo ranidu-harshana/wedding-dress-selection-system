@@ -10,7 +10,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Item Category</label>
-                    <select name="item_category_id" id="" class="form-control" required>
+                    <select name="item_category_id" value="{{ old('item_category_id') }}" id="" class="form-control" required>
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
@@ -19,17 +19,18 @@
                 </div>
                 <div class="form-group">
                     <label>Item Code</label>
-                    <input name="item_code" type="text" required class="form-control @error('item_code') is-invalid @enderror">
+                    <input name="item_code" type="text" value="{{ old('item_code') }}" required class="form-control @error('item_code') is-invalid @enderror">
                     @error('item_code') <p class="text-danger">{{$message}}</p> @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Item Description</label>
-                    <textarea name="item_desc" class="form-control" required name="" id="" cols="30" rows="5"></textarea>
+                    <input name="item_desc" type="text" value="{{ old('item_desc') }}" required class="form-control @error('item_desc') is-invalid @enderror">
+                    @error('item_desc') <p class="text-danger">{{$message}}</p> @enderror
                 </div>
                 <div class="form-group">
                     <label>Item Type</label>
-                    <select name="item_type" id="" class="form-control" required>
+                    <select name="item_type" value="{{ old('item_type') }}" id="" class="form-control" required>
                         <option value="">Select Type</option>
                         <option value="Bestman">Bestman</option>
                         <option value="Groom">Groom</option>
@@ -39,7 +40,7 @@
                 
                 <div class="form-group">
                     <label>Item Image</label>
-                    <input name="item_image_url" type="file" required class="form-control">
+                    <input name="item_image_url" value="{{ old('item_image_url') }}" type="file" required class="form-control">
                     @error('item_image_url') <p class="text-danger">{{$message}}</p> @enderror
                 </div>
 

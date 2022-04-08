@@ -22,6 +22,7 @@
                             <ul style="display: none;">
                                 <li><a href="{{ route('item_category.index') }}">Item Category</a></li>
                                 <li><a href="{{ route('item.create') }}">Create Item</a></li>
+                                <li><a href="{{ route('branch.index') }}">Branch</a></li>
                             </ul>
                         </li>
                     @endif
