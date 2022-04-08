@@ -21,12 +21,12 @@
   display: flex;
   justify-content:space-between;
 }
-#header button {
+#header .calender_button {
   background-color:#FFBF00;
   padding-bottom: 5px;
   height: 35px;
 }
-#header button:hover {
+#header .calender_button:hover {
   background-color:#333;
   border: 2px solid #FFBF00;
 }
