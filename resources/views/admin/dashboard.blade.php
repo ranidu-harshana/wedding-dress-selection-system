@@ -57,6 +57,7 @@
 
                     let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
                     date_arr = data
+                    console.log(date_arr[0].replace(/-0+/g, '-'));
                     for (let index = 0; index < 5; index++) {
                         events.push({
                             date: date_arr[index].replace(/-0+/g, '-'),
