@@ -5,8 +5,8 @@
     <div id="header">
         <div id="monthDisplay"></div>
         <div>
-            <button id="backButton" class="btn btn-primary"><i class="fa-solid fa-arrow-left-long" style="margin-right: 2px;"></i>Back</i></button>
-            <button id="nextButton" class="btn btn-primary">Next<i class="fa-solid fa-arrow-right-long" style="margin-left: 2px"></i></button>
+            <button id="backButton" class="btn btn-primary calender_button"><i class="fa-solid fa-arrow-left-long" style="margin-right: 2px;"></i>Back</i></button>
+            <button id="nextButton" class="btn btn-primary calender_button">Next<i class="fa-solid fa-arrow-right-long" style="margin-left: 2px"></i></button>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         
         <div id="display_area"></div>
         
-        <button id="closeButton">Close</button>
+        <button id="closeButton" class="calender_button">Close</button>
     </div>
 
     <div id="modalBackDrop"></div>
