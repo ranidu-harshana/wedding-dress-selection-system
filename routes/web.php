@@ -49,7 +49,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('intering_payment', InteringPaymentController::class);
 
     Route::post('measurement/store/update', [MeasurementController::class, 'store_update_measurements'])->name('measurement.store');
-    Route::post('/get_functions_of_day', [CustomerController::class, 'get_functions_of_day'])->name('get_functions_of_day');
 
+    Route::post('/get_functions_of_day', [CustomerController::class, 'get_functions_of_day'])->name('get_functions_of_day');
     Route::post('/get_all_func_dates', [CustomerController::class, 'get_all_func_dates'])->name('get_all_func_dates');
 });
