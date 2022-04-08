@@ -143,11 +143,11 @@
                                 if(data.length != 0) {
                                     data.forEach(element => {
                                         if(element.postponed == "NO") {
-                                            html += '<a class="badge badge-primary mb-2" style="font-size: 14px" href="http://127.0.0.1:8000/customer/'+element.customer_id+'">';
+                                            html += '<a class="badge badge-primary mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
                                             html += element.bill_number;
                                             html += '</a> | '+element.name+'<br>';
                                         }else{
-                                            html += '<a class="badge badge-success mb-2" style="font-size: 14px" href="http://127.0.0.1:8000/customer/'+element.customer_id+'">';
+                                            html += '<a class="badge badge-success mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
                                             html += element.bill_number;
                                             html += '</a> | '+element.name+' | <span class="text-danger">'+element.postponed+'</span><br>';
                                         }
