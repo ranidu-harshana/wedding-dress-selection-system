@@ -4,9 +4,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="card-box">
-                @if($errors->any())
-                    {{ implode('', $errors->all('<div>:message</div>')) }}
-                @endif
+                
                 <h4 class="card-title">Schedule</h4>
 
                 @if(session('failed'))

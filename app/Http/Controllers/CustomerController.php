@@ -60,7 +60,7 @@ class CustomerController extends Controller
             'address' => ['required'],
             'mobile_no1' => ['required'],
             'mobile_no2' => ['nullable'],
-            'function_date' => ['required', 'unique:customers,function_date'],
+            'function_date' => ['required'],
             'function_place' => ['required'],
             'no_of_bestmen' => ['required'],
             'no_of_pageboys' => ['required'],
