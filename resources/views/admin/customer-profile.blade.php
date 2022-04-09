@@ -118,7 +118,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card-box">
-                            <h4 class="card-title">Basic Inputs</h4>
+                            <h4 class="card-title">Enter Measurements</h4>
                             <table class="table table-hover ">
                                 <thead>
                                     <tr>
@@ -422,7 +422,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card-box">
-                            <h4 class="card-title">Basic Inputs</h4>
+                            <h4 class="card-title">Billing</h4>
                             <ul class="personal-info">
                                 <li>
                                     <span class="title">Total Amount</span>
