@@ -398,14 +398,14 @@
                                     </div>
                                 </form>
                             @else
-                                <h4 class="card-title">Dress Selection Update Form</h4>
+                                <h4 class="card-title">All Dress Selections</h4>
                                 <div class="col-md-12">
                                     <table class="table">
                                         @foreach ($dress_selected_customer as $dress)
                                             <tr>
                                                 <td>{{ $dress->type }}</td>
                                                 <td><a href="" class="text">{{ $dress->name }}</a> </td>
-                                                <td><button class="btn btn-primary btn-sm">Edit</button> </td>
+                                                {{-- <td><button class="btn btn-primary btn-sm">Edit</button> </td> --}}
                                             </tr>
                                         @endforeach
                                     </table>
