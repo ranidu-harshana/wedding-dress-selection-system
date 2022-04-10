@@ -8,11 +8,11 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('customer.create') }}"><i class="fas fa-clipboard-list"></i> <span>Schedule</span></a>
+                    <a href="{{ route('customer.create') }}"><i class="fas fa-clipboard-list"></i> <span>Create New</span></a>
                 </li>
 
                 <li>
-                    <a href="{{ route('customer.index') }}"><i class="fas fa-users"></i> <span>Customers</span></a>
+                    <a href="{{ route('customer.index') }}"><i class="fas fa-users"></i> <span>Events List</span></a>
                 </li>
 
                 @if (auth()->check())

@@ -114,7 +114,15 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = auth()->user();
+
+        if($user->role->name == 'admin') {
+            $branches = Branch::all();
+        }else{
+            $branches = $user->branches;
+        }
+        $customer = Customer::find($id);
+        return view('admin.edit-bill', ['customer'=>$customer, 'branches'=>$branches]);
     }
 
     /**

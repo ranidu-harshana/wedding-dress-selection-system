@@ -7,6 +7,8 @@
         </div>
 
         <div class="col-sm-5 col-6 text-right m-b-30">
+            <a href="" class="btn btn-danger btn-rounded"><i class="fa fa-plus"></i> Cancel</a>
+            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fa fa-plus"></i> Edit</a>
             <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
             <div class="modal fade" id="postponedDateModal" tabindex="-1" role="dialog" aria-labelledby="postponedDateModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -471,6 +473,34 @@
                                 </form>
                             @endif
                         </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Intering Payment</th>
+                                    <th scope="col">Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (count($customer->intering_payments) != 0)
+                                    @foreach ($customer->intering_payments as $intering_payment)
+                                        <tr>
+                                            <th scope="row">{{ $intering_payment->id }}</th>
+                                            <td>{{ $intering_payment->intering_payment }}.00</td>
+                                            <td>{{ $intering_payment->created_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td scope="row" colspan="3" class="text-center text-secondary">No Any Payments</td>
+                                    </tr>  
+                                @endif
+                                
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
