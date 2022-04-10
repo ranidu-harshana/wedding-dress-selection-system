@@ -486,12 +486,14 @@
                             </thead>
                             <tbody>
                                 @if (count($customer->intering_payments) != 0)
+                                    @php $counter = 1; @endphp
                                     @foreach ($customer->intering_payments as $intering_payment)
                                         <tr>
-                                            <th scope="row">{{ $intering_payment->id }}</th>
+                                            <th scope="row">{{ $counter }}</th>
                                             <td>{{ $intering_payment->intering_payment }}.00</td>
                                             <td>{{ $intering_payment->created_at }}</td>
                                         </tr>
+                                        @php $counter++; @endphp
                                     @endforeach
                                 @else
                                     <tr>
