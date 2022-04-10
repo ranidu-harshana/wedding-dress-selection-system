@@ -44,12 +44,14 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('autocomplete/bestman/jacket', [ItemController::class, 'autocomplete_bestman_jacket'])->name('autocomplete_bestman_jacket');
     Route::get('autocomplete/pageboy/jacket', [ItemController::class, 'autocomplete_pageboy_jacket'])->name('autocomplete_pageboy_jacket');
     Route::get('autocomplete/group/cavani', [ItemController::class, 'autocomplete_group_cavani'])->name('autocomplete_group_cavani');
+    Route::get('autocomplete/function/place', [CustomerController::class, 'autocomplete_function_place'])->name('autocomplete_function_place');
     Route::get('autocomplete/bridal/dressing/place', [CustomerController::class, 'autocomplete_brida_place'])->name('autocomplete_brida_place');
     Route::get('autocomplete/photography/place', [CustomerController::class, 'autocomplete_photography_place'])->name('autocomplete_photography_place');
     
     Route::resource('intering_payment', InteringPaymentController::class);
 
-    Route::post('measurement/store/update', [MeasurementController::class, 'store_update_measurements'])->name('measurement.store');
+    Route::post('measurement/store/update', [MeasurementController::class, 'store_measurements'])->name('measurement.store');
+    Route::put('update_measurement/{measurement}', [MeasurementController::class, 'update_measurement'])->name('update_measurement');
 
     Route::post('/get_functions_of_day', [CustomerController::class, 'get_functions_of_day'])->name('get_functions_of_day');
     Route::post('/get_all_func_dates', [CustomerController::class, 'get_all_func_dates'])->name('get_all_func_dates');

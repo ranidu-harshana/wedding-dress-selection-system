@@ -179,6 +179,16 @@ class CustomerController extends Controller
         }
     }
 
+    public function autocomplete_function_place(Request $request)
+    {
+        $data = Customer::select('function_place')
+                    ->where('function_place','LIKE',"%{$request->term0}%")
+                    ->pluck('function_place');
+        $values = array_values($data->toArray());
+
+        return response()->json($values);
+    }
+
     public function autocomplete_brida_place(Request $request)
     {
         $data = Customer::select('bridal_dressing_place')

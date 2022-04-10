@@ -58,7 +58,7 @@
 
                     <div class="form-group">
                         <label>Function Place</label>
-                        <input name="function_place" value="{{ old('function_place') }}" type="text" required class="form-control" autocomplete="off">
+                        <input name="function_place" id="function_place" value="{{ old('function_place') }}" type="text" required class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
@@ -165,6 +165,16 @@
     </div>
 
     <script>
+        var path0 = "{{ route('autocomplete_function_place')  }}";
+        $('#function_place').typeahead({
+            
+            source:  function (query0, process0) {
+                return $.get(path0, { term0: query0 }, function (data0) {
+                    return process0(data0);
+                });
+            }
+        });
+
         var path = "{{ route('autocomplete_brida_place')  }}";
         $('#bridal_dressing_place').typeahead({
             

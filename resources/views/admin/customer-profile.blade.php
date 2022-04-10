@@ -5,7 +5,10 @@
         <div class="col-sm-7 col-6">
             <h4 class="page-title">Customer Profile</h4>
         </div>
-
+        @if($errors->any())
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    @endif
+    
         <div class="col-sm-5 col-6 text-right m-b-30">
             <a href="" class="btn btn-danger btn-rounded"><i class="fa fa-plus"></i> Cancel</a>
             <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fa fa-plus"></i> Edit</a>
@@ -138,18 +141,154 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($customer->measurements as $measurement)
-                                    <tr>
-                                        <td scope="col">{{ $measurement->type }}</td>
-                                        <td scope="col">{{ $measurement->head }}</td>
-                                        <td scope="col">{{ $measurement->shoulder }}</td>
-                                        <td scope="col">{{ $measurement->chest }}</td>
-                                        <td scope="col">{{ $measurement->weist }}</td>
-                                        <td scope="col">{{ $measurement->tlength }}</td>
-                                        <td scope="col">{{ $measurement->ssize }}</td>
-                                        <td scope="col">{{ $measurement->arm }}</td>
-                                        <td scope="col">{{ $measurement->jheight }}</td>
-                                        <td scope="col">{{ $measurement->other }}</td>
-                                    </tr>
+                                        <tr>
+                                            <td scope="col">{{ $measurement->type }}</td>
+                                            <td scope="col">
+                                                @if ($measurement->head == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->head }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->shoulder == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->shoulder }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->chest == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->chest }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->weist == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->weist }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->tlength == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->tlength }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->ssize == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->ssize }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->arm == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->arm }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->jheight == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->jheight }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->other == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->other }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editMeasurement{{$measurement->id}}">
+                                                    Edit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        {{-- edit measurement modal --}}
+                                        <div class="modal fade" id="editMeasurement{{$measurement->id}}" tabindex="-1" role="dialog" aria-labelledby="editMeasurement{{$measurement->id}}Label" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editMeasurement{{$measurement->id}}Label">Edit &nbsp;<span class="text-primary"><b>{{ $measurement->type }}</b></span>&nbsp;&nbsp; Measurements</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('update_measurement', $measurement->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Head</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" name="head" class="form-control" value="@if ($measurement->head == NULL)0 @else {{ $measurement->head }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Shoulder</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" class="form-control" value="@if ($measurement->shoulder == NULL)0 @else {{ $measurement->shoulder }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Chest</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="chest" value="@if ($measurement->chest == NULL)0 @else {{ $measurement->chest }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Weist</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="weist" value="@if ($measurement->weist == NULL)0 @else {{ $measurement->weist }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">T.Length</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="tlength" value="@if ($measurement->tlength == NULL)0 @else {{ $measurement->tlength }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">S.Size</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="ssize" value="@if ($measurement->ssize == NULL)0 @else {{ $measurement->ssize }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Arm</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="arm" value="@if ($measurement->arm == NULL)0 @else {{ $measurement->arm }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">J.Height</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="jheight" value="@if ($measurement->jheight == NULL)0 @else {{ $measurement->jheight }} @endif">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Other</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="other" value="@if ($measurement->other == NULL)0 @else {{ $measurement->other }} @endif">
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                     @php $measurement_list = []; @endphp
                                     @foreach ($customer->measurements as $measurement)
@@ -165,47 +304,47 @@
                                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="head" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="head" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="chest" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="chest" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="weist" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="weist" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="tlength" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="tlength" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="ssize" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="ssize" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="arm" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="arm" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="jheight" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="jheight" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="other" required class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" name="other" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
@@ -216,7 +355,6 @@
                                             </form>
                                         </tr>
                                     @endif
-                                    
 
                                     @for ($i = 1; $i <= $customer->no_of_bestmen; $i++)
                                         @if (!in_array("BESTMAN - ".$i, $measurement_list))
@@ -228,47 +366,47 @@
                                                     <td>BESTMAN - {{$i}}</td>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" required class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
@@ -291,47 +429,47 @@
                                                     <td>PAGEBOY - {{$i+1}}</td>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" required id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">

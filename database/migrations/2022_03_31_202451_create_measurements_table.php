@@ -17,15 +17,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->onDelete('cascade');
             $table->string('type');
-            $table->double('head')->default(0.00);
-            $table->double('shoulder')->default(0.00);
-            $table->double('chest')->default(0.00);
-            $table->double('weist')->default(0.00);
-            $table->double('tlength')->default(0.00);
-            $table->double('ssize')->default(0.00);
-            $table->double('arm')->default(0.00);
-            $table->double('jheight')->default(0.00);
-            $table->double('other')->default(0.00);
+            $table->double('head')->nullable();
+            $table->double('shoulder')->nullable();
+            $table->double('chest')->nullable();
+            $table->double('weist')->nullable();
+            $table->double('tlength')->nullable();
+            $table->double('ssize')->nullable();
+            $table->double('arm')->nullable();
+            $table->double('jheight')->nullable();
+            $table->double('other')->nullable();
             $table->timestamps();
         });
     }
