@@ -28,6 +28,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('customer', CustomerController::class);
     Route::put('/measurment/date/{customer}/edit', [CustomerController::class ,'edit_measurment_date'])->name('edit_measurment_date');
     Route::put('/postpone/{customer}', [CustomerController::class, 'postpone'])->name('postpone');
+    Route::put('/cancel/{customer}', [CustomerController::class, 'cancel'])->name('cancel');
+    Route::put('/re_schedule/{customer}', [CustomerController::class, 're_schedule'])->name('re_schedule');
 
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');

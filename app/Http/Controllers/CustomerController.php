@@ -232,10 +232,26 @@ class CustomerController extends Controller
             $data_arr['name'] = $name;
             $data_arr['postponed'] = $postponed;
             $data_arr['customer_id'] = $customer->id;
-            $data_arr['bill_number'] = $customer->bill_number;
+            $data_arr['bill_number'] = $customer->branch->prefix.''.$customer->bill_number;
+            $data_arr['status'] = $customer->status;
             array_push($arr, $data_arr);
         }
         return response()->json($arr);
     }
+
+    public function cancel($id) {
+        $customer = Customer::find($id);
+        $customer->update([
+            'status' => 0,
+        ]);
+        return back();
+    }
     
+    public function re_schedule($id) {
+        $customer = Customer::find($id);
+        $customer->update([
+            'status' => 1,
+        ]);
+        return back();
+    }
 }

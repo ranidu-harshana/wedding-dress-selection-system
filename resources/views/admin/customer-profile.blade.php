@@ -5,14 +5,26 @@
         <div class="col-sm-7 col-6">
             <h4 class="page-title">Customer Profile</h4>
         </div>
-        @if($errors->any())
-        {!! implode('', $errors->all('<div>:message</div>')) !!}
-    @endif
     
-        <div class="col-sm-5 col-6 text-right m-b-30">
-            <a href="" class="btn btn-danger btn-rounded"><i class="fa fa-plus"></i> Cancel</a>
-            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fa fa-plus"></i> Edit</a>
-            <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+        <div class="col-sm-5 col-6 text-right m-b-30 ">
+            @if ($customer->status == 1)
+                <form action="{{ route('cancel', $customer->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-danger btn-rounded" type="submit"><i class="fas fa-ban"></i> Cancel</button>
+                    <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> Edit</a>
+                    <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+                </form>
+            @else
+                <form action="{{ route('re_schedule', $customer->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-secondary btn-rounded" type="submit"><i class="far fa-calendar-alt"></i> Re-Schedule</button>
+                    <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> Edit</a>
+                    <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+                </form>
+            @endif
+            
             <div class="modal fade" id="postponedDateModal" tabindex="-1" role="dialog" aria-labelledby="postponedDateModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

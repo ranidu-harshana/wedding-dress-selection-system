@@ -141,15 +141,22 @@
                                 html = ''
                                 if(data.length != 0) {
                                     data.forEach(element => {
-                                        if(element.postponed == "NO") {
-                                            html += '<a class="badge badge-success mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
+                                        if(element.status == 1) {
+                                            if(element.postponed == "NO") {
+                                                html += '<a class="badge badge-success mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
+                                                html += element.bill_number;
+                                                html += '</a> | '+element.name+'<br>';
+                                            }else{
+                                                html += '<a class="badge badge-primary mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
+                                                html += element.bill_number;
+                                                html += '</a> | '+element.name+' | <span class="text-danger">'+element.postponed+'</span><br>';
+                                            }
+                                        }else {
+                                            html += '<a class="badge badge-danger mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
                                             html += element.bill_number;
-                                            html += '</a> | '+element.name+'<br>';
-                                        }else{
-                                            html += '<a class="badge badge-primary mb-2" style="font-size: 14px" href="customer/'+element.customer_id+'">';
-                                            html += element.bill_number;
-                                            html += '</a> | '+element.name+' | <span class="text-danger">'+element.postponed+'</span><br>';
+                                            html += '</a> | '+element.name+' | <span class="text-danger">cancelled</span><br>';
                                         }
+                                        
                                         
                                     });
                                 }else{

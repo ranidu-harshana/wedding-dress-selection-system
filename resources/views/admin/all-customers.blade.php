@@ -36,8 +36,8 @@
                             <tbody>
                                 @foreach ($customers as $customer)
                                     <tr>
-                                        <td>{{ $customer->bill_number }}</td>
-                                        <td>{{ $customer->branch_id }}</td>
+                                        <td>{{ $customer->branch->prefix }}{{ $customer->bill_number }}</td>
+                                        <td>{{ $customer->branch->name }}</td>
                                         <td>{{ $customer->name }}</td>
                                         <td>{{ $customer->function_date }}</td>
                                         <td>
