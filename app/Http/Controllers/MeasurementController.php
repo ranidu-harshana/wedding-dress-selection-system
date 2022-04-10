@@ -24,14 +24,8 @@ class MeasurementController extends Controller
 
         $customer_id = $request->customer_id;
         $customer = Customer::find($customer_id);
-        $type = $request->type;
-        $measurements = Measurement::where('customer_id', '=', $customer_id)->where('type', '=', $type)->get();
-        if($measurements->isEmpty()) {
-            $measurement = new Measurement($validated);
-            if($customer->measurements()->save($measurement)) {
-                return back();
-            }
-        }
+        $customer->measurements()->create($validated);
+        return back();
     }
 
     public function update_measurement(Request $request, $id) {
