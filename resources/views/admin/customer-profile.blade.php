@@ -66,7 +66,7 @@
                             <div class="col-md-4">
                                 <div class="profile-info-left">
                                     <h3 class="user-name m-t-0 mb-0">{{ $customer->name }}</h3>
-                                    <div class="staff-id">Bill Number : {{ $customer->bill_number }}</div>
+                                    <div class="staff-id">Bill Number : {{ $customer->branch->prefix }}{{ $customer->bill_number }}</div>
                                     <div class="staff-id">Booked On : {{ $customer->created_at }}</div>
                                     <div class="staff-id">Branch : {{ $customer->branch->name }}</div>
                                     {{-- <div class="staff-msg"><a href="chat.html" class="btn btn-primary">Send Message</a></div> --}}
