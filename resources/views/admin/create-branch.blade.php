@@ -25,12 +25,12 @@
                         @method('PUT')
                         <div class="form-group">
                             <label>Branch Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ $branch->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ $branch->name }}" autocomplete="off">
                         </div>
 
                         <div class="form-group">
                             <label>Prefix</label>
-                            <input type="text" name="prefix" class="form-control" value="{{ $branch->prefix }}">
+                            <input type="text" name="prefix" class="form-control" value="{{ $branch->prefix }}" autocomplete="off">
                         </div>
 
                         <div class="text-right">

@@ -22,13 +22,13 @@
                     </div>
                     <div class="form-group">
                         <label>Item Code</label>
-                        <input name="item_code" type="text" required class="form-control @error('item_code') is-invalid @enderror" value="{{ $item->item_code }}">
+                        <input name="item_code" type="text" required class="form-control @error('item_code') is-invalid @enderror" value="{{ $item->item_code }}" autocomplete="off">
                         @error('item_code') <p class="text-danger">{{$message}}</p> @enderror
                     </div>
 
                     <div class="form-group">
                         <label>Item Description</label>
-                        <textarea name="item_desc" class="form-control" required name="" id="" cols="30" rows="5">{{ $item->item_desc }}</textarea>
+                        <input name="item_desc" type="text" value="{{ $item->item_desc }}" required class="form-control @error('item_desc') is-invalid @enderror" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label>Item Type</label>

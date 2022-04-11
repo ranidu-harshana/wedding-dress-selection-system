@@ -91,9 +91,14 @@
 
                     <div class="form-group">
                         <label>Will you dress in our place?</label>
-                        <select name="dressing_place" value="{{ $customer->dressing_place }}" id="" required>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
+                        <select name="dressing_place" value="{{ $customer->dressing_place }}" id="" required class="form-control">
+                            @if ($customer->dressing_place == 1)
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            @else
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            @endif
                         </select>
                     </div>
 
@@ -138,26 +143,6 @@
                         <input name="photography_place" value="{{ $customer->photography_place }}" id="photography_place" type="text" class="form-control" autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <label>Total Amount</label>
-                        <input name="total_amount" id="total_amount" value="{{ $customer->total_amount }}" type="number" class="form-control" autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Discount</label>
-                        <input name="discount" id="discount" value="{{ $customer->discount }}" type="number" class="form-control" autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Advance Payment</label>
-                        <input name="advance_payment" id="advance_payment" value="{{ $customer->advance_payment }}" type="number" class="form-control" autocomplete="off">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Balance to be paid</label>
-                        <input name="balance_to_be_paid" id="balance_to_be_paid" type="number" class="form-control" disabled>
-                    </div>
-
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
@@ -190,9 +175,5 @@
             }
         });
 
-        $('#advance_payment').keyup(function(){
-            var advance_payment = ('#advance_payment').val()
-            console.log(advance_payment);
-        });
     </script>
 @endsection

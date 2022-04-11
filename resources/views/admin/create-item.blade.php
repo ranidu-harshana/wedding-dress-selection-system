@@ -19,13 +19,13 @@
                 </div>
                 <div class="form-group">
                     <label>Item Code</label>
-                    <input name="item_code" type="text" value="{{ old('item_code') }}" required class="form-control @error('item_code') is-invalid @enderror">
+                    <input name="item_code" type="text" value="{{ old('item_code') }}" required class="form-control @error('item_code') is-invalid @enderror" autocomplete="off">
                     @error('item_code') <p class="text-danger">{{$message}}</p> @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Item Description</label>
-                    <input name="item_desc" type="text" value="{{ old('item_desc') }}" required class="form-control @error('item_desc') is-invalid @enderror">
+                    <input name="item_desc" type="text" value="{{ old('item_desc') }}" required class="form-control @error('item_desc') is-invalid @enderror" autocomplete="off">
                     @error('item_desc') <p class="text-danger">{{$message}}</p> @enderror
                 </div>
                 <div class="form-group">

@@ -93,7 +93,7 @@
 
                     <div class="form-group">
                         <label>Will you dress in our place?</label>
-                        <select name="dressing_place" value="{{ old('dressing_place') }}" id="" required>
+                        <select name="dressing_place" value="{{ old('dressing_place') }}" id="" required class="form-control">
                             <option value="1">Yes</option>
                             <option value="0">No</option>
                         </select>
