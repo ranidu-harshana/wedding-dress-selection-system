@@ -134,7 +134,27 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'branch_id' => ['required'],
+            'name' => ['required'],
+            'address' => ['required'],
+            'mobile_no1' => ['required'],
+            'mobile_no2' => ['nullable'],
+            'function_date' => ['required'],
+            'function_place' => ['required'],
+            'no_of_bestmen' => ['required'],
+            'no_of_pageboys' => ['required'],
+            'dressing_place' => ['required'],
+            'going_away_change_place' => ['nullable'],
+            'bridal_dressing_place' => ['nullable'],
+            'bridal_color' => ['nullable'],
+            'sec_bridal_group_color' => ['nullable'],
+            'photography_place' => ['nullable'],
+        ]);
+
+        $customer = Customer::find($id);
+        $customer->update($validated);
+        return redirect()->route('customer.show', $id);
     }
 
     /**

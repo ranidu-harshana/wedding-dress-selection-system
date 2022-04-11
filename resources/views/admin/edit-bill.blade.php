@@ -18,14 +18,14 @@
                     
                     <div class="form-group">
                         <label>Bill Number</label>
-                        <input name="bill_number" value="{{ $customer->bill_number }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off" >
+                        <input name="bill_number" disabled value="{{ $customer->bill_number }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off" >
                         @error('bill_number') <p class="text-danger">{{$message}}</p> @enderror
                     </div>
 
                     <div class="form-group">
                         <label>Branch</label>
                         <select name="branch_id" required class="form-control" value="{{ $customer->branch_id }}">
-                            <option value="{{ $customer->branch->name }}">{{ $customer->branch->name }}</option>
+                            <option value="{{ $customer->branch->id }}">{{ $customer->branch->name }}</option>
                             @foreach ($branches as $branch)
                                 @if ($customer->branch->name != $branch->name )
                                     <option value="{{ $branch->id }}">{{ $branch->name }}</option>
