@@ -50,7 +50,7 @@ class ItemController extends Controller
             'item_code' => ['required', 'unique:items,item_code'],
             'item_desc' => ['required'],
             'item_type' => ['required'],
-            'item_image_url' => ['required'],
+            'item_image_url' => ['nullable'],
         ]);
 
         if ($request->hasFile('item_image_url')) {
@@ -73,7 +73,6 @@ class ItemController extends Controller
             }
             
             return redirect()->route('item.index');
-
         }
     }
 

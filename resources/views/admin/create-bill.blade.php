@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Photographer Studio</label>
+                        <label>Photographer/Studio</label>
                         <input name="photography_place" value="{{ old('photography_place') }}" id="photography_place" type="text" class="form-control" autocomplete="off">
                     </div>
 

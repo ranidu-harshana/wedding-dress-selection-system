@@ -40,7 +40,7 @@
                 
                 <div class="form-group">
                     <label>Item Image</label>
-                    <input name="item_image_url" value="{{ old('item_image_url') }}" type="file" required class="form-control">
+                    <input name="item_image_url" value="{{ old('item_image_url') }}" type="file" class="form-control">
                     @error('item_image_url') <p class="text-danger">{{$message}}</p> @enderror
                 </div>
 
