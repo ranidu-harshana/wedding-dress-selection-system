@@ -84,7 +84,8 @@ class ItemController extends Controller
      */
     public function show($item)
     {
-        $item = Item::where('item_code', '=', $item)->orWhere('item_desc', '=', $item)->get();
+        $exploded = explode(' - ', $item);
+        $item = Item::where('item_code', '=', $exploded[0])->orWhere('item_desc', '=', $exploded[1])->get();
         return response()->json(['image'=>$item[0]->item_image_url]);
     }
 
@@ -177,10 +178,15 @@ class ItemController extends Controller
                     ->where('item_category_id','=',1)
                     ->pluck('item_desc', 'item_code');
 
-        $keys = array_keys($data->toArray());
-        $values = array_values($data->toArray());
+        // $keys = array_keys($data->toArray());
+        // $values = array_values($data->toArray());
+        // $full_arr = array_merge($keys, $values);
 
-        $full_arr = array_merge($keys, $values);
+        $full_arr = [];
+        foreach ($data->toArray() as $key => $value) {
+            array_push($full_arr, $key.' - '.$value);
+        }
+
         return response()->json($full_arr);
     }
 
@@ -193,10 +199,14 @@ class ItemController extends Controller
                     ->where('item_type','=','Groom')
                     ->pluck('item_desc', 'item_code');
 
-        $keys = array_keys($data->toArray());
-        $values = array_values($data->toArray());
+        // $keys = array_keys($data->toArray());
+        // $values = array_values($data->toArray());
 
-        $full_arr = array_merge($keys, $values);
+        // $full_arr = array_merge($keys, $values);
+        $full_arr = [];
+        foreach ($data->toArray() as $key => $value) {
+            array_push($full_arr, $key.' - '.$value);
+        }
         return response()->json($full_arr);
     }
 
@@ -209,10 +219,14 @@ class ItemController extends Controller
                     ->where('item_type','=','Bestman')
                     ->pluck('item_desc', 'item_code');
 
-        $keys = array_keys($data->toArray());
-        $values = array_values($data->toArray());
+        // $keys = array_keys($data->toArray());
+        // $values = array_values($data->toArray());
 
-        $full_arr = array_merge($keys, $values);
+        // $full_arr = array_merge($keys, $values);
+        $full_arr = [];
+        foreach ($data->toArray() as $key => $value) {
+            array_push($full_arr, $key.' - '.$value);
+        }
         return response()->json($full_arr);
     }
 
@@ -225,10 +239,14 @@ class ItemController extends Controller
                     ->where('item_type','=','Pageboy')
                     ->pluck('item_desc', 'item_code');
 
-        $keys = array_keys($data->toArray());
-        $values = array_values($data->toArray());
+        // $keys = array_keys($data->toArray());
+        // $values = array_values($data->toArray());
 
-        $full_arr = array_merge($keys, $values);
+        // $full_arr = array_merge($keys, $values);
+        $full_arr = [];
+        foreach ($data->toArray() as $key => $value) {
+            array_push($full_arr, $key.' - '.$value);
+        }
         return response()->json($full_arr);
     }
 
@@ -240,10 +258,14 @@ class ItemController extends Controller
                     ->where('item_category_id','=',2)
                     ->where('item_type','!=','Groom')
                     ->pluck('item_desc', 'item_code');
-        $keys = array_keys($data->toArray());
-        $values = array_values($data->toArray());
+        // $keys = array_keys($data->toArray());
+        // $values = array_values($data->toArray());
 
-        $full_arr = array_merge($keys, $values);
+        // $full_arr = array_merge($keys, $values);
+        $full_arr = [];
+        foreach ($data->toArray() as $key => $value) {
+            array_push($full_arr, $key.' - '.$value);
+        }
         return response()->json($full_arr);
     }
 }
