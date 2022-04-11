@@ -4,7 +4,7 @@
             <ul>
                 <li class="menu-title">Main</li>
                 <li class="active">
-                    <a href="{{ route('home') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                    <a href="{{ route('home') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboards</span></a>
                 </li>
 
                 <li>
