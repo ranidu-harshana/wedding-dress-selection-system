@@ -285,7 +285,7 @@ $(document).ready(function(){
 				success: function(data){
 					$('#note_create_form').attr('style', 'display:none')
 					$('#note_edit_form').attr('style', 'display:block')
-					$('#edit_note').attr('value', data.note)
+					$('#edit_note').html(data.note)
 					$('#note_id').attr('value', note_id)
 					$('#note_edit_form').attr('action', "../note/"+note_id)
 				}

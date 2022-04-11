@@ -668,7 +668,7 @@
                                     <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                     <div class="form-group">
                                         <label>Note</label>
-                                        <input name="note" type="text" required class="form-control">
+                                        <textarea name="note" required class="form-control" id="" cols="30" rows="5"></textarea>
                                     </div>
 
                                     <div class="text-right">
@@ -682,7 +682,7 @@
                                     @method("PUT")
                                     <div class="form-group">
                                         <label>Edit Note</label>
-                                        <input name="note" type="text" required class="form-control" id="edit_note">
+                                        <textarea name="note" required class="form-control" id="edit_note" cols="30" rows="5"></textarea>
                                     </div>
 
                                     <div class="text-right">
@@ -694,62 +694,55 @@
                     </div>
                     
                     <div class="col-md-8">
-                        <div class="card-box">
-                            <h3 class="card-title">All Notes</h3>
-                            <div class="experience-box">
-                                <div class="table-responsive">
-									<table class="table mb-0">
-										<thead>
-											<tr>
-                                                <th></th>
-												<th>Note</th>
-                                                <th>Date</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-                                            @php
-                                                $i = 1;
-                                            @endphp
-                                            @foreach ($notes as $note)
-                                                <tr>
-                                                    <td>
-                                                        @if ($note->status == 1)
-                                                            <input type="checkbox" checked>
-                                                        @else
-                                                            <input type="checkbox">
-                                                        @endif
-                                                        
-                                                    </td>
-                                                    <td>{{ $note->note }}</td>
-                                                    <td>{{ $note->created_at }}</td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <input type="hidden" value="{{ $note->id }}" id="note_id{{$i}}">
-                                                            <button type="submit" class="btn btn-warning btn-sm" name="edit" id="edit_btn{{$i}}"><i class="fal fa-edit"></i> </button>&nbsp;
-                                                            <form action="{{ route('note.destroy', $note->id) }}" method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm" name="delete"><i class="far fa-trash-alt"></i> </button>&nbsp;
-                                                            </form>
-                                                            <form action="{{ route('note.mark_as_read', $note->id) }}" method="post">
-                                                                @csrf
-                                                                @method("PUT")
-                                                                <button type="submit" class="btn btn-success btn-sm" name="mark_as_done"><i class="fas fa-clipboard-check"></i> </button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @php
-                                                    $i++;
-                                                @endphp
-                                            @endforeach
-                                            <input type="hidden" name="" id="last_count_i" value="{{$i}}">
-										</tbody>
-									</table>
-								</div>
-                            </div>
-                        </div>
+                            <table class="table table-striped table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Note</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach ($notes as $note)
+                                        <tr>
+                                            <td>
+                                                @if ($note->status == 1)
+                                                    <input type="checkbox" checked>
+                                                @else
+                                                    <input type="checkbox">
+                                                @endif
+                                                
+                                            </td>
+                                            <td>{{ $note->note }}</td>
+                                            <td style="width: 110px">{{ $note->created_at }}</td>
+                                            <td style="width: 100px">
+                                                <div class="row">
+                                                    <input type="hidden" value="{{ $note->id }}" id="note_id{{$i}}">
+                                                    <button type="submit" class="btn btn-warning btn-sm" name="edit" id="edit_btn{{$i}}"><i class="fal fa-edit"></i> </button>&nbsp;
+                                                    <form action="{{ route('note.destroy', $note->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" name="delete"><i class="far fa-trash-alt"></i> </button>&nbsp;
+                                                    </form>
+                                                    <form action="{{ route('note.mark_as_read', $note->id) }}" method="post">
+                                                        @csrf
+                                                        @method("PUT")
+                                                        <button type="submit" class="btn btn-success btn-sm" name="mark_as_done"><i class="fas fa-clipboard-check"></i> </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
+                                    <input type="hidden" name="" id="last_count_i" value="{{$i}}">
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>
