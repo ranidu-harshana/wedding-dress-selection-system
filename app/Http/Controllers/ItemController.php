@@ -52,28 +52,31 @@ class ItemController extends Controller
             'item_type' => ['required'],
             'item_image_url' => ['nullable'],
         ]);
-
+        $category_id = $validated['item_category_id'];
+        $category = ItemCategory::find($category_id);
         if ($request->hasFile('item_image_url')) {
             $request->item_image_url->store('item', 'public');
-
-            $category_id = $validated['item_category_id'];
-            $category = ItemCategory::find($category_id);
-
             $comment = $category->items()->create([
                 'item_code' => $validated['item_code'],
                 'item_desc' => $validated['item_desc'],
                 'item_type' => $validated['item_type'],
                 "item_image_url" => $request->item_image_url->hashName()
             ]);
-
-            if($comment) {
-                session()->flash('item-created', 'New Item Created');
-            }else{
-                session()->flash('failed', 'Failed');
-            }
-            
-            return redirect()->route('item.index');
+        }else{
+            $comment = $category->items()->create([
+                'item_code' => $validated['item_code'],
+                'item_desc' => $validated['item_desc'],
+                'item_type' => $validated['item_type'],
+            ]);
         }
+
+        if($comment) {
+            session()->flash('item-created', 'New Item Created');
+        }else{
+            session()->flash('failed', 'Failed');
+        }
+        
+        return redirect()->route('item.index');
     }
 
     /**

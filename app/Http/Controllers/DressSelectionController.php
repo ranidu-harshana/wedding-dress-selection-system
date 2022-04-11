@@ -3,30 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\DressSelection;
 use Illuminate\Http\Request;
 
-class DressSelection extends Controller
+class DressSelectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -45,7 +26,7 @@ class DressSelection extends Controller
 
         if ($request->bestman_jacket != NULL) {
             foreach ($request->bestman_jacket as $jacket) {
-                $arr['type'] = "Bestman Jacket - ".$i+1;
+                $arr['type'] = "Bestman's Jacket - ".$i+1;
                 $arr['name'] = $jacket;
                 array_push($data, $arr);
                 $arr = [];
@@ -56,7 +37,7 @@ class DressSelection extends Controller
         $i = 0;
         if ($request->pageboy_jacket != NULL) {
             foreach ($request->pageboy_jacket as $jacket) {
-                $arr['type'] = "Pageboy Jacket - ".$i+1;
+                $arr['type'] = "Pageboy's Jacket - ".$i+1;
                 $arr['name'] = $jacket;
                 array_push($data, $arr);
                 $arr = [];
@@ -77,28 +58,6 @@ class DressSelection extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -107,17 +66,16 @@ class DressSelection extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'dress' => 'required',
+        ]);
+
+        $dress = DressSelection::find($id);
+        $dress->update([
+            'name'=>$request->dress,
+        ]);
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

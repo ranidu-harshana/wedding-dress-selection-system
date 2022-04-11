@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DressSelection;
+use App\Http\Controllers\DressSelectionController;
 use App\Http\Controllers\InteringPaymentController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemController;
@@ -34,7 +34,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');
 
-    Route::resource('select/dress', DressSelection::class);
+    Route::resource('select/dress', DressSelectionController::class);
+    
     Route::post('set_tab0_session', [SessionController::class, 'set_tab0_session']);
     Route::post('set_tab1_session', [SessionController::class, 'set_tab1_session']);
     Route::post('set_tab2_session', [SessionController::class, 'set_tab2_session']);

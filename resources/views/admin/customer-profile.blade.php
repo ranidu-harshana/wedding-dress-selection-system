@@ -557,8 +557,55 @@
                                             <tr>
                                                 <td>{{ $dress->type }}</td>
                                                 <td><a href="" class="text">{{ $dress->name }}</a> </td>
-                                                {{-- <td><button class="btn btn-primary btn-sm">Edit</button> </td> --}}
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dressEdit{{ $dress->id }}">
+                                                        Edit
+                                                    </button>
+                                                </td>
                                             </tr>
+                                            <div class="modal fade" id="dressEdit{{ $dress->id }}" tabindex="-1" role="dialog" aria-labelledby="dressEdit{{ $dress->id }}Label" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="dressEdit{{ $dress->id }}Label">Edit &nbsp; <span class="text-primary">{{ $dress->type }}</span></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ route('dress.update', $dress->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="form-group row">
+                                                                    <label class="col-md-4 col-form-label">{{ $dress->type }}</label>
+                                                                    <div class="col-md-8">
+                                                                        @if($dress->type == "Groom's Jacket")
+                                                                            <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="groom_jacket" autocomplete="off">
+                                                                        @elseif($dress->type == "Groom's Cavani")
+                                                                            <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="groom_cavani" autocomplete="off">
+                                                                        @elseif($dress->type == "Group Cavani")
+                                                                            <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="group_cavani" autocomplete="off">
+                                                                        @else
+                                                                            @for ($i = 0; $i < 8; $i++)
+                                                                                @if ($dress->type == "Bestman's Jacket - ".$i+1)
+                                                                                    <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="bestman_jacket{{$i}}" autocomplete="off">
+                                                                                @elseif($dress->type == "Pageboy's Jacket - ".$i+1)
+                                                                                    <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="pageboy_jacket{{$i}}" autocomplete="off">
+                                                                                @endif
+                                                                            @endfor
+                                                                        @endif
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </table>
                                 </div>
@@ -566,7 +613,11 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-lg-6" id="display_area">
+                    @if ($dress_selected_customer != NULL)
+                        <div class="col-lg-6" id="display_area" style="display: none">
+                    @else
+                        <div class="col-lg-6" id="display_area">
+                    @endif
                     </div>
                 </div>
             </div>
