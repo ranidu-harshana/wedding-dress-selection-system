@@ -45,7 +45,6 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('wedding.reservations.report.show') }}">Wedding Reservation</a></li>
                         <li><a href="{{ route('dress.index') }}">Reserved Items</a></li>
-                        <li><a href="">Branch</a></li>
                     </ul>
                 </li>
             </ul>
