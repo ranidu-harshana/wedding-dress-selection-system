@@ -39,6 +39,12 @@
         $(document).ready(function() {
             $('#all_items_datatable').DataTable();
         } );
+
+        $(document).ready(function() {
+            $('#all_reserved_items_datatable').DataTable({
+                "order": [[ 0, "desc" ]]
+            });
+        } );
     </script>
     <div class="sidebar-overlay" data-reff=""></div>
 	<script src="{{ asset('assets/js/popper.min.js') }}"></script>

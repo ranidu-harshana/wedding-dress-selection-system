@@ -39,6 +39,15 @@
                         </li>
                     @endif
                 @endif
+
+                <li class="submenu">
+                    <a href="#"><i class="fas fa-book"></i> <span> Reports </span> <span><i class="fas fa-caret-down"></i></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('wedding.reservations.report.show') }}">Wedding Reservation</a></li>
+                        <li><a href="{{ route('dress.index') }}">Reserved Items</a></li>
+                        <li><a href="">Branch</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

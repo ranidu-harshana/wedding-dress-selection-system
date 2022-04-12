@@ -23,6 +23,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resource('item_category', ItemCategoryController::class);
+
     Route::resource('item', ItemController::class);
 
     Route::resource('customer', CustomerController::class);
@@ -30,6 +31,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::put('/postpone/{customer}', [CustomerController::class, 'postpone'])->name('postpone');
     Route::put('/cancel/{customer}', [CustomerController::class, 'cancel'])->name('cancel');
     Route::put('/re_schedule/{customer}', [CustomerController::class, 're_schedule'])->name('re_schedule');
+    Route::get('/show/wedding/reservations/report', [CustomerController::class, 'show_wedding_reservations_report'])->name('wedding.reservations.report.show');
 
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');
@@ -60,4 +62,11 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/get_all_func_dates', [CustomerController::class, 'get_all_func_dates'])->name('get_all_func_dates');
 
     Route::resource('/branch', BranchController::class);
+
+    // Route::get('/test', function() {
+    //     $string = 'fff';
+    //     echo "<pre>";
+    //     print_r(explode(' - ', $string));
+    //     echo "</pre>";
+    // });
 });

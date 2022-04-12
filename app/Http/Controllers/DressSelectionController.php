@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class DressSelectionController extends Controller
 {
+    public function index() {
+        $dresses = DressSelection::all();
+        return view('admin.view-all-reserved-items', ['dresses'=>$dresses]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -69,7 +73,7 @@ class DressSelectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
             'dress' => 'required',
         ]);
 
@@ -80,5 +84,7 @@ class DressSelectionController extends Controller
         return back();
     }
 
-    
+    public function show_all_reserved_items() {
+        return view('view-all-reserved-items');
+    }
 }

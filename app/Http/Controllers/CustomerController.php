@@ -157,16 +157,6 @@ class CustomerController extends Controller
         return redirect()->route('customer.show', $id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     function edit_measurment_date(Request $request, $id) {
         $customer = Customer::find($id);
@@ -273,5 +263,9 @@ class CustomerController extends Controller
             'status' => 1,
         ]);
         return back();
+    }
+
+    public function show_wedding_reservations_report() {
+        return view('admin.wedd-reservation-report');
     }
 }
