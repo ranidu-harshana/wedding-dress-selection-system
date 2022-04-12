@@ -511,20 +511,20 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-4">Groom's Jacket</label>
                                         <div class="col-md-8">
-                                            <input name="groom_jacket" id="groom_jacket" type="text" class="form-control" autocomplete="off">
+                                            <input name="groom_jacket" id="groom_jacket" type="text" class="form-control" autocomplete="off" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-4">Groom's Cavani</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" name="groom_cavani" id="groom_cavani" autocomplete="off">
+                                            <input type="text" class="form-control" name="groom_cavani" id="groom_cavani" autocomplete="off" required>
                                         </div>
                                     </div>
                                     @for ($i = 0; $i < $customer->no_of_bestmen; $i++)
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-4">Bestman's Jacket - {{ $i+1 }}</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="bestman_jacket[]" id="bestman_jacket{{$i}}" autocomplete="off">
+                                                <input type="text" class="form-control" name="bestman_jacket[]" id="bestman_jacket{{$i}}" autocomplete="off" required>
                                             </div>
                                         </div>
                                     @endfor
@@ -533,7 +533,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-4">Pageboy's Jacket - {{ $i+1 }}</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="pageboy_jacket[]" id="pageboy_jacket{{$i}}" autocomplete="off">
+                                                <input type="text" class="form-control" name="pageboy_jacket[]" id="pageboy_jacket{{$i}}" autocomplete="off" required>
                                             </div>
                                         </div>
                                     @endfor
@@ -541,7 +541,7 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-4">Group Cavani</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" name="group_cavani" id="group_cavani" autocomplete="off">
+                                            <input type="text" class="form-control" name="group_cavani" id="group_cavani" autocomplete="off" required>
                                         </div>
                                     </div>
 
