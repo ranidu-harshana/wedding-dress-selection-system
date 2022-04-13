@@ -61,16 +61,15 @@ class BranchController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'cat_name' => 'required',
+            'name' => 'required',
+            'prefix' => 'required',
         ]);
 
-        $category = Branch::find($id);
-        $category->update([
-            'cat_name' => $validated['cat_name'],
-        ]);
+        $branch = Branch::find($id);
+        $branch->update($validated);
 
-        session()->flash('item-category-updated', 'Item Category Updated');
-        return redirect()->route('item_category.index');
+        session()->flash('branch-updated', 'Branch Updated');
+        return redirect()->route('branch.index');
     }
 
     /**
@@ -81,10 +80,10 @@ class BranchController extends Controller
      */
     public function destroy($id)
     {
-        $category = Branch::find($id);
-        if($category->delete()) {
-            session()->flash('item-category-deleted', 'Item Category Deleted');
+        $branch = Branch::find($id);
+        if($branch->delete()) {
+            session()->flash('branch-deleted', 'Branch Deleted');
         }
-        return redirect()->route('item_category.index');
+        return redirect()->route('branch.index');
     }
 }

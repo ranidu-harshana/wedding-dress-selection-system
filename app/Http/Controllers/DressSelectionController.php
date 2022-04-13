@@ -20,9 +20,6 @@ class DressSelectionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
         $data = [
             ['type'=> 'Groom\'s Jacket', 'name'=>$request->groom_jacket],
             ['type'=> 'Groom\'s Cavani', 'name'=>$request->groom_cavani],
