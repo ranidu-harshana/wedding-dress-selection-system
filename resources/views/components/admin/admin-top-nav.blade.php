@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-left">
-        <a href="index-2.html" class="logo">
+        <a href="{{ route('home') }}" class="logo">
             <img src="{{ asset('assets/img/Logo.jpg') }}" width="35" height="35" alt=""> <span>Sri Kula Medura</span>
         </a>
     </div>

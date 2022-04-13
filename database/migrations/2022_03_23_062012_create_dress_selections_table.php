@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('dress_selections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->onDelete('cascade');
-            $table->string('type');
-            $table->string('name');
+            $table->string('type')->nullable();
+            $table->string('name')->nullable();
             $table->tinyInteger('status')->default(0); // if 0 - available
             $table->timestamps();
         });

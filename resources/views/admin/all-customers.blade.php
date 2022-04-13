@@ -66,7 +66,7 @@
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <div class="form-group">
-                                                                    <input class="form-control" type="date" name="measurement_date" value="{{ $customer->measurement_date }}">
+                                                                    <input class="form-control" type="date" name="measurement_date" value="{{ $customer->measurement_date }}" min="{{ date('Y-m-d') }}">
                                                                 </div>
                                                         </div>
                                                         <div class="modal-footer">

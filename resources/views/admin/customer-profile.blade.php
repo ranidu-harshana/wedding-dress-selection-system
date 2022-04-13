@@ -39,7 +39,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}">
+                                    <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}" min="{{ date('Y-m-d') }}">
                                 </div>
                         </div>
                         <div class="modal-footer">
