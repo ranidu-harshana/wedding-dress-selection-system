@@ -63,11 +63,11 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::resource('/branch', BranchController::class);
 
-    // Route::get('/test', function() {
-    //     $string = 'fff';
-    //     echo "<pre>";
-    //     print_r(explode(' - ', $string));
-    //     echo "</pre>";
-    // });
+    Route::get('/test', function() {
+        $string = 'fff';
+        echo "<pre>";
+        print_r(explode(' - ', $string));
+        echo "</pre>";
+    });
 });
 
