@@ -70,3 +70,4 @@ Route::middleware(['web', 'auth'])->group(function () {
     //     echo "</pre>";
     // });
 });
+
