@@ -32,6 +32,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::put('/cancel/{customer}', [CustomerController::class, 'cancel'])->name('cancel');
     Route::put('/re_schedule/{customer}', [CustomerController::class, 're_schedule'])->name('re_schedule');
     Route::get('/show/wedding/reservations/report', [CustomerController::class, 'show_wedding_reservations_report'])->name('wedding.reservations.report.show');
+    Route::post('/reservations/report/pdf', [CustomerController::class, 'reservation_report_pdf'])->name('reservation_report_pdf');
 
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');
@@ -70,3 +71,4 @@ Route::middleware(['web', 'auth'])->group(function () {
     //     echo "</pre>";
     // });
 });
+

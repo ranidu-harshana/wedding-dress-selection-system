@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if($errors->any())
+    {!! implode('', $errors->all('<div>:message</div>')) !!}
+@endif
     <div class="row">
         <div class="col-sm-7 col-6">
             <h4 class="page-title">Customer Profile</h4>

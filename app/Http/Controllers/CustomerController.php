@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Customer;
 use App\Models\DressSelection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -267,5 +268,21 @@ class CustomerController extends Controller
 
     public function show_wedding_reservations_report() {
         return view('admin.wedd-reservation-report');
+    }
+
+    public function reservation_report_pdf (Request $request) {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if ($to_date == NULL) {
+            $customers = Customer::where('function_date', '=', $from_date)->get();
+        }elseif ($from_date == NULL) {
+            $customers = Customer::where('function_date', '=', $to_date)->get();
+        }else{
+            $customers = Customer::where('function_date', '>=', $from_date)->where('function_date', '<=', $to_date)->get();
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.reservations-pdf-view', ['from_date'=>$from_date, 'to_date'=>$to_date, 'customers'=>$customers]);
+        return $pdf->stream();
     }
 }
