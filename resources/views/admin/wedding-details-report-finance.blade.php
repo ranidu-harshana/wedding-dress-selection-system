@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card-box">
-                <h4 class="card-title">Get Reservation Details - By Month</h4>
+                <h4 class="card-title">By Month</h4>
                 <form action="{{ route('reservation_report_pdf_finance_month') }}" method="POST">
                     @csrf
                     <div class="form-group">
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card-box">
-                <h4 class="card-title">Get Reservation Details - By Range</h4>
+                <h4 class="card-title">By Range</h4>
                 <form action="{{ route('reservation_report_pdf_finance_range') }}" method="POST">
                     @csrf
                     <div class="form-group">
