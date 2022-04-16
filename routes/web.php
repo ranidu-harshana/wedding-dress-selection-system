@@ -49,6 +49,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('set_tab2_session', [SessionController::class, 'set_tab2_session']);
     Route::post('set_tab3_session', [SessionController::class, 'set_tab3_session']);
     Route::post('set_tab4_session', [SessionController::class, 'set_tab4_session']);
+    Route::post('set_tab5_session', [SessionController::class, 'set_tab5_session']);
 
     Route::get('autocomplete/groom/jacket', [ItemController::class, 'autocomplete_groom_jacket'])->name('autocomplete_groom_jacket');
     Route::get('autocomplete/groom/cavani', [ItemController::class, 'autocomplete_groom_cavani'])->name('autocomplete_groom_cavani');

@@ -293,7 +293,7 @@ $(document).ready(function(){
 		});
 	}
 
-	for (let j = 0; j <= 4; j++) {
+	for (let j = 0; j <= 5; j++) {
 		$("#tab"+j).on('click',function(){
 			$.ajaxSetup({
 				headers: {

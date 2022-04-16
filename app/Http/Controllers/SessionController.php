@@ -12,6 +12,7 @@ class SessionController extends Controller
         session()->forget('tab2');
         session()->forget('tab3');
         session()->forget('tab4');
+        session()->forget('tab5');
         session(['tab0' => 'value']);
     }
 
@@ -21,6 +22,7 @@ class SessionController extends Controller
         session()->forget('tab2');
         session()->forget('tab3');
         session()->forget('tab4');
+        session()->forget('tab5');
         session(['tab1' => 'value']);
     }
 
@@ -30,6 +32,7 @@ class SessionController extends Controller
         session()->forget('tab2');
         session()->forget('tab3');
         session()->forget('tab4');
+        session()->forget('tab5');
         session(['tab2' => 'value']);
     }
 
@@ -39,6 +42,7 @@ class SessionController extends Controller
         session()->forget('tab2');
         session()->forget('tab3');
         session()->forget('tab4');
+        session()->forget('tab5');
         session(['tab3' => 'value']);
     }
 
@@ -48,6 +52,17 @@ class SessionController extends Controller
         session()->forget('tab2');
         session()->forget('tab3');
         session()->forget('tab4');
+        session()->forget('tab5');
         session(['tab4' => 'value']);
+    }
+
+    public function set_tab5_session() {
+        session()->forget('tab0');
+        session()->forget('tab1');
+        session()->forget('tab2');
+        session()->forget('tab3');
+        session()->forget('tab4');
+        session()->forget('tab5');
+        session(['tab5' => 'value']);
     }
 }

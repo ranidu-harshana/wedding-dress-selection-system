@@ -131,6 +131,7 @@
             <li class="nav-item" id="tab2"><a class="nav-link @if (session('tab2')) active @endif" href="#bill_tab" data-toggle="tab">Bill</a></li>
             <li class="nav-item" id="tab3"><a class="nav-link @if (session('tab3')) active @endif" href="#notes_tab" data-toggle="tab">Notes</a></li>
             <li class="nav-item" id="tab4"><a class="nav-link @if (session('tab4')) active @endif" href="#other_tab" data-toggle="tab">Other</a></li>
+            <li class="nav-item" id="tab5"><a class="nav-link @if (session('tab5')) active @endif" href="#costs_tab" data-toggle="tab">Costs</a></li>
         </ul>
 
         <div class="tab-content">
@@ -863,6 +864,48 @@
                                     @endif
                                 </ul>
                             @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane @if (session('tab5')) active @endif" id="costs_tab" >
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <h4 class="card-title">Enter Costs</h4>
+                            <form action="" method="POST">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-4">Transport</label>
+                                        <div class="col-md-8">
+                                            <input name="transport" id="transport" type="text" class="form-control" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-4">Salary</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="salary" id="salary" autocomplete="off" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-4">Cleaning</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-4">Depreciation</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="depreciation" id="depreciation" autocomplete="off" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <input type="submit" class="btn btn-primary " name="submit">
+                                    </div>
+                                </form>
                         </div>
                     </div>
                 </div>
