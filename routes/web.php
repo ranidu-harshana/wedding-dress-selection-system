@@ -31,8 +31,13 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::put('/postpone/{customer}', [CustomerController::class, 'postpone'])->name('postpone');
     Route::put('/cancel/{customer}', [CustomerController::class, 'cancel'])->name('cancel');
     Route::put('/re_schedule/{customer}', [CustomerController::class, 're_schedule'])->name('re_schedule');
+
     Route::get('/show/wedding/reservations/report', [CustomerController::class, 'show_wedding_reservations_report'])->name('wedding.reservations.report.show');
     Route::post('/reservations/report/pdf', [CustomerController::class, 'reservation_report_pdf'])->name('reservation_report_pdf');
+
+    Route::get('/show/wedding/reservations/finance/report', [CustomerController::class, 'show_wedding_reservations_report_finance'])->name('wedding.reservations.report.show.finance');
+    Route::post('/reservations/report/finance/pdf', [CustomerController::class, 'reservation_report_pdf_finance_month'])->name('reservation_report_pdf_finance_month');
+    Route::post('/reservations/report/finance/pdf/range', [CustomerController::class, 'reservation_report_pdf_finance_range'])->name('reservation_report_pdf_finance_range');
 
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');

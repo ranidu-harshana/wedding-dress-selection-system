@@ -277,12 +277,40 @@ class CustomerController extends Controller
             $customers = Customer::where('function_date', '=', $from_date)->get();
         }elseif ($from_date == NULL) {
             $customers = Customer::where('function_date', '=', $to_date)->get();
-        }else{
+        }elseif ($to_date != NULL && $from_date != NULL){
             $customers = Customer::where('function_date', '>=', $from_date)->where('function_date', '<=', $to_date)->get();
         }
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('admin.reservations-pdf-view', ['from_date'=>$from_date, 'to_date'=>$to_date, 'customers'=>$customers]);
+        return $pdf->stream();
+    }
+
+    public function show_wedding_reservations_report_finance() {
+        return view('admin.wedding-details-report-finance');
+    }
+
+    public function reservation_report_pdf_finance_month(Request $request) {
+        $customers = Customer::where('function_date', 'LIKE', "%{$request->month}%")->get();
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.wedding-details-report-finance-pdf', ['customers'=>$customers]);
+        return $pdf->stream();
+    }
+
+    public function reservation_report_pdf_finance_range(Request $request) {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if ($to_date == NULL) {
+            $customers = Customer::where('function_date', '=', $from_date)->get();
+        }elseif ($from_date == NULL) {
+            $customers = Customer::where('function_date', '=', $to_date)->get();
+        }elseif ($to_date != NULL && $from_date != NULL){
+            $customers = Customer::where('function_date', '>=', $from_date)->where('function_date', '<=', $to_date)->get();
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.wedding-details-report-finance-pdf', ['customers'=>$customers]);
         return $pdf->stream();
     }
 }
