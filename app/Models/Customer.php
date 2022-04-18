@@ -60,4 +60,8 @@ class Customer extends Model
     public function measurements() {
         return $this->hasMany(Measurement::class);
     }
+
+    public function cost() {
+        return $this->hasOne(Cost::class);
+    }
 }

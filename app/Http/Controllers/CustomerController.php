@@ -313,4 +313,24 @@ class CustomerController extends Controller
         $pdf->loadView('admin.wedding-details-report-finance-pdf', ['customers'=>$customers]);
         return $pdf->stream();
     }
+
+    public function show_cost_report_pdf() {
+        return view('admin.genarate-cost-report');
+    }
+
+    public function cost_report_pdf(Request $request) {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if ($to_date == NULL) {
+            $customers = Customer::where('function_date', '=', $from_date)->get();
+        }elseif ($from_date == NULL) {
+            $customers = Customer::where('function_date', '=', $to_date)->get();
+        }elseif ($to_date != NULL && $from_date != NULL){
+            $customers = Customer::where('function_date', '>=', $from_date)->where('function_date', '<=', $to_date)->get();
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.cost-report-pdf', ['customers'=>$customers]);
+        return $pdf->stream();
+    }
 }

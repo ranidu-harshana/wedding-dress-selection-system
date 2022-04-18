@@ -28,7 +28,7 @@
             @foreach ($customers as $customer)
                 <tr>
                     <th scope="row">{{ $customer->branch->prefix }}{{ $customer->bill_number }}</th>
-                    <td>{{ $customer->bill_number }}</td>
+                    <td>{{ $customer->name }}</td>
                     <td>{{ $customer->created_at }}</td>
                     <td class="text-right">{{ $customer->total_amount }}</td>
                     <td class="text-right">{{ $customer->advance_payment }}</td>

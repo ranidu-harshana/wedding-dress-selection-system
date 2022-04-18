@@ -46,6 +46,7 @@
                         <li><a href="{{ route('wedding.reservations.report.show') }}">Wedding Reservation</a></li>
                         <li><a href="{{ route('dress.index') }}">Reserved Items</a></li>
                         <li><a href="{{ route('wedding.reservations.report.show.finance') }}">Account Summary</a></li>
+                        <li><a href="{{ route('show_cost_report_pdf') }}">Cost Summary</a></li>
                     </ul>
                 </li>
             </ul>

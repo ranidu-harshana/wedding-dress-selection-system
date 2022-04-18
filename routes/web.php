@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CostController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DressSelectionController;
 use App\Http\Controllers\InteringPaymentController;
@@ -38,7 +39,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/show/wedding/reservations/finance/report', [CustomerController::class, 'show_wedding_reservations_report_finance'])->name('wedding.reservations.report.show.finance');
     Route::post('/reservations/report/finance/pdf', [CustomerController::class, 'reservation_report_pdf_finance_month'])->name('reservation_report_pdf_finance_month');
     Route::post('/reservations/report/finance/pdf/range', [CustomerController::class, 'reservation_report_pdf_finance_range'])->name('reservation_report_pdf_finance_range');
-
+    Route::get('/genarate/cost/report', [CustomerController::class, 'show_cost_report_pdf'])->name('show_cost_report_pdf');
+    Route::post('/genarate/cost/report/pdf', [CustomerController::class, 'cost_report_pdf'])->name('cost_report_pdf');
+    
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');
 
@@ -70,6 +73,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::resource('/branch', BranchController::class);
 
+    Route::resource('/cost', CostController::class);
     // Route::get('/test', function() {
     //     $string = 'fff';
     //     echo "<pre>";
