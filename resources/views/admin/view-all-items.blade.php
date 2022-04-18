@@ -21,7 +21,7 @@
                     @endif
                     
                     <div class="table-responsive">
-                        <table id="all_items_datatable" class="table table-striped table-bordered" style="width:100%">
+                        <table id="all_items_datatable" class="table table-striped table-bordered table-sm">
                             <thead>
                                 <tr>
                                     <th>Item Code</th>
