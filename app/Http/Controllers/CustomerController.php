@@ -19,13 +19,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
         
-        if($user->role->name == 'admin') {
-            $customers = Customer::all();
-        }else{
-            $customers = $user->customers;
-        }
+        $customers = Customer::all();
+        
         return view('admin.all-customers', ['customers'=>$customers]);
     }
 

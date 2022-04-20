@@ -17,10 +17,12 @@
                             </thead>
                             <tbody>
                                 @foreach ($dresses as $dress)
-                                    <tr>
-                                        <td>{{ $dress->customer->function_date }}</td>
-                                        <td>{{ $dress->name }}</td>
-                                    </tr>
+                                    @if ($dress->name != NULL)
+                                        <tr>
+                                            <td>{{ $dress->customer->function_date }}</td>
+                                            <td>{{ $dress->name }}</td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                             <tfoot>

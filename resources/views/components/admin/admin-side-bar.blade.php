@@ -45,8 +45,12 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('wedding.reservations.report.show') }}">Wedding Reservation</a></li>
                         <li><a href="{{ route('dress.index') }}">Reserved Items</a></li>
-                        <li><a href="{{ route('wedding.reservations.report.show.finance') }}">Account Summary</a></li>
-                        <li><a href="{{ route('show_cost_report_pdf') }}">Cost Summary</a></li>
+                        @if (auth()->check())
+                            @if (auth()->user()->is_admin())
+                                <li><a href="{{ route('wedding.reservations.report.show.finance') }}">Account Summary</a></li>
+                                <li><a href="{{ route('show_cost_report_pdf') }}">Cost Summary</a></li>
+                            @endif
+                        @endif
                     </ul>
                 </li>
             </ul>

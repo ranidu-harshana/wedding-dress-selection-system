@@ -27,8 +27,12 @@
                                     <th>Item Code</th>
                                     <th>Item Category</th>
                                     <th>Item Type</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    @if (auth()->check())
+                                        @if (auth()->user()->is_admin())
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        @endif
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,22 +41,27 @@
                                         <td>{{ $item->item_code }}</td>
                                         <td>{{ $item->item_category->cat_name }}</td>
                                         <td>{{ $item->item_type }}</td>
-                                        <td>
-                                            <a href="{{ route('item.edit', $item->id) }}">
-                                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                                    Edit
-                                                </button>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('item.destroy', $item->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
+                                        @if (auth()->check())
+                                            @if (auth()->user()->is_admin())
+                                            <td>
+                                                <a href="{{ route('item.edit', $item->id) }}">
+                                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                        Edit
+                                                    </button>
+                                                </a>
+                                            </td>
+                                            
+                                            <td>
+                                                <form action="{{ route('item.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            @endif
+                                        @endif
                                     </tr>    
                                 @endforeach
                                 
@@ -62,8 +71,12 @@
                                     <th>Item Code</th>
                                     <th>Item Category</th>
                                     <th>Item Type</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    @if (auth()->check())
+                                        @if (auth()->user()->is_admin())
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        @endif
+                                    @endif
                                 </tr>
                             </tfoot>
                         </table>
