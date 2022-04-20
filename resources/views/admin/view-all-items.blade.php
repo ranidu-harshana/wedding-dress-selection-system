@@ -25,6 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>Item Code</th>
+                                    <th>Item Description</th>
                                     <th>Item Category</th>
                                     <th>Item Type</th>
                                     @if (auth()->check())
@@ -39,6 +40,7 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <td>{{ $item->item_code }}</td>
+                                        <td>{{ $item->item_desc }}</td>
                                         <td>{{ $item->item_category->cat_name }}</td>
                                         <td>{{ $item->item_type }}</td>
                                         @if (auth()->check())
@@ -69,6 +71,7 @@
                             <tfoot>
                                 <tr>
                                     <th>Item Code</th>
+                                    <th>Item Description</th>
                                     <th>Item Category</th>
                                     <th>Item Type</th>
                                     @if (auth()->check())
