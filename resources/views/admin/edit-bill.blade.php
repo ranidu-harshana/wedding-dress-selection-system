@@ -55,12 +55,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Function Date</label>
-                        <input name="function_date" value="{{ $customer->function_date }}" type="date" required class="form-control @error('function_date') is-invalid @enderror" autocomplete="off" min="{{ date('Y-m-d') }}">
-                        @error('function_date') <p class="text-danger">{{$message}}</p> @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label>Function Place</label>
                         <input name="function_place" value="{{ $customer->function_place }}" type="text" required class="form-control" autocomplete="off">
                     </div>
