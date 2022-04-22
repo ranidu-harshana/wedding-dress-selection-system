@@ -26,6 +26,7 @@
                         <div class="form-group">
                             <label>Category Name</label>
                             <input type="text" name="cat_name" class="form-control" value="{{ $category->cat_name }}">
+                            <span class="text-danger small">*Do not change sequence of Item Categories when editing</span>
                         </div>
                     
                         <div class="text-right">
@@ -84,8 +85,10 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
+
         </div>
     </div>
 @endsection
