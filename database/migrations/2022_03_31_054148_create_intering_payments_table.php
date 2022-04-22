@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('intering_payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->onDelete('cascade');
-            $table->integer('intering_payment')->default(0);
+            $table->integer('intering_payment')->nullable();
             $table->timestamps();
         });
     }

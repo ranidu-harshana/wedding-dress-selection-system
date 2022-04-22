@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             $table->integer('total_amount');
-            $table->integer('discount')->default(0);
-            $table->integer('advance_payment')->default(0);
+            $table->integer('discount')->nullable();
+            $table->integer('advance_payment')->nullable();
         });
     }
 
