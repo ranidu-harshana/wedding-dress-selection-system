@@ -178,7 +178,7 @@ class ItemController extends Controller
                     ->where(function ($query) use($request) { $query->where('item_code','LIKE',"%{$request->term}%")
                     ->orWhere('item_desc','LIKE',"%{$request->term}%");})
                     ->where('item_type','=','Groom')
-                    ->where('item_category_id','=',1)
+                    ->where('item_category_id','=',2)
                     ->pluck('item_desc', 'item_code');
 
         // $keys = array_keys($data->toArray());
@@ -198,7 +198,7 @@ class ItemController extends Controller
         $data = Item::select('item_desc', 'item_code')
                     ->where(function ($query) use($request) { $query->where('item_code','LIKE',"%{$request->term1}%")
                     ->orWhere('item_desc','LIKE',"%{$request->term1}%");})
-                    ->where('item_category_id','=',2)
+                    ->where('item_category_id','=',3)
                     ->where('item_type','=','Groom')
                     ->pluck('item_desc', 'item_code');
 
@@ -218,7 +218,7 @@ class ItemController extends Controller
         $data = Item::select('item_desc', 'item_code')
                     ->where(function ($query) use($request) { $query->where('item_code','LIKE',"%{$request->term2}%")
                     ->orWhere('item_desc','LIKE',"%{$request->term2}%");})
-                    ->where('item_category_id','=',1)
+                    ->where('item_category_id','=',2)
                     ->where('item_type','=','Bestman')
                     ->pluck('item_desc', 'item_code');
 
@@ -238,7 +238,7 @@ class ItemController extends Controller
         $data = Item::select('item_desc', 'item_code')
                     ->where(function ($query) use($request) { $query->where('item_code','LIKE',"%{$request->term3}%")
                     ->orWhere('item_desc','LIKE',"%{$request->term3}%");})
-                    ->where('item_category_id','=',1)
+                    ->where('item_category_id','=',2)
                     ->where('item_type','=','Pageboy')
                     ->pluck('item_desc', 'item_code');
 
@@ -258,7 +258,7 @@ class ItemController extends Controller
         $data = Item::select('item_desc', 'item_code')
                     ->where(function ($query) use($request) { $query->where('item_code','LIKE',"%{$request->term4}%")
                     ->orWhere('item_desc','LIKE',"%{$request->term4}%");})
-                    ->where('item_category_id','=',2)
+                    ->where('item_category_id','=',3)
                     ->where('item_type','!=','Groom')
                     ->pluck('item_desc', 'item_code');
         // $keys = array_keys($data->toArray());
