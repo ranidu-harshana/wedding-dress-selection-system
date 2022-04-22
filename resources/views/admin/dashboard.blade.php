@@ -168,12 +168,12 @@
                         })
                     }
 
-                    function closeModal() {
-                        deleteEventModal.style.display = 'none';
-                        backDrop.style.display = 'none';
-                        clicked = null;
-                        load();
-                    }
+                    // function closeModal() {
+                    //     deleteEventModal.style.display = 'none';
+                    //     backDrop.style.display = 'none';
+                    //     clicked = null;
+                    //     load();
+                    // }
 
                     function initButtons() {
                         document.getElementById('nextButton').addEventListener('click', () => {
@@ -186,7 +186,7 @@
                             load();
                         });
 
-                        document.getElementById('closeButton').addEventListener('click', closeModal);
+                        // document.getElementById('closeButton').addEventListener('click', closeModal);
                     }
                     load();
                     initButtons();
