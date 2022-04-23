@@ -32,11 +32,11 @@
                 </table>
                 <hr>
                 <div>
-                    <table style="width: 35%" >
+                    <table>
                         @foreach ($customer->dress_selections as $dress_selection)
                             <tr>
                                 <td>{{ $dress_selection->type }}</td>
-                                <td>{{ $dress_selection->name }}</td>
+                                <td style="padding-left: 20px">{{ $dress_selection->name }}</td>
                             </tr>
                         @endforeach
                     </table>
