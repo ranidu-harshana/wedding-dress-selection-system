@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="card-box">
                 <h4 class="card-title">Get Reservations Report</h4>
-                <form action="{{ route('reservation_report_pdf') }}" method="POST">
+                <form action="{{ route('reservation_report_pdf') }}" method="POST" formtarget="_blank" target="_blank">
                     @csrf
                     <div class="form-group">
                         <label>From: </label>

@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="card-box">
                 <h4 class="card-title">By Month</h4>
-                <form action="{{ route('reservation_report_pdf_finance_month') }}" method="POST">
+                <form action="{{ route('reservation_report_pdf_finance_month') }}" method="POST" formtarget="_blank" target="_blank">
                     @csrf
                     <div class="form-group">
                         <label>Month: </label>
@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="card-box">
                 <h4 class="card-title">By Range</h4>
-                <form action="{{ route('reservation_report_pdf_finance_range') }}" method="POST">
+                <form action="{{ route('reservation_report_pdf_finance_range') }}" method="POST" formtarget="_blank" target="_blank">
                     @csrf
                     <div class="form-group">
                         <label>From: </label>
