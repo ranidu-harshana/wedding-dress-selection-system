@@ -964,42 +964,78 @@
                                             </div>
                                         </form>
                                     @else
-                                        <h4 class="card-title">Edit Costs</h4>
-                                        <form action="{{ route('cost.update', $customer->cost->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-4">Transport</label>
-                                                <div class="col-md-8">
-                                                    <input name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
+                                        <div id="cost_view_form">
+                                            <h4 class="card-title">View Costs</h4>
+                                                <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Transport</label>
+                                                    <div class="col-md-8">
+                                                        <input disabled name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-4">Salary</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Salary</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" disabled name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-4">Cleaning</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Cleaning</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" disabled name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-md-4">Depriciation</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Depriciation</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" disabled name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="text-right">
-                                                <input type="submit" class="btn btn-primary " name="submit">
-                                            </div>
-                                        </form>
+                                                <div class="text-right">
+                                                    <button class="btn btn-primary" onclick="showCostEditForm()">Edit</button>
+                                                </div>
+                                        </div>
+                                        <div id="cost_edit_form">
+                                            <h4 class="card-title">Edit Costs</h4>
+                                            <form action="{{ route('cost.update', $customer->cost->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Transport</label>
+                                                    <div class="col-md-8">
+                                                        <input name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Salary</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Cleaning</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-4">Depriciation</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-right">
+                                                    <input type="submit" class="btn btn-primary " name="submit">
+                                                </div>
+                                            </form>
+                                        </div>
                                     @endif
                                     
                                 </div>
@@ -1013,7 +1049,13 @@
 
     {{-- Autocompleting Text Fields --}}
     <script>
-        
+        $('#cost_edit_form').hide()
+        $('#cost_view_form').show()
+        function showCostEditForm() {
+            $('#cost_edit_form').show()
+            $('#cost_view_form').hide()
+        }
+
         var path = "{{ route('autocomplete_groom_jacket')  }}";
         $('#groom_jacket').typeahead({
             minLength: 2,
