@@ -249,55 +249,55 @@
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">Head</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" name="head" class="form-control" value="@if ($measurement->head == NULL)0 @else {{ $measurement->head }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="head" class="form-control" value="@if ($measurement->head == NULL)0 @else {{ $measurement->head }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">Shoulder</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" class="form-control" value="@if ($measurement->shoulder == NULL)0 @else {{ $measurement->shoulder }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="shoulder" class="form-control" value="@if ($measurement->shoulder == NULL)0 @else {{ $measurement->shoulder }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">Chest</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="chest" value="@if ($measurement->chest == NULL)0 @else {{ $measurement->chest }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="chest" value="@if ($measurement->chest == NULL)0 @else {{ $measurement->chest }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">Weist</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="weist" value="@if ($measurement->weist == NULL)0 @else {{ $measurement->weist }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="weist" value="@if ($measurement->weist == NULL)0 @else {{ $measurement->weist }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">T.Length</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="tlength" value="@if ($measurement->tlength == NULL)0 @else {{ $measurement->tlength }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="tlength" value="@if ($measurement->tlength == NULL)0 @else {{ $measurement->tlength }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">S.Size</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="ssize" value="@if ($measurement->ssize == NULL)0 @else {{ $measurement->ssize }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="ssize" value="@if ($measurement->ssize == NULL)0 @else {{ $measurement->ssize }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">Arm</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="arm" value="@if ($measurement->arm == NULL)0 @else {{ $measurement->arm }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="arm" value="@if ($measurement->arm == NULL)0 @else {{ $measurement->arm }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">J.Height</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="jheight" value="@if ($measurement->jheight == NULL)0 @else {{ $measurement->jheight }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="jheight" value="@if ($measurement->jheight == NULL)0 @else {{ $measurement->jheight }} @endif">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label">Other</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control" name="other" value="@if ($measurement->other == NULL)0 @else {{ $measurement->other }} @endif">
+                                                                    <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" class="form-control" name="other" value="@if ($measurement->other == NULL)0 @else {{ $measurement->other }} @endif">
                                                                 </div>
                                                             </div>
                                                     </div>
@@ -324,47 +324,47 @@
                                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="head" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="head" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="shoulder" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="chest" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="chest" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="weist" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="weist" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="tlength" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="tlength" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="ssize" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="ssize" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="arm" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="arm" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="jheight" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="jheight" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
                                                     <div class="form-group">
-                                                        <input type="text" onkeypress="return isNumberKey(event)" name="other" class="form-control">
+                                                        <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="other" class="form-control">
                                                     </div>
                                                 </th>
                                                 <th scope="row">
@@ -386,47 +386,47 @@
                                                     <td>BESTMAN - {{$i}}</td>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="head" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="shoulder" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="chest" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="weist" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="tlength" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="ssize" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="arm" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="jheight" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="other" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
@@ -449,47 +449,47 @@
                                                     <td>PAGEBOY - {{$i+1}}</td>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="head" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="head" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="shoulder" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="shoulder" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="chest" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="chest" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="weist" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="weist" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="tlength" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="tlength" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="ssize" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="ssize" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="arm" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="arm" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="jheight" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="jheight" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
                                                         <div class="form-group">
-                                                            <input type="text" onkeypress="return isNumberKey(event)" name="other" id="" class="form-control">
+                                                            <input type="text" onkeypress="return isNumberKey(event)" autocomplete="off" name="other" id="" class="form-control">
                                                         </div>
                                                     </th>
                                                     <th scope="row">
