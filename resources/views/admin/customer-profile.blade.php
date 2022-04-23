@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@if($errors->any())
+{{-- @if($errors->any())
     {!! implode('', $errors->all('<div>:message</div>')) !!}
-@endif
+@endif --}}
     <div class="row">
         <div class="col-sm-7 col-6">
             <h4 class="page-title">Customer Profile</h4>
@@ -567,20 +567,23 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-4">Groom's Jacket</label>
                                         <div class="col-md-8">
-                                            <input name="groom_jacket" id="groom_jacket" type="text" class="form-control" autocomplete="off">
+                                            <input name="groom_jacket" id="groom_jacket" value="{{ old('groom_jacket') }}" type="text" class="form-control @error('groom_jacket') is-invalid @enderror" autocomplete="off">
+                                            @error('groom_jacket') <p class="text-danger small">{{$message}}</p> @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-4">Groom's Cavani</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" name="groom_cavani" id="groom_cavani" autocomplete="off">
+                                            <input type="text" name="groom_cavani" class="form-control @error('groom_cavani') is-invalid @enderror"  value="{{ old('groom_cavani') }}" id="groom_cavani" autocomplete="off">
+                                            @error('groom_cavani') <p class="text-danger small">{{$message}}</p> @enderror
                                         </div>
                                     </div>
                                     @for ($i = 0; $i < $customer->no_of_bestmen; $i++)
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-4">Bestman's Jacket - {{ $i+1 }}</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="bestman_jacket[]" id="bestman_jacket{{$i}}" autocomplete="off">
+                                                <input type="text" name="bestman_jacket[]" class="form-control @error('bestman_jacket.'.$i) is-invalid @enderror"  id="bestman_jacket{{$i}}" value="{{ old('bestman_jacket.'.$i) }}" autocomplete="off">
+                                                @error('bestman_jacket.'.$i) <p class="text-danger small">{{$message}}</p> @enderror
                                             </div>
                                         </div>
                                     @endfor
@@ -589,7 +592,8 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-4">Pageboy's Jacket - {{ $i+1 }}</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="pageboy_jacket[]" id="pageboy_jacket{{$i}}" autocomplete="off">
+                                                <input type="text" name="pageboy_jacket[]" class="form-control @error('pageboy_jacket.'.$i) is-invalid @enderror" id="pageboy_jacket{{$i}}" value="{{ old('pageboy_jacket.'.$i) }}" autocomplete="off">
+                                                @error('pageboy_jacket.'.$i) <p class="text-danger small">{{$message}}</p> @enderror
                                             </div>
                                         </div>
                                     @endfor
@@ -597,7 +601,8 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-4">Group Cavani</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" name="group_cavani" id="group_cavani" autocomplete="off">
+                                            <input type="text" name="group_cavani" class="form-control @error('group_cavani') is-invalid @enderror" id="group_cavani" value="{{ old('group_cavani') }}" autocomplete="off">
+                                            @error('group_cavani') <p class="text-danger small">{{$message}}</p> @enderror
                                         </div>
                                     </div>
 

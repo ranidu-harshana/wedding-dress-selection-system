@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\DressSelection;
+use App\Rules\checkInDatabase;
+use App\Rules\checkItemCodeDescSeperator;
 use Illuminate\Http\Request;
 
 class DressSelectionController extends Controller
@@ -20,9 +22,29 @@ class DressSelectionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'groom_jacket'=> [new checkItemCodeDescSeperator, new checkInDatabase],
+            'groom_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase],
+            'group_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase],
+        ]);
+        $bestman_count = count($request->bestman_jacket);
+        for ($i=0; $i < $bestman_count; $i++) { 
+            $request->validate([
+                'bestman_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
+            ]);
+        }
+
+        $pageboy_count = count($request->pageboy_jacket);
+        for ($i=0; $i < $pageboy_count; $i++) { 
+            $request->validate([
+                'pageboy_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
+            ]);
+        }
+        
         $data = [
             ['type'=> 'Groom\'s Jacket', 'name'=>$request->groom_jacket],
             ['type'=> 'Groom\'s Cavani', 'name'=>$request->groom_cavani],
+            
         ];
         
         $arr = [];
@@ -47,14 +69,9 @@ class DressSelectionController extends Controller
                 $arr = [];
                 $i++;
             }
-            
         }
         
-        if ($request->group_cavani != NULL) {
-            $arr['type'] = "Group Cavani";
-            $arr['name'] = $request->group_cavani;
-            array_push($data, $arr);
-        }
+        array_push($data, ['type'=> 'Group Cavani', 'name'=>$request->group_cavani]);
         $customer = Customer::find($request->customer_id);
         if($customer->dress_selections()->createMany($data)) {
             return back();
@@ -71,7 +88,7 @@ class DressSelectionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'dress' => 'required',
+            'dress' => ['required', new checkItemCodeDescSeperator, new checkInDatabase],
         ]);
 
         $dress = DressSelection::find($id);
