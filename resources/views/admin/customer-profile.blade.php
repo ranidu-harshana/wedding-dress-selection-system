@@ -11,10 +11,33 @@
     
         <div class="col-sm-5 col-6 text-right m-b-30 ">
             @if ($customer->status == 1)
+                
                 <form action="{{ route('cancel', $customer->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <button class="btn btn-danger btn-rounded" type="submit"><i class="fas fa-ban"></i> Cancel</button>
+                    <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#cancelWedding"><i class="fas fa-ban"></i> 
+                        Cancel
+                    </button>
+    
+                    <div class="modal fade" id="cancelWedding" tabindex="-1" role="dialog" aria-labelledby="cancelWeddingLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="cancelWeddingLabel">Warning</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want cancel this wedding?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-danger" type="submit">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> Edit</a>
                     <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
                 </form>
@@ -22,7 +45,32 @@
                 <form action="{{ route('re_schedule', $customer->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <button class="btn btn-secondary btn-rounded" type="submit"><i class="far fa-calendar-alt"></i> Re-Schedule</button>
+                    <button type="button" class="btn btn-secondary btn-rounded" data-toggle="modal" data-target="#reScheduleWedding"><i class="far fa-calendar-alt"></i> 
+                        Re-Schedule
+                    </button>
+
+                    <div class="modal fade" id="reScheduleWedding" tabindex="-1" role="dialog" aria-labelledby="reScheduleWeddingLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="reScheduleWeddingLabel">Warning</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}" min="{{ date('Y-m-d') }}">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-secondary" type="submit">Re-Schedule</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> Edit</a>
                     <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
                 </form>

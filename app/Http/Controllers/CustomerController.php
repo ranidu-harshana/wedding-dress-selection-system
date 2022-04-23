@@ -253,11 +253,17 @@ class CustomerController extends Controller
         return back();
     }
     
-    public function re_schedule($id) {
+    public function re_schedule(Request $request, $id) {
         $customer = Customer::find($id);
-        $customer->update([
+
+        $function_date = $customer->function_date;
+
+        $result = $customer->update([
+            'function_date' => $request->postpone_date,
+            'postponed' => $function_date,
             'status' => 1,
         ]);
+        
         return back();
     }
 
