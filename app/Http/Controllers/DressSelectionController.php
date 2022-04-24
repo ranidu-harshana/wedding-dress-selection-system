@@ -22,24 +22,37 @@ class DressSelectionController extends Controller
      */
     public function store(Request $request)
     {
+        $bestman_count = 0;
+        $pageboy_count = 0;
         $request->validate([
             'groom_jacket'=> [new checkItemCodeDescSeperator, new checkInDatabase],
             'groom_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase],
             'group_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase],
         ]);
-        $bestman_count = count($request->bestman_jacket);
-        for ($i=0; $i < $bestman_count; $i++) { 
-            $request->validate([
-                'bestman_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
-            ]);
+
+
+        try {
+            $bestman_count = count($request->bestman_jacket);
+            for ($i=0; $i < $bestman_count; $i++) { 
+                $request->validate([
+                    'bestman_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
+                ]);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
         }
 
-        $pageboy_count = count($request->pageboy_jacket);
+        try {
+            $pageboy_count = count($request->pageboy_jacket);
         for ($i=0; $i < $pageboy_count; $i++) { 
             $request->validate([
                 'pageboy_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
             ]);
         }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
         
         $data = [
             ['type'=> 'Groom\'s Jacket', 'name'=>$request->groom_jacket],
