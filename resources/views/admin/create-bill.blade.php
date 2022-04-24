@@ -17,7 +17,7 @@
                     
                     <div class="form-group">
                         <label>Bill Number</label>
-                        <input name="bill_number" value="{{ old('bill_number') }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off">
+                        <input name="bill_number" value="{{ old('bill_number') }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off" onkeypress="return isNumberKey(event)">
                         @error('bill_number') <p class="text-danger">{{$message}}</p> @enderror
                     </div>
 
@@ -58,7 +58,7 @@
 
                     <div class="form-group">
                         <label>Function Place</label>
-                        <input name="function_place" id="function_place" value="{{ old('function_place') }}" type="text" required class="form-control" autocomplete="off">
+                        <input name="function_place" id="function_place" value="{{ old('function_place') }}" type="text" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">

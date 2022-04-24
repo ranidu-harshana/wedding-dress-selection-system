@@ -32,8 +32,8 @@
                                     Are you sure you want cancel this wedding?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button class="btn btn-danger" type="submit">Cancel</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button class="btn btn-danger" type="submit">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -623,6 +623,15 @@
                                                         Edit
                                                     </button>
                                                 </td>
+                                                @if ($dress->type!="Groom's Jacket" && $dress->type!="Groom's Cavani" && $dress->type!="Group Cavani")
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dressDelete{{ $dress->id }}">
+                                                            Delete
+                                                        </button>
+                                                    </td>  
+                                                @endif
+                                                  
+                                                
                                             </tr>
                                             <div class="modal fade" id="dressEdit{{ $dress->id }}" tabindex="-1" role="dialog" aria-labelledby="dressEdit{{ $dress->id }}Label" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -640,6 +649,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-md-4 col-form-label">{{ $dress->type }}</label>
                                                                     <div class="col-md-8">
+                                                                        <input type="hidden" name="customer_id" value="{{ $dress->customer_id }}">
                                                                         @if($dress->type == "Groom's Jacket")
                                                                             <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="groom_jacket" autocomplete="off">
                                                                         @elseif($dress->type == "Groom's Cavani")
@@ -662,6 +672,30 @@
                                                         <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                                 <button type="submit" class="btn btn-primary">Save</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" id="dressDelete{{ $dress->id }}" tabindex="-1" role="dialog" aria-labelledby="dressDelete{{ $dress->id }}Label" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="dressDelete{{ $dress->id }}Label">Edit &nbsp; <span class="text-primary">{{ $dress->type }}</span></h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete this dress selection?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="{{ route('dress.destroy', $dress->id) }}" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>
