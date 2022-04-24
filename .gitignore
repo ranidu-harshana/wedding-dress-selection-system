@@ -13,4 +13,5 @@ yarn-error.log
 /.idea
 /.vscode
 .ssh
-creadentials.txt
+/essentials/creadentials.txt
+essentials
