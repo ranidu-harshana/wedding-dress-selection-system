@@ -70,11 +70,17 @@
                         <label>Number of Bestmen</label>
                         <select name="no_of_bestmen" id="" required class="form-control">
                             @if ($customer->dress_selections->count() != 0)
+                                @if ($customer->no_of_bestmen == NULL)
+                                    <option value="0">Select</option>
+                                @endif
                                 @for ($i = $customer->no_of_bestmen; $i < 9; $i++)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             @else
-                                <option value="{{ $customer->no_of_bestmen }}">{{ $customer->no_of_bestmen }}</option>
+                                @if ($customer->no_of_bestmen != NULL)
+                                    <option value="{{ $customer->no_of_bestmen }}">{{ $customer->no_of_bestmen }}</option>
+                                @endif
+                                
                                 @for ($i = 1; $i < 9; $i++)
                                     @if ($customer->no_of_bestmen != $i)
                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -89,11 +95,17 @@
                         <label>Number of Pageboys</label>
                         <select name="no_of_pageboys" id="" required class="form-control">
                             @if ($customer->dress_selections->count() != 0)
+                                @if ($customer->no_of_pageboys == NULL)
+                                    <option value="0">Select</option>
+                                @endif
                                 @for ($i = $customer->no_of_pageboys; $i < 9; $i++)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             @else
-                                <option value="{{ $customer->no_of_pageboys }}">{{ $customer->no_of_pageboys }}</option>
+                                @if ($customer->no_of_pageboys != NULL)
+                                    <option value="{{ $customer->no_of_pageboys }}">{{ $customer->no_of_pageboys }}</option>
+                                @endif
+                                
                                 @for ($i = 1; $i < 9; $i++)
                                     @if ($customer->no_of_pageboys != $i)
                                         <option value="{{ $i }}">{{ $i }}</option>
