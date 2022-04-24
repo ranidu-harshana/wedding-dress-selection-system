@@ -760,7 +760,7 @@
                                         <label class="col-form-label col-md-4">Intering Payment</label>
                                         <div class="col-md-4">
                                             <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-                                            <input type="text" class="form-control" name="intering_payment">
+                                            <input type="text" class="form-control" name="intering_payment" onkeypress="return isExactNumberKey(event)" autocomplete="off">
                                         </div>
                                         <div class="col-md-2">
                                             <input type="submit" class="btn btn-primary">

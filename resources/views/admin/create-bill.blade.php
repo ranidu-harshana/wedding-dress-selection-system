@@ -135,17 +135,17 @@
 
                     <div class="form-group">
                         <label>Total Amount</label>
-                        <input name="total_amount" id="total_amount" value="{{ old('total_amount') }}" type="number" class="form-control" autocomplete="off">
+                        <input name="total_amount" id="total_amount" value="{{ old('total_amount') }}" type="text" onkeypress="return isExactNumberKey(event)" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label>Discount</label>
-                        <input name="discount" id="discount" value="{{ old('discount') }}" type="number" class="form-control" autocomplete="off">
+                        <input name="discount" id="discount" value="{{ old('discount') }}" type="text" onkeypress="return isExactNumberKey(event)" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label>Advance Payment</label>
-                        <input name="advance_payment" id="advance_payment" value="{{ old('advance_payment') }}" type="number" class="form-control" autocomplete="off">
+                        <input name="advance_payment" id="advance_payment" value="{{ old('advance_payment') }}" type="text" onkeypress="return isExactNumberKey(event)" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">

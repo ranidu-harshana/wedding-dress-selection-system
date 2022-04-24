@@ -325,3 +325,19 @@ function isNumberKey(evt)
 		return false;
 	}
 }
+
+function isExactNumberKey(evt)
+{
+   var charCode = (evt.which) ? evt.which : evt.keyCode;
+   console.log(charCode);
+//    if (charCode != 46 && charCode > 31 
+// 	 && (charCode < 48 || charCode > 57))
+// 	  return false;
+
+//    return true;
+	if (charCode >= 48 && charCode <= 57) {
+		return true;
+	}else{
+		return false;
+	}
+}
