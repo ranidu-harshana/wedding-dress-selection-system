@@ -361,4 +361,15 @@ class CustomerController extends Controller
         $pdf->loadView('admin.cost-report-pdf', ['customers'=>$customers]);
         return $pdf->stream();
     }
+
+    public function edit_bill(Request $request, $id) {
+        $validated = $request->validate([
+            'total_amount' => ['nullable'],
+            'discount' => ['nullable'],
+            'advance_payment' => ['nullable'],
+        ]);
+        $customer = Customer::find($id);
+        $customer->update($validated);
+        return back();
+    }
 }

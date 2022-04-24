@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\InteringPayment;
 use Illuminate\Http\Request;
 
 class InteringPaymentController extends Controller
@@ -81,7 +82,12 @@ class InteringPaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'intering_payment'=>'nullable'
+        ]);
+        $intering_payment = InteringPayment::find($id);
+        $intering_payment->update($validated);
+        return back();
     }
 
     /**

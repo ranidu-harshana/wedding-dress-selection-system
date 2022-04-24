@@ -32,6 +32,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::put('/postpone/{customer}', [CustomerController::class, 'postpone'])->name('postpone');
     Route::put('/cancel/{customer}', [CustomerController::class, 'cancel'])->name('cancel');
     Route::put('/re_schedule/{customer}', [CustomerController::class, 're_schedule'])->name('re_schedule');
+    Route::put('/edit/bill/{customer}', [CustomerController::class, 'edit_bill'])->name('edit_bill');
 
     Route::get('/show/wedding/reservations/report', [CustomerController::class, 'show_wedding_reservations_report'])->name('wedding.reservations.report.show');
     Route::post('/reservations/report/pdf', [CustomerController::class, 'reservation_report_pdf'])->name('reservation_report_pdf');
