@@ -58,7 +58,7 @@ class CustomerController extends Controller
             'mobile_no1' => ['required'],
             'mobile_no2' => ['nullable'],
             'function_date' => ['required'],
-            'function_place' => ['required'],
+            'function_place' => ['nullable'],
             'no_of_bestmen' => ['required'],
             'no_of_pageboys' => ['required'],
             'dressing_place' => ['required'],
@@ -67,7 +67,7 @@ class CustomerController extends Controller
             'bridal_color' => ['nullable'],
             'sec_bridal_group_color' => ['nullable'],
             'photography_place' => ['nullable'],
-            'total_amount' => ['required'],
+            'total_amount' => ['nullable'],
             'discount' => ['nullable'],
             'advance_payment' => ['nullable'],
         ]);
@@ -137,7 +137,7 @@ class CustomerController extends Controller
             'address' => ['required'],
             'mobile_no1' => ['required'],
             'mobile_no2' => ['nullable'],
-            'function_place' => ['required'],
+            'function_place' => ['nullable'],
             'no_of_bestmen' => ['required'],
             'no_of_pageboys' => ['required'],
             'dressing_place' => ['required'],
@@ -149,6 +149,32 @@ class CustomerController extends Controller
         ]);
 
         $customer = Customer::find($id);
+        $dresses = DressSelection::where('customer_id', '=', $customer->id)->get();
+        if($dresses->count() > 0) {
+            $data = [];
+            $arr = [];
+            if($customer->no_of_bestmen < $request->no_of_bestmen) {
+                for ($i=$customer->no_of_bestmen+1; $i < $request->no_of_bestmen+1; $i++) { 
+                    $arr['type'] = "Bestman's Jacket - ".$i;
+                    $arr['name'] = NULL;
+                    array_push($data, $arr);
+                    $arr = [];
+                }
+            }
+        
+
+            if($customer->no_of_pageboys < $request->no_of_pageboys) {
+                for ($i=$customer->no_of_pageboys+1; $i < $request->no_of_pageboys+1; $i++) { 
+                    $arr['type'] = "Pageboy's Jacket - ".$i;
+                    $arr['name'] = NULL;
+                    array_push($data, $arr);
+                    $arr = [];
+                }
+            }
+
+            $customer->dress_selections()->createMany($data);
+        }
+
         $customer->update($validated);
         return redirect()->route('customer.show', $id);
     }
@@ -187,7 +213,7 @@ class CustomerController extends Controller
 
     public function autocomplete_function_place(Request $request)
     {
-        $data = Customer::select('function_place')
+        $data = Customer::select('function_place')->distinct()
                     ->where('function_place','LIKE',"%{$request->term0}%")
                     ->pluck('function_place');
         $values = array_values($data->toArray());
@@ -197,17 +223,17 @@ class CustomerController extends Controller
 
     public function autocomplete_brida_place(Request $request)
     {
-        $data = Customer::select('bridal_dressing_place')
+        $data = Customer::select('bridal_dressing_place')->distinct()
                     ->where('bridal_dressing_place','LIKE',"%{$request->term}%")
                     ->pluck('bridal_dressing_place');
         $values = array_values($data->toArray());
-
+        
         return response()->json($values);
     }
 
     public function autocomplete_photography_place(Request $request)
     {
-        $data = Customer::select('photography_place')
+        $data = Customer::select('photography_place')->distinct()
                     ->where('photography_place','LIKE',"%{$request->term1}%")
                     ->pluck('photography_place');
         $values = array_values($data->toArray());
@@ -240,6 +266,7 @@ class CustomerController extends Controller
             $data_arr['customer_id'] = $customer->id;
             $data_arr['bill_number'] = $customer->branch->prefix.''.$customer->bill_number;
             $data_arr['status'] = $customer->status;
+            $data_arr['dressing_place'] = $customer->dressing_place;
             array_push($arr, $data_arr);
         }
         return response()->json($arr);
@@ -333,5 +360,16 @@ class CustomerController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('admin.cost-report-pdf', ['customers'=>$customers]);
         return $pdf->stream();
+    }
+
+    public function edit_bill(Request $request, $id) {
+        $validated = $request->validate([
+            'total_amount' => ['nullable'],
+            'discount' => ['nullable'],
+            'advance_payment' => ['nullable'],
+        ]);
+        $customer = Customer::find($id);
+        $customer->update($validated);
+        return back();
     }
 }

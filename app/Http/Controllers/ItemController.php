@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\DressSelection;
 use App\Models\Item;
 use App\Models\ItemCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ItemController extends Controller
@@ -189,7 +190,34 @@ class ItemController extends Controller
         foreach ($data->toArray() as $key => $value) {
             array_push($full_arr, $key.' - '.$value);
         }
+        // echo '<pre>';
+        // print_r($full_arr);
+        // echo '</pre>';
+        
 
+        // foreach ($full_arr as $value) {
+        //     $results = DressSelection::where('name', '=', $value)->get();
+        //     if(count($results) > 0) {
+        //         foreach ($results as $result) {
+        //             $customer_id = $result->customer_id;
+        //             $func_date = Customer::where('id', '=', $customer_id)->where('function_date', '<', date('Y-m-d'))->get();
+        //             // echo '<br>'.count($func_date); 
+        //             if(count($func_date) <= 0) {
+        //                 // echo "Can not be used";
+        //                 if (($key = array_search($value, $full_arr)) !== false) {
+        //                     unset($full_arr[$key]);
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
+        // echo '<pre>';
+        // print_r($full_arr);
+        // echo '</pre>';
+        
+
+        // dd('h');
         return response()->json($full_arr);
     }
 
@@ -210,6 +238,25 @@ class ItemController extends Controller
         foreach ($data->toArray() as $key => $value) {
             array_push($full_arr, $key.' - '.$value);
         }
+
+        // foreach ($full_arr as $value) {
+        //     $results = DressSelection::where('name', '=', $value)->get();
+        //     if(count($results) > 0) {
+        //         foreach ($results as $result) {
+        //             $customer_id = $result->customer_id;
+        //             $func_date = Customer::where('id', '=', $customer_id)->where('function_date', '<', date('Y-m-d'))->get();
+        //             // echo '<br>'.count($func_date); 
+        //             if(count($func_date) <= 0) {
+        //                 // echo "Can not be used";
+        //                 if (($key = array_search($value, $full_arr)) !== false) {
+        //                     unset($full_arr[$key]);
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
+
         return response()->json($full_arr);
     }
 
@@ -230,6 +277,25 @@ class ItemController extends Controller
         foreach ($data->toArray() as $key => $value) {
             array_push($full_arr, $key.' - '.$value);
         }
+
+        // foreach ($full_arr as $value) {
+        //     $results = DressSelection::where('name', '=', $value)->get();
+        //     if(count($results) > 0) {
+        //         foreach ($results as $result) {
+        //             $customer_id = $result->customer_id;
+        //             $func_date = Customer::where('id', '=', $customer_id)->where('function_date', '<', date('Y-m-d'))->get();
+        //             // echo '<br>'.count($func_date); 
+        //             if(count($func_date) <= 0) {
+        //                 // echo "Can not be used";
+        //                 if (($key = array_search($value, $full_arr)) !== false) {
+        //                     unset($full_arr[$key]);
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
+
         return response()->json($full_arr);
     }
 
@@ -250,6 +316,25 @@ class ItemController extends Controller
         foreach ($data->toArray() as $key => $value) {
             array_push($full_arr, $key.' - '.$value);
         }
+
+        // foreach ($full_arr as $value) {
+        //     $results = DressSelection::where('name', '=', $value)->get();
+        //     if(count($results) > 0) {
+        //         foreach ($results as $result) {
+        //             $customer_id = $result->customer_id;
+        //             $func_date = Customer::where('id', '=', $customer_id)->where('function_date', '<', date('Y-m-d'))->get();
+        //             // echo '<br>'.count($func_date); 
+        //             if(count($func_date) <= 0) {
+        //                 // echo "Can not be used";
+        //                 if (($key = array_search($value, $full_arr)) !== false) {
+        //                     unset($full_arr[$key]);
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
+
         return response()->json($full_arr);
     }
 
@@ -269,6 +354,25 @@ class ItemController extends Controller
         foreach ($data->toArray() as $key => $value) {
             array_push($full_arr, $key.' - '.$value);
         }
+
+        // foreach ($full_arr as $value) {
+        //     $results = DressSelection::where('name', '=', $value)->get();
+        //     if(count($results) > 0) {
+        //         foreach ($results as $result) {
+        //             $customer_id = $result->customer_id;
+        //             $func_date = Customer::where('id', '=', $customer_id)->where('function_date', '<', date('Y-m-d'))->get();
+        //             // echo '<br>'.count($func_date); 
+        //             if(count($func_date) <= 0) {
+        //                 // echo "Can not be used";
+        //                 if (($key = array_search($value, $full_arr)) !== false) {
+        //                     unset($full_arr[$key]);
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
+
         return response()->json($full_arr);
     }
 }
