@@ -3,6 +3,7 @@
 @section('content')
     <div class="col-md-6">
         <div class="card-box">
+            
             <h4 class="card-title">Create User</h4>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -36,6 +37,25 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="user_role" class="col-md-4 col-form-label text-md-end">{{ __('User Role') }}</label>
+
+                    <div class="col-md-6">
+                        <select name="user_role" id="user_role" required class="form-control">
+                            <option value="">Select</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Manager</option>
+                            <option value="3">Standard User</option>
+                        </select>
+
+                        @error('user_role')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3" id="not_admin">
                     <label for="branch_name" class="col-md-4 col-form-label text-md-end">{{ __('Branch Name') }}</label>
 
                     <div class="col-md-6">
@@ -47,14 +67,29 @@
                                 </label>
                             </div>
                         @endforeach
-                        @error('branches')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        @if($errors->has('branches'))
+                            <div class="error text-danger small"><strong>{{ $errors->first('branches') }}</strong></div>
+                        @endif
                     </div>
                 </div>
+                
+                <div class="row mb-3" id="admin">
+                    <label for="branch_name" class="col-md-4 col-form-label text-md-end">{{ __('Branch Name') }}</label>
 
+                    <div class="col-md-6">
+                        @foreach ($branches as $branch)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked value="{{ $branch->id }}" name="branches[]" id="branches{{ $branch->id }}">
+                                <label class="form-check-label" for="branches{{ $branch->id }}">
+                                    {{ $branch->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                        @if($errors->has('branches'))
+                            <div class="error text-danger small"><strong>{{ $errors->first('branches') }}</strong></div>
+                        @endif
+                    </div>
+                </div>
                 <div class="row mb-3">
                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
@@ -87,4 +122,20 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#admin').hide();
+            $("#user_role").change(function(){
+                var user_role = $('#user_role').val()
+                if(user_role == 1) {
+                    $('#not_admin').hide();
+                    $('#admin').show();
+                }else{
+                    $('#not_admin').show();
+                    $('#admin').hide();
+                }
+            });
+        });
+    </script>
 @endsection

@@ -15,29 +15,35 @@
                     <a href="{{ route('customer.index') }}"><i class="fas fa-users"></i> <span>Events List</span></a>
                 </li>
 
-                @if (auth()->check())
-                    @if (auth()->user()->is_admin())
-                        <li class="submenu">
-                            <a href="#"><i class="fa fa-user"></i> <span> Master </span> <span><i class="fas fa-caret-down"></i></span></a>
-                            <ul style="display: none;">
-                                <li><a href="{{ route('item_category.index') }}">Item Category</a></li>
+                @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                    <li class="submenu">
+                        <a href="#"><i class="fa fa-user"></i> <span> Master </span> <span><i class="fas fa-caret-down"></i></span></a>
+                        <ul style="display: none;">
+                            @if (auth()->check())
+                                @if (auth()->user()->is_admin())
+                                    <li><a href="{{ route('item_category.index') }}">Item Category</a></li>
+                                @endif
+                            @endif
+                            @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
                                 <li><a href="{{ route('item.create') }}">Create Item</a></li>
-                                <li><a href="{{ route('branch.index') }}">Branch</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                @endif
+                            @endif
+                            @if (auth()->check())
+                                @if (auth()->user()->is_admin())
+                                    <li><a href="{{ route('branch.index') }}">Branch</a></li>
+                                @endif
+                            @endif
+                        </ul>
+                    </li>
+                @endif    
 
                 <li>
                     <a href="{{ route('item.index') }}"><i class="fas fa-warehouse"></i> <span>Inventory</span></a>
                 </li>
 
-                @if (auth()->check())
-                    @if (auth()->user()->is_admin())
-                        <li>
-                            <a href="{{ route('register') }}"><i class="fas fa-user"></i> <span>Create User</span></a>
-                        </li>
-                    @endif
+                @if (auth()->user()->is_admin())
+                    <li>
+                        <a href="{{ route('register') }}"><i class="fas fa-user"></i> <span>Create User</span></a>
+                    </li>
                 @endif
 
                 <li class="submenu">
