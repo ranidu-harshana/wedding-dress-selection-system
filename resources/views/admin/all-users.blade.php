@@ -17,7 +17,7 @@
                     @endif
 
                     <div class="table-responsive">
-                        <table id="all_users_table" class="table table-striped table-bordered" style="width:100%">
+                        <table id="all_users_table" class="table table-striped table-bordered table-sm" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>User ID</th>
