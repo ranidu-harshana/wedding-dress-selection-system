@@ -10,10 +10,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SessionController;
-use App\Models\Customer;
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -73,6 +70,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/get_all_func_dates', [CustomerController::class, 'get_all_func_dates'])->name('get_all_func_dates');
 
     Route::resource('/branch', BranchController::class);
+    Route::resource('/user', UserController::class);
 
     Route::resource('/cost', CostController::class);
     // Route::get('/test', function() {

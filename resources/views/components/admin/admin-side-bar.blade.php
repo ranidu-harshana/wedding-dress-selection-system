@@ -46,6 +46,12 @@
                     </li>
                 @endif
 
+                @if (auth()->user()->is_admin())
+                    <li>
+                        <a href="{{ route('user.index') }}"><i class="fas fa-user"></i> <span>Users</span></a>
+                    </li>
+                @endif
+
                 <li class="submenu">
                     <a href="#"><i class="fas fa-book"></i> <span> Reports </span> <span><i class="fas fa-caret-down"></i></span></a>
                     <ul style="display: none;">
