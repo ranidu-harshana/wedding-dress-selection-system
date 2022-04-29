@@ -17,14 +17,14 @@
                     
                     <div class="form-group">
                         <label>Bill Number</label>
-                        <input name="bill_number" value="{{ old('bill_number') }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off">
+                        <input name="bill_number" value="{{ old('bill_number') }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off" onkeypress="return isNumberKey(event)">
                         @error('bill_number') <p class="text-danger">{{$message}}</p> @enderror
                     </div>
 
                     <div class="form-group">
                         <label>Branch</label>
                         <select name="branch_id" required class="form-control" value="{{ old('branch_id') }}">
-                            @foreach ($branches as $branch)
+                            @foreach (auth()->user()->branches as $branch)
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                             @endforeach
                         </select>
@@ -58,7 +58,7 @@
 
                     <div class="form-group">
                         <label>Function Place</label>
-                        <input name="function_place" id="function_place" value="{{ old('function_place') }}" type="text" required class="form-control" autocomplete="off">
+                        <input name="function_place" id="function_place" value="{{ old('function_place') }}" type="text" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
@@ -135,17 +135,17 @@
 
                     <div class="form-group">
                         <label>Total Amount</label>
-                        <input name="total_amount" id="total_amount" value="{{ old('total_amount') }}" type="number" class="form-control" autocomplete="off">
+                        <input name="total_amount" id="total_amount" value="{{ old('total_amount') }}" type="text" onkeypress="return isExactNumberKey(event)" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label>Discount</label>
-                        <input name="discount" id="discount" value="{{ old('discount') }}" type="number" class="form-control" autocomplete="off">
+                        <input name="discount" id="discount" value="{{ old('discount') }}" type="text" onkeypress="return isExactNumberKey(event)" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label>Advance Payment</label>
-                        <input name="advance_payment" id="advance_payment" value="{{ old('advance_payment') }}" type="number" class="form-control" autocomplete="off">
+                        <input name="advance_payment" id="advance_payment" value="{{ old('advance_payment') }}" type="text" onkeypress="return isExactNumberKey(event)" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">

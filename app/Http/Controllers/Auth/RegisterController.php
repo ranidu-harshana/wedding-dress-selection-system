@@ -64,6 +64,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'branches' => ['required'],
+            'user_role' => ['required'],
         ]);
     }
 
@@ -80,6 +81,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => $data['user_role'],
         ]);
         $new_user->branches()->attach($data['branches']);
         return $new_user;

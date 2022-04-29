@@ -4,14 +4,21 @@
     <div class="row">
         <div class="col-md-7">
             <div class="card-box">
-                <h4 class="card-title">Schedule</h4>
+                <div class="row">
+                    <div class="col-2">
+                        <h4 class="card-title">Edit Bill</h4>
+                    </div>
+                    <div class="col-10 text-right">
+                        <a href="{{ url()->previous() }}" class="btn btn-danger">Go Back</a>
+                    </div>
+                </div>
 
                 @if(session('failed'))
                     <div class="alert alert-danger">
                         {{ session('failed') }}
                     </div>
                 @endif
-
+                <br>
                 <form action="{{ route('customer.update', $customer->id ) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -56,30 +63,55 @@
 
                     <div class="form-group">
                         <label>Function Place</label>
-                        <input name="function_place" value="{{ $customer->function_place }}" type="text" required class="form-control" autocomplete="off">
+                        <input name="function_place" value="{{ $customer->function_place }}" type="text" class="form-control" autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label>Number of Bestmen</label>
                         <select name="no_of_bestmen" id="" required class="form-control">
-                            <option value="{{ $customer->no_of_bestmen }}">{{ $customer->no_of_bestmen }}</option>
-                            @for ($i = 1; $i < 9; $i++)
-                                @if ($customer->no_of_bestmen != $i)
-                                    <option value="{{ $i }}">{{ $i }}</option>
+                            @if ($customer->dress_selections->count() != 0)
+                                @if ($customer->no_of_bestmen == NULL)
+                                    <option value="0">Select</option>
                                 @endif
-                            @endfor
+                                @for ($i = $customer->no_of_bestmen; $i < 9; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            @else
+                                @if ($customer->no_of_bestmen != NULL)
+                                    <option value="{{ $customer->no_of_bestmen }}">{{ $customer->no_of_bestmen }}</option>
+                                @endif
+                                
+                                @for ($i = 1; $i < 9; $i++)
+                                    @if ($customer->no_of_bestmen != $i)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                @endfor
+                            @endif
+                            
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Number of Pageboys</label>
                         <select name="no_of_pageboys" id="" required class="form-control">
-                            <option value="{{ $customer->no_of_pageboys }}">{{ $customer->no_of_pageboys }}</option>
-                            @for ($i = 1; $i < 9; $i++)
-                                @if ($customer->no_of_pageboys != $i)
-                                    <option value="{{ $i }}">{{ $i }}</option>
+                            @if ($customer->dress_selections->count() != 0)
+                                @if ($customer->no_of_pageboys == NULL)
+                                    <option value="0">Select</option>
                                 @endif
-                            @endfor
+                                @for ($i = $customer->no_of_pageboys; $i < 9; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            @else
+                                @if ($customer->no_of_pageboys != NULL)
+                                    <option value="{{ $customer->no_of_pageboys }}">{{ $customer->no_of_pageboys }}</option>
+                                @endif
+                                
+                                @for ($i = 1; $i < 9; $i++)
+                                    @if ($customer->no_of_pageboys != $i)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                @endfor
+                            @endif
                         </select>
                     </div>
 
@@ -87,11 +119,11 @@
                         <label>Will you dress in our place?</label>
                         <select name="dressing_place" value="{{ $customer->dressing_place }}" id="" required class="form-control">
                             @if ($customer->dressing_place == 1)
-                                <option value="0">No</option>
                                 <option value="1">Yes</option>
+                                <option value="0">No</option>
                             @else
-                                <option value="1">Yes</option>
                                 <option value="0">No</option>
+                                <option value="1">Yes</option>
                             @endif
                         </select>
                     </div>

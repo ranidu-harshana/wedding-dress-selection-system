@@ -11,68 +11,74 @@
     
         <div class="col-sm-5 col-6 text-right m-b-30 ">
             @if ($customer->status == 1)
-                
                 <form action="{{ route('cancel', $customer->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#cancelWedding"><i class="fas fa-ban"></i> 
-                        Cancel
-                    </button>
-    
-                    <div class="modal fade" id="cancelWedding" tabindex="-1" role="dialog" aria-labelledby="cancelWeddingLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="cancelWeddingLabel">Warning</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure you want cancel this wedding?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button class="btn btn-danger" type="submit">Cancel</button>
+                    @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                        <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#cancelWedding"><i class="fas fa-ban"></i> 
+                            Cancel
+                        </button>
+        
+                        <div class="modal fade" id="cancelWedding" tabindex="-1" role="dialog" aria-labelledby="cancelWeddingLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="cancelWeddingLabel">Warning</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want cancel this wedding?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                        <button class="btn btn-danger" type="submit">Yes</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+                    @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                        <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+                    @endif
                 </form>
             @else
                 <form action="{{ route('re_schedule', $customer->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <button type="button" class="btn btn-secondary btn-rounded" data-toggle="modal" data-target="#reScheduleWedding"><i class="far fa-calendar-alt"></i> 
-                        Re-Schedule
-                    </button>
+                    @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                        <button type="button" class="btn btn-secondary btn-rounded" data-toggle="modal" data-target="#reScheduleWedding"><i class="far fa-calendar-alt"></i> 
+                            Re-Schedule
+                        </button>
 
-                    <div class="modal fade" id="reScheduleWedding" tabindex="-1" role="dialog" aria-labelledby="reScheduleWeddingLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="reScheduleWeddingLabel">Warning</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}" min="{{ date('Y-m-d') }}">
+                        <div class="modal fade" id="reScheduleWedding" tabindex="-1" role="dialog" aria-labelledby="reScheduleWeddingLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="reScheduleWeddingLabel">Warning</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button class="btn btn-secondary" type="submit">Re-Schedule</button>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input class="form-control" type="date" name="postpone_date" value="{{ $customer->function_date }}" min="{{ date('Y-m-d') }}">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-secondary" type="submit">Re-Schedule</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    @endif
                     <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+                    @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                        <a href="" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#postponedDateModal"><i class="fa fa-plus"></i> Postpone</a>
+                    @endif
                 </form>
             @endif
             
@@ -179,10 +185,8 @@
             <li class="nav-item" id="tab2"><a class="nav-link @if (session('tab2')) active @endif" href="#bill_tab" data-toggle="tab">Bill</a></li>
             <li class="nav-item" id="tab3"><a class="nav-link @if (session('tab3')) active @endif" href="#notes_tab" data-toggle="tab">Notes</a></li>
             <li class="nav-item" id="tab4"><a class="nav-link @if (session('tab4')) active @endif" href="#other_tab" data-toggle="tab">Other</a></li>
-            @if (auth()->check())
-                @if (auth()->user()->is_admin())        
-                    <li class="nav-item" id="tab5"><a class="nav-link @if (session('tab5')) active @endif" href="#costs_tab" data-toggle="tab">Costs</a></li>
-                @endif
+            @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager") 
+                <li class="nav-item" id="tab5"><a class="nav-link @if (session('tab5')) active @endif" href="#costs_tab" data-toggle="tab">Costs</a></li>
             @endif
             </ul>
 
@@ -623,6 +627,16 @@
                                                         Edit
                                                     </button>
                                                 </td>
+                                                @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                                                    @if ($dress->type!="Groom's Jacket" && $dress->type!="Groom's Cavani" && $dress->type!="Group Cavani")
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dressDelete{{ $dress->id }}">
+                                                                Delete
+                                                            </button>
+                                                        </td>  
+                                                    @endif
+                                                @endif
+                                                
                                             </tr>
                                             <div class="modal fade" id="dressEdit{{ $dress->id }}" tabindex="-1" role="dialog" aria-labelledby="dressEdit{{ $dress->id }}Label" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -640,6 +654,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-md-4 col-form-label">{{ $dress->type }}</label>
                                                                     <div class="col-md-8">
+                                                                        <input type="hidden" name="customer_id" value="{{ $dress->customer_id }}">
                                                                         @if($dress->type == "Groom's Jacket")
                                                                             <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="groom_jacket" autocomplete="off">
                                                                         @elseif($dress->type == "Groom's Cavani")
@@ -667,6 +682,31 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                                                <div class="modal fade" id="dressDelete{{ $dress->id }}" tabindex="-1" role="dialog" aria-labelledby="dressDelete{{ $dress->id }}Label" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="dressDelete{{ $dress->id }}Label">Edit &nbsp; <span class="text-primary">{{ $dress->type }}</span></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete this dress selection?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form action="{{ route('dress.destroy', $dress->id) }}" method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         @endforeach
                                     </table>
                                 </div>
@@ -686,7 +726,57 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card-box">
-                            <h4 class="card-title">Billing</h4>
+                            <div class="row">
+                                <div class="col-3">
+                                    <h4 class="card-title">Billing</h4>
+                                </div>
+                                <div class="col-9 text-right">
+                                    <button class="btn btn-sm" style="background-color:	#0275d8; color:white" type="button" data-toggle="modal" data-target="#editBillModal">Edit Bill</button>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="editBillModal" tabindex="-1" role="dialog" aria-labelledby="editBillLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editBillLabel">Edit Bill</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('edit_bill', $customer->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label">Total Amount</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" onkeypress="return isExactNumberKey(event)" autocomplete="off" name="total_amount" class="form-control" value="{{ $customer->total_amount }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label">Discount</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" onkeypress="return isExactNumberKey(event)" autocomplete="off" name="discount" class="form-control" value="{{ $customer->discount }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label">Advance Payment</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" onkeypress="return isExactNumberKey(event)" autocomplete="off" class="form-control" name="advance_payment" value="{{ $customer->advance_payment }}">
+                                                        </div>
+                                                    </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <ul class="personal-info">
                                 <li>
                                     <span class="title">Total Amount</span>
@@ -726,7 +816,7 @@
                                         <label class="col-form-label col-md-4">Intering Payment</label>
                                         <div class="col-md-4">
                                             <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-                                            <input type="text" class="form-control" name="intering_payment">
+                                            <input type="text" class="form-control" name="intering_payment" onkeypress="return isExactNumberKey(event)" autocomplete="off">
                                         </div>
                                         <div class="col-md-2">
                                             <input type="submit" class="btn btn-primary">
@@ -744,6 +834,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Intering Payment</th>
                                     <th scope="col">Created At</th>
+                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -754,7 +845,41 @@
                                             <th scope="row">{{ $counter }}</th>
                                             <td>{{ $intering_payment->intering_payment }}.00</td>
                                             <td>{{ $intering_payment->created_at }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editInterimPayment{{ $intering_payment->id }}">
+                                                    Edit
+                                                </button>
+                                            </td>
                                         </tr>
+                                        <div class="modal fade" id="editInterimPayment{{ $intering_payment->id }}" tabindex="-1" role="dialog" aria-labelledby="editInterimPayment{{ $intering_payment->id }}Label" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editInterimPayment{{ $intering_payment->id }}Label">Edit Interim Payment</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('intering_payment.update', $intering_payment->id) }}" method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-form-label">Payment</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" onkeypress="return isExactNumberKey(event)" autocomplete="off" name="intering_payment" class="form-control" value="{{ $intering_payment->intering_payment }}">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @php $counter++; @endphp
                                     @endforeach
                                 @else
@@ -789,18 +914,20 @@
                                 </form>
 
                                 {{-- Note updating form --}}
-                                <form action="" method="post" style="display: none" id="note_edit_form">
-                                    @csrf
-                                    @method("PUT")
-                                    <div class="form-group">
-                                        <label>Edit Note</label>
-                                        <textarea name="note" required class="form-control" id="edit_note" cols="30" rows="5"></textarea>
-                                    </div>
+                                @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                                    <form action="" method="post" style="display: none" id="note_edit_form">
+                                        @csrf
+                                        @method("PUT")
+                                        <div class="form-group">
+                                            <label>Edit Note</label>
+                                            <textarea name="note" required class="form-control" id="edit_note" cols="30" rows="5"></textarea>
+                                        </div>
 
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -834,12 +961,14 @@
                                             <td style="width: 100px">
                                                 <div class="row">
                                                     <input type="hidden" value="{{ $note->id }}" id="note_id{{$i}}">
-                                                    <button type="submit" class="btn btn-warning btn-sm" name="edit" id="edit_btn{{$i}}"><i class="fal fa-edit"></i> </button>&nbsp;
-                                                    <form action="{{ route('note.destroy', $note->id) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" name="delete"><i class="far fa-trash-alt"></i> </button>&nbsp;
-                                                    </form>
+                                                    @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                                                        <button type="submit" class="btn btn-warning btn-sm" name="edit" id="edit_btn{{$i}}"><i class="fal fa-edit"></i> </button>&nbsp;
+                                                        <form action="{{ route('note.destroy', $note->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm" name="delete"><i class="far fa-trash-alt"></i> </button>&nbsp;
+                                                        </form>
+                                                    @endif
                                                     <form action="{{ route('note.mark_as_read', $note->id) }}" method="post">
                                                         @csrf
                                                         @method("PUT")
@@ -870,7 +999,7 @@
                                         @if ($customer->dressing_place == 1)
                                             In Sri Kula Medura Branch
                                         @else
-                                            In Home
+                                            Outside Dressing
                                         @endif    
                                     </span>
                                 </li>
@@ -925,42 +1054,113 @@
                     </div>
                 </div>
             </div>
-            @if (auth()->check())
-                @if (auth()->user()->is_admin())
-                    <div class="tab-pane @if (session('tab5')) active @endif" id="costs_tab" >
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    
-                                    @if ($customer->cost == NULL)
-                                        <h4 class="card-title">Enter Costs</h4>
-                                        <form action="{{ route('cost.store') }}" method="POST">
-                                            @csrf
+            @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
+                <div class="tab-pane @if (session('tab5')) active @endif" id="costs_tab" >
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card-box">
+                                
+                                @if ($customer->cost == NULL)
+                                    <h4 class="card-title">Enter Costs</h4>
+                                    <form action="{{ route('cost.store') }}" method="POST">
+                                        @csrf
+                                        <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-4">Transport</label>
+                                            <div class="col-md-8">
+                                                <input name="transport" id="transport" type="text" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-4">Salary</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="salary" id="salary" autocomplete="off">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-4">Cleaning</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-4">Depriciation</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="depriciation" id="depriciation" autocomplete="off">
+                                            </div>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <input type="submit" class="btn btn-primary " name="submit">
+                                        </div>
+                                    </form>
+                                @else
+                                    <div id="cost_view_form">
+                                        <h4 class="card-title">View Costs</h4>
                                             <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-4">Transport</label>
                                                 <div class="col-md-8">
-                                                    <input name="transport" id="transport" type="text" class="form-control" autocomplete="off">
+                                                    <input disabled name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-4">Salary</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="salary" id="salary" autocomplete="off">
+                                                    <input type="text" class="form-control" disabled name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-4">Cleaning</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off">
+                                                    <input type="text" class="form-control" disabled name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-4">Depriciation</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="depriciation" id="depriciation" autocomplete="off">
+                                                    <input type="text" class="form-control" disabled name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="text-right">
+                                                <button class="btn btn-primary" onclick="showCostEditForm()">Edit</button>
+                                            </div>
+                                    </div>
+                                    <div id="cost_edit_form">
+                                        <h4 class="card-title">Edit Costs</h4>
+                                        <form action="{{ route('cost.update', $customer->cost->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-4">Transport</label>
+                                                <div class="col-md-8">
+                                                    <input name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-4">Salary</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-4">Cleaning</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-4">Depriciation</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
                                                 </div>
                                             </div>
 
@@ -968,87 +1168,14 @@
                                                 <input type="submit" class="btn btn-primary " name="submit">
                                             </div>
                                         </form>
-                                    @else
-                                        <div id="cost_view_form">
-                                            <h4 class="card-title">View Costs</h4>
-                                                <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Transport</label>
-                                                    <div class="col-md-8">
-                                                        <input disabled name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Salary</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control" disabled name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Cleaning</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control" disabled name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Depriciation</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control" disabled name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="text-right">
-                                                    <button class="btn btn-primary" onclick="showCostEditForm()">Edit</button>
-                                                </div>
-                                        </div>
-                                        <div id="cost_edit_form">
-                                            <h4 class="card-title">Edit Costs</h4>
-                                            <form action="{{ route('cost.update', $customer->cost->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="text" name="customer_id" hidden value="{{ $customer->id }}">
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Transport</label>
-                                                    <div class="col-md-8">
-                                                        <input name="transport" id="transport" type="text" class="form-control" autocomplete="off" value="{{ $customer->cost->transport }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Salary</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="salary" id="salary" autocomplete="off" value="{{ $customer->cost->salary }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Cleaning</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="cleaning" id="cleaning" autocomplete="off" value="{{ $customer->cost->cleaning }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-form-label col-md-4">Depriciation</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="depriciation" id="depriciation" autocomplete="off" value="{{ $customer->cost->depriciation }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="text-right">
-                                                    <input type="submit" class="btn btn-primary " name="submit">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    @endif
-                                    
-                                </div>
+                                    </div>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>
-                @endif
-            @endif        
+                </div>
+            @endif
         </div>
     </div>
 

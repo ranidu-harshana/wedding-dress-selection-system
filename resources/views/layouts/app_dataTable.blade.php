@@ -41,6 +41,10 @@
         } );
 
         $(document).ready(function() {
+            $('#all_users_table').DataTable();
+        } );
+
+        $(document).ready(function() {
             $('#all_reserved_items_datatable').DataTable({
                 "order": [[ 0, "desc" ]]
             });
