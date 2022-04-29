@@ -48,7 +48,7 @@
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="attachBranchesModal{{ $user->id }}Label">Modal title</h5>
+                                                                        <h5 class="modal-title" id="attachBranchesModal{{ $user->id }}Label">Attach Branches - <span class="badge badge-success">{{ $user->name }}</span></h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                         </button>
@@ -76,7 +76,7 @@
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="detachBranchesModal{{ $user->id }}Label">Modal title</h5>
+                                                                        <h5 class="modal-title" id="detachBranchesModal{{ $user->id }}Label">Detach Branches - <span class="badge badge-success">{{ $user->name }}</span></h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                         </button>
@@ -107,7 +107,7 @@
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="changePasswordModalLabel">Modal title</h5>
+                                                                    <h5 class="modal-title" id="changePasswordModalLabel">Edit Password - <span class="badge badge-success">{{ $user->name }}</span></h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                     </button>
