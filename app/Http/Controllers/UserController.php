@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
+use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -75,12 +77,14 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
             'user_role' => ['required'],
         ]);
 
         $user = User::find($id);
         $user->update([
             'name'=>$request->name,
+            'email'=>$request->email,
             'role_id'=>$request->user_role
         ]);
         return redirect()->route('user.index');
@@ -95,5 +99,34 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function get_user_branches($id) {
+        $customer = User::find($id);
+        $ids = [];
+        foreach($customer->branches as $branch){
+            array_push($ids, $branch->id);
+        }
+        $branches = Branch::whereNotIn('id', $ids)->get();
+
+        return response()->json($branches);
+    }
+
+    public function branch_attach(Request $request, $id) {
+        $request->validate([
+            'attach_branches'=>'required',
+        ]);
+        $user = User::find($id);
+        $user->branches()->attach($request->attach_branches);
+        return back();
+    }
+
+    public function branch_detach(Request $request, $id) {
+        $request->validate([
+            'detach_branches'=>'required',
+        ]);
+        $user = User::find($id);
+        $user->branches()->detach($request->detach_branches);
+        return back();
     }
 }

@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label>Branch</label>
                         <select name="branch_id" required class="form-control" value="{{ old('branch_id') }}">
-                            @foreach ($branches as $branch)
+                            @foreach (auth()->user()->branches as $branch)
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                             @endforeach
                         </select>

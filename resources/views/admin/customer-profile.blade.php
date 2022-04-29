@@ -999,7 +999,7 @@
                                         @if ($customer->dressing_place == 1)
                                             In Sri Kula Medura Branch
                                         @else
-                                            In Home
+                                            Outside Dressing
                                         @endif    
                                     </span>
                                 </li>

@@ -124,16 +124,23 @@
     </div>
 
     <script>
+        
+
         $(document).ready(function(){
+            
             $('#admin').hide();
+            $("#admin :input").prop('disabled', true);
             $("#user_role").change(function(){
                 var user_role = $('#user_role').val()
                 if(user_role == 1) {
                     $('#not_admin').hide();
+                    $("#admin :input").prop('disabled', false);
                     $('#admin').show();
                 }else{
                     $('#not_admin').show();
+                    $("#admin :input").prop('disabled', true);
                     $('#admin').hide();
+                    
                 }
             });
         });

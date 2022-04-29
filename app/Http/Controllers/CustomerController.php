@@ -32,14 +32,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $user = auth()->user();
-
-        if($user->role->name == 'admin') {
-            $branches = Branch::all();
-        }else{
-            $branches = $user->branches;
-        }
-        return view('admin.create-bill', ['branches'=>$branches]);
+        return view('admin.create-bill');
     }
 
     /**

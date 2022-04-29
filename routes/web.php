@@ -73,6 +73,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('/user', UserController::class);
 
     Route::resource('/cost', CostController::class);
+    Route::get('/user/branches/{user}', [UserController::class, 'get_user_branches'])->name('get_user_branches');
+    Route::post('/user/attach/branches/{user}', [UserController::class, 'branch_attach'])->name('user.brach.attach');
+    Route::delete('/user/detach/branches/{user}', [UserController::class, 'branch_detach'])->name('user.brach.detach');
     // Route::get('/test', function() {
     //     $string = 'fff';
     //     echo "<pre>";

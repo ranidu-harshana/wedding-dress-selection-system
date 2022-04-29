@@ -40,15 +40,14 @@
                     <a href="{{ route('item.index') }}"><i class="fas fa-warehouse"></i> <span>Inventory</span></a>
                 </li>
 
-                @if (auth()->user()->is_admin())
-                    <li>
-                        <a href="{{ route('register') }}"><i class="fas fa-user"></i> <span>Create User</span></a>
-                    </li>
-                @endif
 
                 @if (auth()->user()->is_admin())
-                    <li>
-                        <a href="{{ route('user.index') }}"><i class="fas fa-user"></i> <span>Users</span></a>
+                    <li class="submenu">
+                        <a href="#"><i class="fa fa-user"></i> <span> User </span> <span><i class="fas fa-caret-down"></i></span></a>
+                        <ul style="display: none;">
+                            <li><a href="{{ route('register') }}"> <span>Create User</span></a></li>
+                            <li><a href="{{ route('user.index') }}"> <span>All Users</span></a></li>
+                        </ul>
                     </li>
                 @endif
 
