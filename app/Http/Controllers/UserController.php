@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -128,5 +129,22 @@ class UserController extends Controller
         $user = User::find($id);
         $user->branches()->detach($request->detach_branches);
         return back();
+    }
+
+    public function edit_password($id) {
+        $user = User::find($id);
+        return view('admin.edit-password', ['user'=>$user]);
+    }
+
+    public function update_password(Request $request, $id) {
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        $user = User::find($id);
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->route('user.index');
     }
 }

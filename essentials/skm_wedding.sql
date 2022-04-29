@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2022 at 10:27 PM
+-- Generation Time: Apr 29, 2022 at 06:35 PM
 -- Server version: 10.2.43-MariaDB
 -- PHP Version: 7.2.30
 
@@ -64,11 +64,14 @@ CREATE TABLE `branch_user` (
 --
 
 INSERT INTO `branch_user` (`id`, `branch_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, NULL, NULL),
-(2, 2, 2, NULL, NULL),
-(3, 2, 3, NULL, NULL),
+(1, 1, 1, NULL, NULL),
+(2, 2, 1, NULL, NULL),
+(3, 3, 1, NULL, NULL),
 (4, 1, 4, NULL, NULL),
-(5, 3, 4, NULL, NULL);
+(5, 3, 4, NULL, NULL),
+(6, 1, 5, NULL, NULL),
+(7, 3, 5, NULL, NULL),
+(11, 3, 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -147,7 +150,7 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `bill_number`, `branch_id`, `name`, `address`, `mobile_no1`, `mobile_no2`, `function_date`, `function_place`, `no_of_bestmen`, `no_of_pageboys`, `dressing_place`, `going_away_change_place`, `status`, `postponed`, `dress_description`, `measurement_date`, `special_notes`, `created_at`, `updated_at`, `user_id`, `total_amount`, `discount`, `advance_payment`, `bridal_dressing_place`, `bridal_color`, `sec_bridal_group_color`, `photography_place`) VALUES
 (2, '2006', 1, 'Sabhira Wijesiri', 'Hidellana, Ratnapura', '0713889100', NULL, '2022-05-02', 'Kaluthara', 4, 0, 0, NULL, 1, NULL, NULL, '2022-04-23', NULL, '2022-04-22 20:10:58', '2022-04-24 04:26:19', 1, 50000, NULL, 5000, NULL, NULL, NULL, NULL),
-(4, '4', 1, 'test', 'test', '3423', NULL, '2022-04-24', 'test', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-04-23 11:50:57', '2022-04-24 13:09:00', 1, 100000, 5000, NULL, NULL, NULL, NULL, NULL),
+(4, '4', 1, 'test', 'test', '3423', NULL, '2022-04-24', 'test', 1, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-04-23 11:50:57', '2022-04-25 14:01:08', 1, 100000, 5000, NULL, NULL, NULL, NULL, NULL),
 (5, '2021', 1, 'Prabhath nawalage', 'Kalawana', '0719127000', '0702900501', '2022-05-02', 'Grand guardian', 1, 0, 1, NULL, 1, NULL, NULL, '2022-04-22', NULL, '2022-04-23 22:33:30', '2022-04-24 05:05:38', 1, 34000, NULL, 10000, NULL, NULL, NULL, NULL),
 (6, '1199', 1, 'Y.H Ishan Prabhath', 'Dodampe', '0702243122', '0704378031', '2022-05-04', 'Rose Gradian', 1, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-04-23 22:47:15', '2022-04-23 22:47:15', 1, 35000, NULL, 8000, 'Elegant Salon', NULL, NULL, 'Supun'),
 (7, '2018', 1, 'A.K Prasanna Janaka Kumara Yasarathne', 'Ayagama', '0710538292', '0778394348', '2022-05-05', 'Deshani Reception hall', 0, 3, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-04-23 22:52:59', '2022-04-23 22:52:59', 1, 35000, NULL, 5000, 'Salon Wink', 'White', NULL, 'Thineth Studio'),
@@ -191,12 +194,12 @@ CREATE TABLE `dress_selections` (
 --
 
 INSERT INTO `dress_selections` (`id`, `customer_id`, `type`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Groom\'s Jacket', NULL, 0, '2022-04-22 20:44:35', '2022-04-22 20:44:35'),
+(1, 2, 'Groom\'s Jacket', 'MPW03 - Maroon Pearl work 220 [Min ] (17)', 0, '2022-04-22 20:44:35', '2022-04-28 06:52:37'),
 (2, 2, 'Groom\'s Cavani', NULL, 0, '2022-04-22 20:44:35', '2022-04-22 20:44:35'),
 (3, 2, 'Bestman\'s Jacket - 1', 'SGS02 - Silver gold spring work (18 1/2) [220]', 0, '2022-04-22 20:44:35', '2022-04-22 20:44:35'),
 (4, 2, 'Bestman\'s Jacket - 2', 'SGS01 - Silver gold spring work (18) [220]', 0, '2022-04-22 20:44:35', '2022-04-22 20:45:26'),
 (5, 2, 'Bestman\'s Jacket - 3', 'SGS03 - Silver gold spring work (17) [220]', 0, '2022-04-22 20:44:35', '2022-04-22 20:45:37'),
-(6, 2, 'Bestman\'s Jacket - 4', NULL, 0, '2022-04-22 20:44:35', '2022-04-22 20:44:35'),
+(6, 2, 'Bestman\'s Jacket - 4', 'SGS05 - Silver gold spring work (16 1/2) [220]', 0, '2022-04-22 20:44:35', '2022-04-28 06:54:59'),
 (15, 5, 'Groom\'s Jacket', 'BPW04 - Dark Blue Pearl Work (21) [221]', 0, '2022-04-24 05:24:00', '2022-04-24 05:24:00'),
 (16, 5, 'Groom\'s Cavani', NULL, 0, '2022-04-24 05:24:00', '2022-04-24 05:24:00'),
 (17, 5, 'Bestman\'s Jacket - 1', NULL, 0, '2022-04-24 05:24:00', '2022-04-24 05:24:00'),
@@ -252,9 +255,14 @@ INSERT INTO `dress_selections` (`id`, `customer_id`, `type`, `name`, `status`, `
 (109, 4, 'Groom\'s Jacket', 'MDS01 - Maroon Maroon dull gold Spring work 216 (18)', 0, '2022-04-24 12:24:39', '2022-04-24 12:24:39'),
 (110, 4, 'Groom\'s Cavani', NULL, 0, '2022-04-24 12:24:39', '2022-04-24 12:24:39'),
 (111, 4, 'Bestman\'s Jacket - 1', 'SGS02 - Silver gold spring work (18 1/2) [220]', 0, '2022-04-24 12:24:39', '2022-04-24 13:52:34'),
-(112, 4, 'Bestman\'s Jacket - 2', NULL, 0, '2022-04-24 12:24:39', '2022-04-24 12:24:39'),
 (113, 4, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-04-24 12:24:39', '2022-04-24 12:24:39'),
-(115, 4, 'Group Cavani', NULL, 0, '2022-04-24 12:24:39', '2022-04-24 12:24:39');
+(115, 4, 'Group Cavani', NULL, 0, '2022-04-24 12:24:39', '2022-04-24 12:24:39'),
+(127, 4, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-04-25 14:01:08', '2022-04-25 14:01:08'),
+(128, 6, 'Groom\'s Jacket', 'BPW02 - Dark Blue Pearl Work (17) [220]', 0, '2022-04-28 07:48:32', '2022-04-28 07:48:32'),
+(129, 6, 'Groom\'s Cavani', NULL, 0, '2022-04-28 07:48:32', '2022-04-28 07:48:32'),
+(130, 6, 'Bestman\'s Jacket - 1', 'DB04 - Dark Beige Spring work [two tone] 219 (17-)', 0, '2022-04-28 07:48:32', '2022-04-28 07:48:32'),
+(131, 6, 'Pageboy\'s Jacket - 1', 'DB07 - Dark Beige Spring work [two tone] 219 (13+)', 0, '2022-04-28 07:48:32', '2022-04-28 07:48:32'),
+(132, 6, 'Group Cavani', NULL, 0, '2022-04-28 07:48:32', '2022-04-28 07:48:32');
 
 -- --------------------------------------------------------
 
@@ -551,8 +559,8 @@ INSERT INTO `measurements` (`id`, `customer_id`, `type`, `head`, `shoulder`, `ch
 (2, 2, 'BESTMAN - 1', '22.5', '17.5', '42', NULL, '41', '11', NULL, NULL, NULL, '2022-04-22 20:41:41', '2022-04-22 20:41:41'),
 (3, 2, 'BESTMAN - 2', '23.5', '18', '42', NULL, '43', '11', NULL, NULL, NULL, '2022-04-22 20:42:26', '2022-04-22 20:42:26'),
 (4, 2, 'BESTMAN - 3', '22', '16', '37', NULL, '39', '10', NULL, NULL, NULL, '2022-04-22 20:42:49', '2022-04-22 20:42:49'),
-(5, 8, 'GROOM', '23', '18', '42', NULL, '40', '11', NULL, NULL, NULL, '2022-04-24 06:33:06', '2022-04-24 06:33:06'),
-(6, 8, 'BESTMAN - 1', '22', '16', '35', NULL, '39', '11', NULL, NULL, NULL, '2022-04-24 06:33:20', '2022-04-24 06:33:20'),
+(5, 8, 'GROOM', '23', '18+', '42', '0', '40', '11', '0', '0', '0', '2022-04-24 06:33:06', '2022-04-28 07:04:22'),
+(6, 8, 'BESTMAN - 1', '22+', '16', '35', '0', '39', '11', '0', '0', '0', '2022-04-24 06:33:20', '2022-04-28 07:04:31'),
 (7, 8, 'PAGEBOY - 1', '20', '12', '23', NULL, '23', '9', NULL, NULL, NULL, '2022-04-24 06:33:29', '2022-04-24 06:33:29'),
 (8, 4, 'GROOM', '1-', '0', '0', '0', '0', '0', '0', '0', '0', '2022-04-24 07:50:51', '2022-04-24 07:52:42'),
 (9, 7, 'GROOM', '22', '17', '39', NULL, '42', '11', NULL, NULL, NULL, '2022-04-24 08:46:18', '2022-04-24 08:46:18'),
@@ -561,7 +569,10 @@ INSERT INTO `measurements` (`id`, `customer_id`, `type`, `head`, `shoulder`, `ch
 (12, 7, 'PAGEBOY - 3', '21', '12', '25', NULL, '26', '8', NULL, NULL, NULL, '2022-04-24 08:47:33', '2022-04-24 08:47:33'),
 (13, 12, 'GROOM', '22', '18', '41', NULL, '42', '11', NULL, NULL, NULL, '2022-04-24 09:11:08', '2022-04-24 09:11:08'),
 (14, 12, 'BESTMAN - 1', '22-', '17', '37', NULL, '41', '10.5+', NULL, NULL, NULL, '2022-04-24 09:11:28', '2022-04-24 09:11:28'),
-(15, 12, 'BESTMAN - 2', '22+', '17-', '37', NULL, '39', '11', NULL, NULL, NULL, '2022-04-24 09:11:53', '2022-04-24 09:11:53');
+(15, 12, 'BESTMAN - 2', '22+', '17-', '37', NULL, '39', '11', NULL, NULL, NULL, '2022-04-24 09:11:53', '2022-04-24 09:11:53'),
+(16, 2, 'GROOM', '22', '17+', '40', '0', '40', '11', '0', '0', '0', '2022-04-28 06:55:27', '2022-04-28 06:55:44'),
+(17, 2, 'BESTMAN - 4', '22', '15', '36', NULL, '38', '10', NULL, NULL, NULL, '2022-04-28 06:56:02', '2022-04-28 06:56:02'),
+(18, 6, 'GROOM', '22.5', '17', '38', NULL, '41', '10.5', NULL, NULL, NULL, '2022-04-28 07:45:43', '2022-04-28 07:45:43');
 
 -- --------------------------------------------------------
 
@@ -631,7 +642,8 @@ INSERT INTO `notes` (`id`, `customer_id`, `note`, `status`, `created_at`, `updat
 (6, 11, 'Arrival - 3.30AM', 0, '2022-04-24 08:52:44', '2022-04-24 08:52:44'),
 (7, 13, 'Ask to Arrange transport', 0, '2022-04-24 09:16:15', '2022-04-24 09:16:25'),
 (8, 16, 'Discuss about return transport', 0, '2022-04-24 09:22:51', '2022-04-24 09:22:51'),
-(9, 17, 'Thamara wedding', 0, '2022-04-24 09:27:02', '2022-04-24 09:27:02');
+(9, 17, 'Thamara wedding', 0, '2022-04-24 09:27:02', '2022-04-24 09:27:02'),
+(10, 6, 'Arrival 4.30', 0, '2022-04-28 07:48:48', '2022-04-28 07:48:48');
 
 -- --------------------------------------------------------
 
@@ -682,7 +694,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'admin', NULL, NULL),
-(2, 'store_keeper', NULL, NULL);
+(2, 'manager', NULL, NULL),
+(3, 'standard_user', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -708,9 +721,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`) VALUES
 (1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$lrflfaNjZ9LkuSXO90Umke.5VdQtMZpxrF.Ic8/yqFQzQJ/fKnwsa', NULL, NULL, NULL, 1),
-(2, 'Dasun Kalhara', 'dasun@gmail.com', NULL, '$2y$10$zKI4DLtpGesdpqFwu9QhXOmWT1f/RSyvf1noeNZtJ000j2oiLgqSu', NULL, '2022-04-11 16:54:31', '2022-04-11 16:54:31', 2),
-(3, 'Ranidu', 'ranidu@gmail.com', NULL, '$2y$10$0JQwuFEce9FUaqZCfD509OcHr6QUAHMZ82ed3sFW9uWpOFMQhF7P.', NULL, '2022-04-20 01:04:06', '2022-04-20 01:04:06', 2),
-(4, 'Rehan', 'rehan.dilmith2000@gmail.com', NULL, '$2y$10$/Nv8eeFpjKE4j.QoAgxdM.zRyIvGuLnpc7RRI8JYFt2yT2ExILLJy', NULL, '2022-04-23 01:47:39', '2022-04-23 01:47:39', 2);
+(4, 'Rehan', 'rehan.dilmith2000@gmail.com', NULL, '$2y$10$/Nv8eeFpjKE4j.QoAgxdM.zRyIvGuLnpc7RRI8JYFt2yT2ExILLJy', NULL, '2022-04-23 01:47:39', '2022-04-26 12:20:58', 2),
+(5, 'Jagath', 'jagath@gmail.com', NULL, '$2y$10$io/QKbPLoEqs6d1T8e7rQuRqYW7SJV8cYDT6iInj0zxIQbjfaN1OO', NULL, '2022-04-28 06:28:23', '2022-04-29 10:10:45', 2),
+(6, 'Saman', 'Saman@gmail.com', NULL, '$2y$10$eAdAdizEc4C8GNpAicwrnODZ0WE2vVHbX3vihXpOs6BfQ1AMEgPwi', NULL, '2022-04-28 06:29:18', '2022-04-28 06:29:18', 2);
 
 --
 -- Indexes for dumped tables
@@ -830,7 +843,7 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `branch_user`
 --
 ALTER TABLE `branch_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `costs`
@@ -848,7 +861,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `dress_selections`
 --
 ALTER TABLE `dress_selections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -878,7 +891,7 @@ ALTER TABLE `item_categories`
 -- AUTO_INCREMENT for table `measurements`
 --
 ALTER TABLE `measurements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -890,7 +903,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -902,13 +915,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
