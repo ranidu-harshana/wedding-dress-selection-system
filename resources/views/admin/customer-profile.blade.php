@@ -123,6 +123,7 @@
                             <div class="col-md-4">
                                 <div class="profile-info-left">
                                     <h3 class="user-name m-t-0 mb-0">{{ $customer->name }}</h3>
+                                    <div class="staff-id">Booked On : {{ $customer->address }}</div>
                                     <div class="staff-id">Bill Number : {{ $customer->branch->prefix }}{{ $customer->bill_number }}</div>
                                     <div class="staff-id">Booked On : {{ $customer->created_at }}</div>
                                     <div class="staff-id">Branch : {{ $customer->branch->name }}</div>
@@ -132,22 +133,32 @@
                             <div class="col-md-8">
                                 <ul class="personal-info">
                                     <li>
+                                        <span class="title">Amount to be paid</span>
+                                        <span class="text"><a href="#">
+                                            @php $intering_payment = 0; @endphp
+                                            @foreach ($customer->intering_payments as $value)
+                                                @php $intering_payment += $value->intering_payment; @endphp
+                                            @endforeach
+                                            @php $balance = $customer->total_amount - ($customer->discount + $customer->advance_payment  + $intering_payment) @endphp
+                                            @if ($balance == 0)
+                                                <span class="text-success"><b>Payment Success</b></span> 
+                                            @else
+                                                <b>{{ $balance }}.00</b>
+                                            @endif
+                                        </a></span>
+                                    </li>
+                                    <li>
                                         <span class="title">Phone 1</span>
-                                        <span class="text"><a href="#">{{ $customer->mobile_no1 }}</a></span>
+                                        <span class="text">{{ $customer->mobile_no1 }}</span>
                                     </li>
 
                                     @if ($customer->mobile_no2 != NULL)
                                         <li>
                                             <span class="title">Phone 2</span>
-                                            <span class="text"><a href="#">{{ $customer->mobile_no2 }}</a></span>
+                                            <span class="text">{{ $customer->mobile_no2 }}</span>
                                         </li>
                                     @endif
                                     
-                                    <li>
-                                        <span class="title">Address</span>
-                                        <span class="text">{{ $customer->address }}</span>
-                                    </li>
-
                                     @if ($customer->postponed == NULL)
                                         <li>
                                             <span class="title">Function Date</span>
@@ -780,17 +791,30 @@
                             <ul class="personal-info">
                                 <li>
                                     <span class="title">Total Amount</span>
-                                    <span class="text-primary"> {{ $customer->total_amount }}.00 </span>
+                                    @if ($customer->total_amount != NULL || $customer->total_amount != 0)
+                                        <span class="text-primary"> {{ $customer->total_amount }}.00 </span>
+                                    @else
+                                        0.00
+                                    @endif
                                 </li>
 
                                 <li>
                                     <span class="title">Discount </span>
-                                    <span class="text-primary"> {{ $customer->discount }}.00 </span>
+                                    @if ($customer->discount != NULL || $customer->discount != 0)
+                                        <span class="text-primary"> {{ $customer->discount }}.00 </span>
+                                    @else
+                                        0.00
+                                    @endif
                                 </li>
                                 
                                 <li>
                                     <span class="title">Advance Payment </span>
-                                    <span class="text-primary"> {{ $customer->advance_payment }}.00 </span>
+                                    @if ($customer->advance_payment != NULL || $customer->advance_payment != 0)
+                                        <span class="text-primary"> {{ $customer->advance_payment }}.00 </span>
+                                    @else
+                                        0.00
+                                    @endif
+                                    
                                 </li>
                                 @php $intering_payment = 0; @endphp
                                 @foreach ($customer->intering_payments as $value)
