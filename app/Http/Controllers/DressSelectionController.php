@@ -31,20 +31,13 @@ class DressSelectionController extends Controller
             'groom_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
             'group_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
         ]);
-<<<<<<< HEAD
 
 
-=======
->>>>>>> bd588fe79b08870ce24767bd82ff4295f7b71bf2
         try {
             $bestman_count = count($request->bestman_jacket);
             for ($i=0; $i < $bestman_count; $i++) { 
                 $request->validate([
-<<<<<<< HEAD
-                    'bestman_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
-=======
                     'bestman_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)]
->>>>>>> bd588fe79b08870ce24767bd82ff4295f7b71bf2
                 ]);
             }
         } catch (\Throwable $th) {
@@ -53,20 +46,10 @@ class DressSelectionController extends Controller
 
         try {
             $pageboy_count = count($request->pageboy_jacket);
-<<<<<<< HEAD
         for ($i=0; $i < $pageboy_count; $i++) { 
             $request->validate([
-                'pageboy_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase]
+                'pageboy_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)]
             ]);
-=======
-            for ($i=0; $i < $pageboy_count; $i++) { 
-                $request->validate([
-                    'pageboy_jacket.'.$i=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)]
-                ]);
-            }
-        } catch (\Throwable $th) {
-            //throw $th;
->>>>>>> bd588fe79b08870ce24767bd82ff4295f7b71bf2
         }
         } catch (\Throwable $th) {
             //throw $th;
