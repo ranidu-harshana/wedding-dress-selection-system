@@ -15,10 +15,11 @@
                     <a href="{{ route('customer.index') }}"><i class="fas fa-users"></i> <span>Events List</span></a>
                 </li>
 
-                @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
-                    <li class="submenu">
-                        <a href="#"><i class="fa fa-user"></i> <span> Master </span> <span><i class="fas fa-caret-down"></i></span></a>
-                        <ul style="display: none;">
+                
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-user"></i> <span> Master </span> <span><i class="fas fa-caret-down"></i></span></a>
+                    <ul style="display: none;">
+                        @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
                             @if (auth()->check())
                                 @if (auth()->user()->is_admin())
                                     <li><a href="{{ route('item_category.index') }}">Item Category</a></li>
@@ -32,14 +33,13 @@
                                     <li><a href="{{ route('branch.index') }}">Branch</a></li>
                                 @endif
                             @endif
-                        </ul>
-                    </li>
-                @endif    
-
-                <li>
-                    <a href="{{ route('item.index') }}"><i class="fas fa-warehouse"></i> <span>Inventory</span></a>
+                        @endif 
+                        <li>
+                            <a href="{{ route('item.index') }}"> Inventory</a>
+                        </li>
+                    </ul>
                 </li>
-
+                  
 
                 @if (auth()->user()->is_admin())
                     <li class="submenu">
