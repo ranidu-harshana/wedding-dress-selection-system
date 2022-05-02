@@ -725,6 +725,43 @@
                             @endif
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <h4 class="card-title">Measurements</h4>
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 120px">POS</th>
+                                        <th scope="col">Shoulder</th>
+                                        <th scope="col">Chest</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($customer->measurements as $measurement)
+                                        <tr>
+                                            <td scope="col">{{ $measurement->type }}</td>
+                                            
+                                            <td scope="col">
+                                                @if ($measurement->shoulder == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->shoulder }}
+                                                @endif
+                                            </td>
+                                            <td scope="col">
+                                                @if ($measurement->chest == NULL)
+                                                    0
+                                                @else
+                                                    {{ $measurement->chest }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     @if ($dress_selected_customer != NULL)
                         <div class="col-lg-6" id="display_area" style="display: none">
                     @else
