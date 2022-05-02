@@ -57,6 +57,10 @@ class Customer extends Model
         return $this->hasMany(InteringPayment::class);
     }
 
+    public function additional_payments() {
+        return $this->hasMany(AdditionalPayment::class);
+    }
+
     public function measurements() {
         return $this->hasMany(Measurement::class);
     }

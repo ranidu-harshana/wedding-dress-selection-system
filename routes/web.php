@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdditionalPaymentController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CostController;
 use App\Http\Controllers\CustomerController;
@@ -62,6 +63,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('autocomplete/photography/place', [CustomerController::class, 'autocomplete_photography_place'])->name('autocomplete_photography_place');
     
     Route::resource('intering_payment', InteringPaymentController::class);
+    Route::resource('additional_payment', AdditionalPaymentController::class);
 
     Route::post('measurement/store/update', [MeasurementController::class, 'store_measurements'])->name('measurement.store');
     Route::put('update_measurement/{measurement}', [MeasurementController::class, 'update_measurement'])->name('update_measurement');
