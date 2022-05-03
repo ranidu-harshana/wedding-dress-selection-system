@@ -17,7 +17,7 @@
 
                 
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-user"></i> <span> Master </span> <span><i class="fas fa-caret-down"></i></span></a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> <span> Master </span> <span><i class="fas fa-caret-down"></i></span></a>
                     <ul style="display: none;">
                         @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager")
                             @if (auth()->check())
