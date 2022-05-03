@@ -40,6 +40,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/reservations/report/finance/pdf/range', [CustomerController::class, 'reservation_report_pdf_finance_range'])->name('reservation_report_pdf_finance_range');
     Route::get('/genarate/cost/report', [CustomerController::class, 'show_cost_report_pdf'])->name('show_cost_report_pdf');
     Route::post('/genarate/cost/report/pdf', [CustomerController::class, 'cost_report_pdf'])->name('cost_report_pdf');
+
+    Route::get('/genarate/dress/freq/report', [CustomerController::class, 'show_dress_freq_report'])->name('show_dress_freq_report');
+    Route::post('/genarate/dress/freq/report/pdf', [CustomerController::class, 'dress_freq_report'])->name('dress_freq_report');
     
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');
@@ -80,11 +83,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::delete('/user/detach/branches/{user}', [UserController::class, 'branch_detach'])->name('user.brach.detach');
     Route::get('/user/edit/password/{user}', [UserController::class, 'edit_password'])->name('user.edit.password');
     Route::put('/user/update/password/{user}', [UserController::class, 'update_password'])->name('user.update.password');
-    // Route::get('/test', function() {
-    //     $string = 'fff';
-    //     echo "<pre>";
-    //     print_r(explode(' - ', $string));
-    //     echo "</pre>";
-    // });
+    Route::get('/test', function() {
+        return view('admin.dress-frequency-report-pdf');
+    });
 });
 

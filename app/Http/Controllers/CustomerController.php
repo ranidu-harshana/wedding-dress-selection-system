@@ -365,4 +365,40 @@ class CustomerController extends Controller
         $customer->update($validated);
         return back();
     }
+
+    public function show_dress_freq_report() {
+        return view('admin.dress-frequency-report');
+    }
+
+    public function dress_freq_report(Request $request) {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        if ($to_date == NULL) {
+            $customers = Customer::where('function_date', '=', $from_date)->get();
+        }elseif ($from_date == NULL) {
+            $customers = Customer::where('function_date', '=', $to_date)->get();
+        }elseif ($to_date != NULL && $from_date != NULL){
+            $customers = Customer::where('function_date', '>=', $from_date)->where('function_date', '<=', $to_date)->get();
+        }
+
+        $dresses = [];
+        foreach ($customers as $customer) {
+            if($customer->dress_selections->count() != 0) {
+                foreach ($customer->dress_selections as $dress_selection) {
+                    if($dress_selection->name != NULL) {
+                        // echo $dress_selection->name . "<br>";
+                        if (!array_key_exists($dress_selection->name, $dresses)) {
+                            $dresses[$dress_selection->name] = 1;
+                        }else{
+                            $dresses[$dress_selection->name] = $dresses[$dress_selection->name] + 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.dress-frequency-report-pdf', ['dresses'=>$dresses]);
+        return $pdf->stream();
+    }
 }
