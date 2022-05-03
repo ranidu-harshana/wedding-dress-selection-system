@@ -44,12 +44,9 @@ class AdditionalPaymentController extends Controller
         $customer_id = $request->customer_id;
 
         $customer = Customer::find($customer_id);
-        $total_amount = $customer->total_amount + $request->additional_payment;
+
         $result = $customer->additional_payments()->create($validated);
 
-        $customer->update([
-            'total_amount'=>$total_amount,
-        ]);
         if ($result) {
             session()->flash('additional-payment-saved', 'Additional Payment Saved');
             return back();
@@ -105,11 +102,6 @@ class AdditionalPaymentController extends Controller
     public function destroy($id)
     {
         $additional_payment= AdditionalPayment::find($id);
-        $total_amount = $additional_payment->customer->total_amount - $additional_payment->additional_payment;
-        $additional_payment->customer()->update([
-            'total_amount'=>$total_amount,
-        ]);
-
         $additional_payment->delete();
         return back();
     }

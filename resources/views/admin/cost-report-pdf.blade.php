@@ -14,6 +14,7 @@
                 <th scope="col">Bill No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Total Bill</th>
+                <th scope="col">Additional Payments</th>
                 <th scope="col">Transport</th>
                 <th scope="col">Salary</th>
                 <th scope="col">Cleaning</th>
@@ -23,16 +24,22 @@
         <tbody>
             @php 
                 $tot_total_amount = 0;
+                $tot_additional_payment = 0;
                 $tot_transport = 0;
                 $tot_salary = 0;
                 $tot_cleaning = 0;
                 $tot_depriciation = 0;
             @endphp
             @foreach ($customers as $customer)
+                @php $additional_payment = 0; @endphp
+                @foreach ($customer->additional_payments as $payment)
+                    @php $additional_payment += $payment->additional_payment; @endphp
+                @endforeach
                 <tr>
                     <th scope="row">{{ $customer->branch->prefix }}{{ $customer->bill_number }}</th>
                     <td>{{ $customer->name }}</td>
                     <td class="text-right">{{ $customer->total_amount }}</td>
+                    <td class="text-right">{{ $additional_payment }}</td>
                     <td class="text-right">@if ($customer->cost != NULL) {{ $customer->cost->transport }} @else 0 @endif </td>
                     <td class="text-right">@if ($customer->cost != NULL) {{ $customer->cost->salary }} @else 0 @endif </td>
                     <td class="text-right">@if ($customer->cost != NULL) {{ $customer->cost->cleaning }} @else 0 @endif </td>
@@ -40,6 +47,7 @@
                 </tr>
                 @php
                     $tot_total_amount += $customer->total_amount;
+                    $tot_additional_payment += $additional_payment;
                     if ($customer->cost != NULL) {
                         $tot_transport += $customer->cost->transport;
                         $tot_salary += $customer->cost->salary;
@@ -52,6 +60,7 @@
             <tr>
                 <th scope="row" colspan="2" class="text-center">Total</th>
                 <td class="text-right">{{ $tot_total_amount }}</td>
+                <td class="text-right">{{ $tot_additional_payment }}</td>
                 <td class="text-right">{{ $tot_transport }}</td>
                 <td class="text-right">{{ $tot_salary }}</td>
                 <td class="text-right">{{ $tot_cleaning }}</td>
@@ -60,7 +69,7 @@
 
             <tr>
                 <th scope="row" colspan="2" class="text-center">Net Income</th>
-                <td class="text-center" colspan="5">{{ $tot_total_amount - ($tot_transport+$tot_salary+$tot_cleaning+$tot_depriciation) }}</td>
+                <td class="text-center" colspan="5">{{ ($tot_total_amount + $tot_additional_payment) - ($tot_transport+$tot_salary+$tot_cleaning+$tot_depriciation) }}</td>
             </tr>
         </tbody>
     </table>

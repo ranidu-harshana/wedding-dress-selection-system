@@ -15,35 +15,51 @@
                 <th scope="col">Name</th>
                 <th scope="col">Booked Date</th>
                 <th scope="col">Total Bill</th>
-                <th scope="col">Advance Payment</th>
+                <th scope="col">Additional</th>
+                <th scope="col">Advance</th>
                 <th scope="col">Balance</th>
             </tr>
         </thead>
         <tbody>
             @php 
                 $tot_total_amount = 0;
+                $tot_additional_payment = 0;
                 $tot_advance_payment = 0;
+                $tot_intering_payment = 0;
                 $tot_balance = 0;
             @endphp
             @foreach ($customers as $customer)
+                @php $intering_payment = 0; @endphp
+                @foreach ($customer->intering_payments as $value)
+                    @php $intering_payment += $value->intering_payment; @endphp
+                @endforeach
+
+                @php $additional_payment = 0 @endphp
+                @foreach ($customer->additional_payments as $payment)
+                    @php $additional_payment += $payment->additional_payment @endphp
+                @endforeach
                 <tr>
                     <th scope="row">{{ $customer->branch->prefix }}{{ $customer->bill_number }}</th>
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->created_at }}</td>
                     <td class="text-right">{{ $customer->total_amount }}</td>
+                    <td class="text-right">{{ $additional_payment }}</td>
                     <td class="text-right">{{ $customer->advance_payment }}</td>
-                    <td class="text-right">{{ $customer->total_amount - ($customer->advance_payment + $customer->discount) }}</td>
+                    <td class="text-right">{{ ($customer->total_amount + $additional_payment) - ($customer->advance_payment + $customer->discount + $intering_payment) }}</td>
                 </tr>
                 @php
                     $tot_total_amount += $customer->total_amount;
+                    $tot_additional_payment += $additional_payment;
                     $tot_advance_payment += $customer->advance_payment;
-                    $tot_balance += $customer->total_amount - ($customer->advance_payment + $customer->discount)
+                    $tot_intering_payment += $intering_payment;
+                    $tot_balance += ($customer->total_amount + $additional_payment) - ($customer->advance_payment + $customer->discount + $intering_payment)
                 @endphp
             @endforeach
             
             <tr>
                 <th scope="row" colspan="3" class="text-center">Total</th>
                 <td class="text-right">{{ $tot_total_amount }}</td>
+                <td class="text-right">{{ $tot_additional_payment }}</td>
                 <td class="text-right">{{ $tot_advance_payment }}</td>
                 <td class="text-right">{{ $tot_balance }}</td>
             </tr>

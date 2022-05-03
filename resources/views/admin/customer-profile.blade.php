@@ -4,6 +4,10 @@
 {{-- @if($errors->any())
     {!! implode('', $errors->all('<div>:message</div>')) !!}
 @endif --}}
+    @php $additional_payment = 0 @endphp
+    @foreach ($customer->additional_payments as $payment)
+        @php $additional_payment += $payment->additional_payment @endphp
+    @endforeach
     <div class="row">
         <div class="col-sm-7 col-6">
             <h4 class="page-title">Customer Profile</h4>
@@ -139,7 +143,7 @@
                                             @foreach ($customer->intering_payments as $value)
                                                 @php $intering_payment += $value->intering_payment; @endphp
                                             @endforeach
-                                            @php $balance = $customer->total_amount - ($customer->discount + $customer->advance_payment  + $intering_payment) @endphp
+                                            @php $balance = ($customer->total_amount + $additional_payment) - ($customer->discount + $customer->advance_payment  + $intering_payment) @endphp
                                             @if ($balance == 0)
                                                 <span class="text-success"><b>Payment Success</b></span> 
                                             @else
@@ -841,6 +845,15 @@
                                         @endif
                                     </li>
 
+                                    @if ($customer->additional_payments->count() > 0)
+                                        
+                                        <li>
+                                            <span class="title">Additional Payments</span>
+                                            <span class="text-primary"> {{ $additional_payment }}.00 </span>
+                                        </li>
+                                    @endif
+                                    
+
                                     <li>
                                         <span class="title">Discount </span>
                                         @if ($customer->discount != NULL || $customer->discount != 0)
@@ -863,7 +876,7 @@
                                     @foreach ($customer->intering_payments as $value)
                                         @php $intering_payment += $value->intering_payment; @endphp
                                     @endforeach
-                                    @php $balance = $customer->total_amount - ($customer->discount + $customer->advance_payment  + $intering_payment) @endphp
+                                    @php $balance = ($customer->total_amount + $additional_payment) - ($customer->discount + $customer->advance_payment  + $intering_payment) @endphp
                                     <li>
                                         <span class="title">Balance </span>
                                         <span class="text"><a href="#">
