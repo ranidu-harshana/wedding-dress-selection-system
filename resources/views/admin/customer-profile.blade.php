@@ -199,7 +199,7 @@
             @if (auth()->user()->role->name == "admin" || auth()->user()->role->name == "manager") 
                 <li class="nav-item" id="tab5"><a class="nav-link @if (session('tab5')) active @endif" href="#costs_tab" data-toggle="tab">Costs</a></li>
             @endif
-            </ul>
+        </ul>
 
         <div class="tab-content">
             <div class="tab-pane @if (session('tab0')) show active @endif" id="measurement_tab" >
@@ -572,7 +572,7 @@
             </div>
             <div class="tab-pane @if (session('tab1')) active @endif" id="dress_selection_tab">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <div class="card-box">
                             @if ($dress_selected_customer == NULL)
                                 <h4 class="card-title">Dress Selection Form</h4>
@@ -627,6 +627,11 @@
                                 </form>
                             @else
                                 <h4 class="card-title">All Dress Selections</h4>
+                                @if($errors->has('dress'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $errors->first('dress') }}
+                                    </div>
+                                @endif
                                 <div class="col-md-12">
                                     <table class="table">
                                         @foreach ($dress_selected_customer as $dress)
@@ -725,7 +730,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="card-box">
                             <h4 class="card-title">Measurements</h4>
                             <table class="table table-hover ">

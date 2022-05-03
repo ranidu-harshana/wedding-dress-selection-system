@@ -82,7 +82,7 @@ class DressSelectionController extends Controller
     {
         $customer_id = $request->customer_id;
         $request->validate([
-            'dress' => ['required', new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($customer_id)],
+            'dress' => ['required', 'unique:dress_selections,name,NULL,id,customer_id,' . $customer_id, new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($customer_id)],
         ]);
 
         $dress = DressSelection::find($id);
