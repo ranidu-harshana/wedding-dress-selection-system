@@ -167,7 +167,7 @@ class CustomerController extends Controller
 
             $customer->dress_selections()->createMany($data);
         }
-
+        session()->flash('customer-updated', 'Customer Updated');
         $customer->update($validated);
         return redirect()->route('customer.show', $id);
     }
@@ -270,6 +270,7 @@ class CustomerController extends Controller
         $customer->update([
             'status' => 0,
         ]);
+        session()->flash('function-cancelled', 'Function Cancelled');
         return back();
     }
     
@@ -283,7 +284,7 @@ class CustomerController extends Controller
             'postponed' => $function_date,
             'status' => 1,
         ]);
-        
+        session()->flash('function-rescheduled', 'Function Rescheduled');
         return back();
     }
 
@@ -362,6 +363,7 @@ class CustomerController extends Controller
             'advance_payment' => ['nullable'],
         ]);
         $customer = Customer::find($id);
+        session()->flash('bill-updated', 'Bill Updated');
         $customer->update($validated);
         return back();
     }

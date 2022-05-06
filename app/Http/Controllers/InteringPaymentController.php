@@ -87,6 +87,7 @@ class InteringPaymentController extends Controller
         ]);
         $intering_payment = InteringPayment::find($id);
         $intering_payment->update($validated);
+        session()->flash('intering-payment-updated', 'Intering Payment Updated');
         return back();
     }
 

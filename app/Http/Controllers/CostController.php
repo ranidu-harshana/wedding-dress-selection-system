@@ -46,7 +46,7 @@ class CostController extends Controller
 
         $customer = Customer::find($customer_id);
         $customer->cost()->create($validated);
-
+        session()->flash('costs-saved', 'Costs Saved');
         return back();
     }
 
@@ -90,7 +90,7 @@ class CostController extends Controller
 
         $cost = Cost::find($id);
         $cost->update($validated);
-
+        session()->flash('costs-updated', 'Costs Updated');
         return back();
     }
 

@@ -2,8 +2,150 @@
 
 @section('content')
 {{-- @if($errors->any())
-    {!! implode('', $errors->all('<div>:message</div>')) !!}
+    {!! implode('', $errors->all('<div>:message</div>')) !!} 
 @endif --}}
+    @if(session('customer-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('customer-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('function-rescheduled'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('function-rescheduled') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('function-posponed'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('function-posponed') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('function-cancelled'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('function-cancelled') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('bill-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('bill-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('note-created'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('note-created') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('note-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('note-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('note-deleted'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('note-deleted') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('note-mark-as-read'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('note-mark-as-read') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('additional-charge-saved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('additional-charge-saved') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('additional-charge-deleted'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('additional-charge-deleted') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('costs-saved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('costs-saved') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('costs-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('costs-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('dress-saved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('dress-saved') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('dress-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('dress-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('dress-deleted'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('dress-deleted') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('measurements-saved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('measurements-saved') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('measurements-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('measurements-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('intering-payment-saved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('intering-payment-saved') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('intering-payment-updated'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('intering-payment-updated') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     @php $additional_payment = 0 @endphp
     @foreach ($customer->additional_payments as $payment)
         @php $additional_payment += $payment->additional_payment @endphp
@@ -632,8 +774,11 @@
                             @else
                                 <h4 class="card-title">All Dress Selections</h4>
                                 @if($errors->has('dress'))
-                                    <div class="alert alert-danger" role="alert">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         {{ $errors->first('dress') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 @endif
                                 <div class="col-md-12">
@@ -658,6 +803,13 @@
                                                 @endif
                                                 
                                             </tr>
+                                            
+                                            <script>
+                                                $(window).load(function(){
+                                                    $('#dressEdit{{ old("dress_id") }}').modal('show');
+                                                })
+                                            </script>
+                                            
                                             <div class="modal fade" id="dressEdit{{ $dress->id }}" tabindex="-1" role="dialog" aria-labelledby="dressEdit{{ $dress->id }}Label" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -675,6 +827,7 @@
                                                                     <label class="col-md-4 col-form-label">{{ $dress->type }}</label>
                                                                     <div class="col-md-8">
                                                                         <input type="hidden" name="customer_id" value="{{ $dress->customer_id }}">
+                                                                        <input type="hidden" name="dress_id" value="{{ $dress->id }}">
                                                                         @if($dress->type == "Groom's Jacket")
                                                                             <input type="text" name="dress" class="form-control" value="{{ $dress->name }}" id="groom_jacket" autocomplete="off">
                                                                         @elseif($dress->type == "Groom's Cavani")
@@ -690,7 +843,7 @@
                                                                                 @endif
                                                                             @endfor
                                                                         @endif
-                                                                        
+                                                                        @error('dress') <p class="text-danger small">{{$message}}</p> @enderror
                                                                     </div>
                                                                 </div>
                                                         </div>
@@ -1374,6 +1527,10 @@
 
     {{-- Autocompleting Text Fields --}}
     <script>
+        $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert-dismissible").alert('close');
+        });
+
         $('#cost_edit_form').hide()
         $('#cost_view_form').show()
         function showCostEditForm() {

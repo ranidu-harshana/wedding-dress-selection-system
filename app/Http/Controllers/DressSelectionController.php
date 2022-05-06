@@ -66,6 +66,7 @@ class DressSelectionController extends Controller
         
         array_push($data, ['type'=> 'Group Cavani', 'name'=>$request->group_cavani]);
         $customer = Customer::find($request->customer_id);
+        session()->flash('dress-saved', 'Dress Selected');
         if($customer->dress_selections()->createMany($data)) {
             return back();
         }
@@ -89,6 +90,8 @@ class DressSelectionController extends Controller
         $dress->update([
             'name'=>$request->dress,
         ]);
+
+        session()->flash('dress-updated', 'Dress Selection Updated');
         return back();
     }
 
@@ -112,6 +115,7 @@ class DressSelectionController extends Controller
             DB::table('customers')->where('id', '=', $dress->customer_id)->decrement('no_of_pageboys');
         }
         
+        session()->flash('dress-deleted', 'Dress Selection Deleted');
         $dress->delete($dress);
         return back();
     }

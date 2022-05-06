@@ -24,6 +24,7 @@ class MeasurementController extends Controller
 
         $customer_id = $request->customer_id;
         $customer = Customer::find($customer_id);
+        session()->flash('measurements-saved', 'Measurements Saved');
         $customer->measurements()->create($validated);
         return back();
     }
@@ -43,6 +44,7 @@ class MeasurementController extends Controller
 
         $measurement = Measurement::find($id);
         $measurement->update($validated);
+        session()->flash('measurements-updated', 'Measurements Updated');
         return back();
     }
 }

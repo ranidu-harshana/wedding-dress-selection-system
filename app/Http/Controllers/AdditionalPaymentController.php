@@ -48,7 +48,7 @@ class AdditionalPaymentController extends Controller
         $result = $customer->additional_payments()->create($validated);
 
         if ($result) {
-            session()->flash('additional-payment-saved', 'Additional Payment Saved');
+            session()->flash('additional-charge-saved', 'Additional Charge Saved');
             return back();
         }
     }
@@ -103,6 +103,7 @@ class AdditionalPaymentController extends Controller
     {
         $additional_payment= AdditionalPayment::find($id);
         $additional_payment->delete();
+        session()->flash('additional-charge-deleted', 'Additional Charge Deleted');
         return back();
     }
 }
