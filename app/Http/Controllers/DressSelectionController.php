@@ -27,11 +27,11 @@ class DressSelectionController extends Controller
         $bestman_count = 0;
         $pageboy_count = 0;
         $request->validate([
-            'groom_jacket'=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
-            'groom_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
-            'group_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
-            'bestman_jacket.*'=>[new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
-            'pageboy_jacket.*'=>[new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($request->customer_id)],
+            'groom_jacket'=> [new checkItemCodeDescSeperator, new checkInDatabase], // new checkItemAvailability($request->customer_id) 
+            'groom_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase],
+            'group_cavani'=> [new checkItemCodeDescSeperator, new checkInDatabase],
+            'bestman_jacket.*'=>[new checkItemCodeDescSeperator, new checkInDatabase],
+            'pageboy_jacket.*'=>[new checkItemCodeDescSeperator, new checkInDatabase],
         ]);
         
         $data = [
@@ -82,7 +82,7 @@ class DressSelectionController extends Controller
     {
         $customer_id = $request->customer_id;
         $request->validate([
-            'dress' => ['required', 'unique:dress_selections,name,NULL,id,customer_id,' . $customer_id, new checkItemCodeDescSeperator, new checkInDatabase, new checkItemAvailability($customer_id)],
+            'dress' => ['required', 'unique:dress_selections,name,NULL,id,customer_id,' . $customer_id, new checkItemCodeDescSeperator, new checkInDatabase], // new checkItemAvailability($customer_id)
         ]);
 
         $dress = DressSelection::find($id);
