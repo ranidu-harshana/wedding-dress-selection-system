@@ -375,6 +375,8 @@ class CustomerController extends Controller
     public function dress_freq_report(Request $request) {
         $from_date = $request->from_date;
         $to_date = $request->to_date;
+        $type = $request->type;
+
         if ($to_date == NULL) {
             $customers = Customer::where('function_date', '=', $from_date)->get();
         }elseif ($from_date == NULL) {
@@ -384,21 +386,45 @@ class CustomerController extends Controller
         }
 
         $dresses = [];
-        foreach ($customers as $customer) {
-            if($customer->dress_selections->count() != 0) {
-                foreach ($customer->dress_selections as $dress_selection) {
-                    if($dress_selection->name != NULL) {
-                        // echo $dress_selection->name . "<br>";
-                        if (!array_key_exists($dress_selection->name, $dresses)) {
-                            $dresses[$dress_selection->name] = 1;
-                        }else{
-                            $dresses[$dress_selection->name] = $dresses[$dress_selection->name] + 1;
+        if($type == NULL) {
+            foreach ($customers as $customer) {
+                if($customer->dress_selections->count() != 0) {
+                    foreach ($customer->dress_selections as $dress_selection) {
+                        if($dress_selection->name != NULL) {
+                            // echo $dress_selection->name . "<br>";
+                            if (!array_key_exists($dress_selection->name, $dresses)) {
+                                $dresses[$dress_selection->name][0] = 1;
+                                $dresses[$dress_selection->name][1] = $dress_selection->type;
+                            }else{
+                                $dresses[$dress_selection->name][0] = $dresses[$dress_selection->name][0] + 1;
+                                $dresses[$dress_selection->name][1] = $dress_selection->type;
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            foreach ($customers as $customer) {
+                if($customer->dress_selections->count() != 0) {
+                    foreach ($customer->dress_selections as $dress_selection) {
+                        if($dress_selection->name != NULL) {
+                            if(preg_match("/$type/i", $dress_selection->type)) {
+                                if (!array_key_exists($dress_selection->name, $dresses)) {
+                                    $dresses[$dress_selection->name][0] = 1;
+                                    $dresses[$dress_selection->name][1] = $dress_selection->type;
+                                }else{
+                                    $dresses[$dress_selection->name][0] = $dresses[$dress_selection->name][0] + 1;
+                                    $dresses[$dress_selection->name][1] = $dress_selection->type;
+                                }
+                            }
+                            
                         }
                     }
                 }
             }
         }
 
+        arsort($dresses);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('admin.dress-frequency-report-pdf', ['dresses'=>$dresses]);
         return $pdf->stream();

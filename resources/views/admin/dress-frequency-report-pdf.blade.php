@@ -12,16 +12,27 @@
         <thead>
             <tr>
                 <th scope="col">Code</th>
+                <th scope="col">Type</th>
                 <th scope="col">Name</th>
                 <th scope="col">Frequency</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($dresses as $dress => $frequency)
+            @foreach ($dresses as $dress => $other)
                 <tr>
                     <td>{{ explode(' - ', $dress)[0]  }}</td>
+                    <td>
+                        @php
+                            try {
+                                $type = explode(' - ', $other[1])[0];
+                            } catch (\Throwable $th) {
+                                $type = $other[1];
+                            }
+                        @endphp
+                        {{ $type }}
+                    </td>
                     <td>{{ explode(' - ', $dress)[1]  }}</td>
-                    <td>{{ $frequency }}</td>    
+                    <td>{{ $other[0] }}</td>    
                 </tr>
             @endforeach
         </tbody>
