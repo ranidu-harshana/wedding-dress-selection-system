@@ -127,7 +127,7 @@
                             <div class="col-md-4">
                                 <div class="profile-info-left">
                                     <h3 class="user-name m-t-0 mb-0">{{ $customer->name }}</h3>
-                                    <div class="staff-id">Booked On : {{ $customer->address }}</div>
+                                    <div class="staff-id">Address : {{ $customer->address }}</div>
                                     <div class="staff-id">Bill Number : {{ $customer->branch->prefix }}{{ $customer->bill_number }}</div>
                                     <div class="staff-id">Booked On : {{ $customer->created_at }}</div>
                                     <div class="staff-id">Branch : {{ $customer->branch->name }}</div>
@@ -848,7 +848,7 @@
                                     @if ($customer->additional_payments->count() > 0)
                                         
                                         <li>
-                                            <span class="title">Additional Payments</span>
+                                            <span class="title">Additional Charges</span>
                                             <span class="text-primary"> {{ $additional_payment }}.00 </span>
                                         </li>
                                     @endif
@@ -893,7 +893,7 @@
                                     <form action="{{ route('intering_payment.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-4">Intering Payment</label>
+                                            <label class="col-form-label col-md-4">Interim Payment</label>
                                             <div class="col-md-4">
                                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                                 <input type="text" class="form-control" name="intering_payment" onkeypress="return isExactNumberKey(event)" autocomplete="off">
@@ -908,13 +908,13 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="card-box">
-                                <h4 class="card-title">Additional Payments</h4>
+                                <h4 class="card-title">Additional Charges</h4>
                                 
                                 <form method="POST" action="{{ route('additional_payment.store') }}">
                                     @csrf
                                     <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                     <div class="row mb-3">
-                                        <label for="additional_payment" class="col-md-4 col-form-label text-md-end">{{ __('Payment') }}</label>
+                                        <label for="additional_payment" class="col-md-4 col-form-label text-md-end">{{ __('Amount') }}</label>
                     
                                         <div class="col-md-6">
                                             <input id="additional_payment" type="text" class="form-control @error('additional_payment') is-invalid @enderror" name="additional_payment" required onkeypress="return isExactNumberKey(event)" autocomplete="off">
@@ -1022,12 +1022,12 @@
                         </div><br>
                         <div class="col-lg-12">
                             <div class="card-box">
-                                <h4 class="card-title">Additional Payments Details</h4>
+                                <h4 class="card-title">Additional Charges Details</h4>
                                 <table class="table table-striped table-hover table-sm">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Payment</th>
+                                            <th scope="col">Amount</th>
                                             <th scope="col">Reason</th>
                                             <th scope="col">Created At</th>
                                             <th>Edit</th>
