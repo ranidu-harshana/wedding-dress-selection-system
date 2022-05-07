@@ -426,4 +426,26 @@ class CustomerController extends Controller
         $pdf->loadView('admin.dress-frequency-report-pdf', ['dresses'=>$dresses]);
         return $pdf->stream();
     }
+
+    public function show_measurement_report() {
+        return view('admin.measurement-report');
+    }
+
+    public function measurement_report(Request $request) {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        $type = $request->type;
+
+        if ($to_date == NULL) {
+            $customers = Customer::where('function_date', '=', $from_date)->get();
+        }elseif ($from_date == NULL) {
+            $customers = Customer::where('function_date', '=', $to_date)->get();
+        }elseif ($to_date != NULL && $from_date != NULL){
+            $customers = Customer::where('function_date', '>=', $from_date)->where('function_date', '<=', $to_date)->get();
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.measurement-report-pdf', ['customers'=>$customers]);
+        return $pdf->stream();
+    }
 }

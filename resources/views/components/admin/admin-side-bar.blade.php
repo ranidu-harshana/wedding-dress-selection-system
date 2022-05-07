@@ -57,6 +57,7 @@
                         <li><a href="{{ route('wedding.reservations.report.show') }}">Wedding Reservation</a></li>
                         <li><a href="{{ route('dress.index') }}">Reserved Items</a></li>
                         <li><a href="{{ route('show_dress_freq_report') }}">Dress Frequency</a></li>
+                        <li><a href="{{ route('show_measurement_report') }}">Measurement Report</a></li>
                         @if (auth()->check())
                             @if (auth()->user()->is_admin())
                                 <li><a href="{{ route('wedding.reservations.report.show.finance') }}">Account Summary</a></li>

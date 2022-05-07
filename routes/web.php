@@ -43,7 +43,10 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('/genarate/dress/freq/report', [CustomerController::class, 'show_dress_freq_report'])->name('show_dress_freq_report');
     Route::post('/genarate/dress/freq/report/pdf', [CustomerController::class, 'dress_freq_report'])->name('dress_freq_report');
-    
+
+    Route::get('/genarate/measurement/report', [CustomerController::class, 'show_measurement_report'])->name('show_measurement_report');
+    Route::post('/genarate/measurement/report/pdf', [CustomerController::class, 'measurement_report'])->name('measurement_report');
+
     Route::resource('note', NoteController::class);
     Route::put('/note/{note}/mark_as_read', [NoteController::class, 'mark_as_read'])->name('note.mark_as_read');
 
