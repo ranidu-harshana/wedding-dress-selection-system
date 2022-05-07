@@ -990,7 +990,7 @@
                                 
                                 <ul class="personal-info">
                                     <li>
-                                        <span class="title">Total Amount</span>
+                                        <span class="title">Bill Amount</span>
                                         @if ($customer->total_amount != NULL || $customer->total_amount != 0)
                                             <span class="text-primary"> {{ $customer->total_amount }}.00 </span>
                                         @else
@@ -999,13 +999,20 @@
                                     </li>
 
                                     @if ($customer->additional_payments->count() > 0)
-                                        
                                         <li>
                                             <span class="title">Additional Charges</span>
                                             <span class="text-primary"> {{ $additional_payment }}.00 </span>
                                         </li>
                                     @endif
                                     
+                                    <li>
+                                        <span class="title">Total Amount</span>
+                                        @if ($customer->total_amount != NULL || $customer->total_amount != 0 && $customer->additional_payments->count() > 0)
+                                            <span class="text-primary"> {{ $customer->total_amount + $additional_payment }}.00 </span>
+                                        @else
+                                            0.00
+                                        @endif
+                                    </li>
 
                                     <li>
                                         <span class="title">Discount </span>

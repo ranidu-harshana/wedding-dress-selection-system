@@ -14,7 +14,7 @@
                 <th scope="col">Bill No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Total Bill</th>
-                <th scope="col">Additional Payments</th>
+                <th scope="col">Additional Charges</th>
                 <th scope="col">Transport</th>
                 <th scope="col">Salary</th>
                 <th scope="col">Cleaning</th>
