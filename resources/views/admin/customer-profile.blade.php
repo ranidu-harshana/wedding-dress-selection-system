@@ -2,9 +2,16 @@
 
 @section('content')
 {{-- @if($errors->any())
-    {!! implode('', $errors->all('<div>:message</div>')) !!} 
+    {!! implode('', $errors->all('<div>:message</div>')) !!}  
 @endif --}}
-    @if(session('customer-updated'))
+    @if(session('bill-created'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('bill-created') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(session('customer-updated'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('customer-updated') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

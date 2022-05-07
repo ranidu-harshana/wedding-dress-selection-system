@@ -69,7 +69,7 @@ class CustomerController extends Controller
         $user = User::find($user_id);
         
         $customer = $user->customers()->create($validated);
-        session()->flash('bill-created', 'Bill Created');
+        session()->flash('bill-created', 'New Customer Registered');
         
         return redirect()->route('customer.show', $customer->id);
     }
