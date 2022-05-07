@@ -68,13 +68,10 @@ class CustomerController extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         
-        if($user->customers()->create($validated)) {
-            session()->flash('bill-created', 'Bill Created');
-        }else{
-            session()->flash('failed', 'failed');
-        }
+        $customer = $user->customers()->create($validated);
+        session()->flash('bill-created', 'Bill Created');
         
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.show', $customer->id);
     }
 
 
