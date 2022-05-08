@@ -1014,18 +1014,18 @@
                                     @endif
                                     
                                     <li>
-                                        <span class="title">Total Amount</span>
-                                        @if ($customer->total_amount != NULL || $customer->total_amount != 0 && $customer->additional_payments->count() > 0)
-                                            <span class="text-primary"> {{ $customer->total_amount + $additional_payment }}.00 </span>
+                                        <span class="title">Discount </span>
+                                        @if ($customer->discount != NULL || $customer->discount != 0)
+                                            <span class="text-primary"> {{ $customer->discount }}.00 </span>
                                         @else
                                             0.00
                                         @endif
                                     </li>
 
                                     <li>
-                                        <span class="title">Discount </span>
-                                        @if ($customer->discount != NULL || $customer->discount != 0)
-                                            <span class="text-primary"> {{ $customer->discount }}.00 </span>
+                                        <span class="title">Total Amount</span>
+                                        @if ($customer->total_amount != NULL || $customer->total_amount != 0 && $customer->additional_payments->count() > 0)
+                                            <span class="text-primary"> {{ ($customer->total_amount + $additional_payment) - $customer->discount }}.00 </span>
                                         @else
                                             0.00
                                         @endif

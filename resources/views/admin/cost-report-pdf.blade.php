@@ -13,8 +13,7 @@
             <tr>
                 <th scope="col">Bill No</th>
                 <th scope="col">Name</th>
-                <th scope="col">Total Bill</th>
-                <th scope="col">Additional Charges</th>
+                <th scope="col">Total Amount</th>
                 <th scope="col">Transport</th>
                 <th scope="col">Salary</th>
                 <th scope="col">Cleaning</th>
@@ -38,8 +37,7 @@
                 <tr>
                     <th scope="row">{{ $customer->branch->prefix }}{{ $customer->bill_number }}</th>
                     <td>{{ $customer->name }}</td>
-                    <td class="text-right">{{ $customer->total_amount }}</td>
-                    <td class="text-right">{{ $additional_payment }}</td>
+                    <td class="text-right">{{ $customer->total_amount +$additional_payment }}</td>
                     <td class="text-right">@if ($customer->cost != NULL) {{ $customer->cost->transport }} @else 0 @endif </td>
                     <td class="text-right">@if ($customer->cost != NULL) {{ $customer->cost->salary }} @else 0 @endif </td>
                     <td class="text-right">@if ($customer->cost != NULL) {{ $customer->cost->cleaning }} @else 0 @endif </td>
@@ -59,8 +57,7 @@
             
             <tr>
                 <th scope="row" colspan="2" class="text-center">Total</th>
-                <td class="text-right">{{ $tot_total_amount }}</td>
-                <td class="text-right">{{ $tot_additional_payment }}</td>
+                <td class="text-right">{{ $tot_total_amount + $tot_additional_payment }}</td>
                 <td class="text-right">{{ $tot_transport }}</td>
                 <td class="text-right">{{ $tot_salary }}</td>
                 <td class="text-right">{{ $tot_cleaning }}</td>
