@@ -5,17 +5,26 @@
         <div class="col-md-6">
             <div class="card-box">
                 <h4 class="card-title">Create Branch</h4>
-                @if (session('branch-created'))
-                    <div class="alert alert-success">
+                @if(session('branch-created'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('branch-created') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 @elseif(session('branch-updated'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('branch-updated') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 @elseif(session('branch-deleted'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('branch-deleted') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 @endif
 
@@ -70,7 +79,7 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Edit</th>
-                                    <th>Delete</th>
+                                    {{-- <th>Delete</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,13 +93,13 @@
                                                 <button class="btn btn-primary btn-sm">Edit</button>
                                             </a>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <form action="{{ route('branch.destroy', $branch->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>    
                                 @endforeach
                             </tbody>
