@@ -44,7 +44,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'bill_number' => ['required', 'unique:customers,bill_number'],
+            'bill_number' => ['required', 'unique:customers,bill_number', 'numeric'],
             'branch_id' => ['required'],
             'name' => ['required'],
             'address' => ['required'],

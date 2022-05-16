@@ -25,7 +25,7 @@
                     
                     <div class="form-group">
                         <label>Bill Number</label>
-                        <input name="bill_number" disabled value="{{ $customer->bill_number }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off" >
+                        <input name="bill_number" disabled value="{{ $customer->branch->prefix }}{{ $customer->bill_number }}" type="text" required class="form-control @error('bill_number') is-invalid @enderror" autocomplete="off" >
                         @error('bill_number') <p class="text-danger">{{$message}}</p> @enderror
                     </div>
 

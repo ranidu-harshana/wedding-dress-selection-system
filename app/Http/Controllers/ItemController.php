@@ -48,7 +48,7 @@ class ItemController extends Controller
     {
         $validated = $request->validate([
             'item_category_id' => ['required'],
-            'item_code' => ['required', 'unique:items,item_code'],
+            'item_code' => ['required', 'unique:items,item_code', 'numeric'],
             'item_desc' => ['required'],
             'item_type' => ['required'],
             'item_image_url' => ['nullable'],

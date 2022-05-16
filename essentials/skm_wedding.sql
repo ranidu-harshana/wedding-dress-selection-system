@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 07, 2022 at 08:06 PM
+-- Generation Time: May 11, 2022 at 09:43 PM
 -- Server version: 10.2.43-MariaDB
 -- PHP Version: 7.2.30
 
@@ -53,21 +53,21 @@ INSERT INTO `additional_payments` (`id`, `customer_id`, `additional_payment`, `r
 
 CREATE TABLE `branches` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `prefix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `prefix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `branches`
 --
 
 INSERT INTO `branches` (`id`, `name`, `status`, `created_at`, `updated_at`, `prefix`) VALUES
-(1, 'Sri Kula Medura Ratnapura', 1, '2022-04-11 16:39:54', '2022-04-11 16:39:54', 'SMB'),
-(2, 'Sri Kula Medura Colombo', 1, '2022-04-11 16:40:10', '2022-04-11 16:40:10', 'SCB'),
-(3, 'Rajashreeya Branch', 1, '2022-04-11 16:40:27', '2022-04-11 16:40:27', 'RAJ');
+(1, 'Sri Kula Medura Ratnapura', 1, '2022-04-11 08:39:54', '2022-04-11 08:39:54', 'SMB'),
+(2, 'Sri Kula Medura Colombo', 1, '2022-04-11 08:40:10', '2022-04-11 08:40:10', 'SCB'),
+(3, 'Rajashreeya Branch', 1, '2022-04-11 08:40:27', '2022-04-11 08:40:27', 'RAJ');
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,9 @@ INSERT INTO `costs` (`id`, `customer_id`, `transport`, `salary`, `cleaning`, `de
 (10, 13, 2000, 5000, 2000, 4500, '2022-04-24 09:15:48', '2022-04-24 09:15:48'),
 (11, 17, 3500, 6000, 2500, 7500, '2022-04-24 09:25:30', '2022-04-24 09:26:16'),
 (12, 19, 800, 5000, 2000, 4500, '2022-04-29 23:27:02', '2022-04-29 23:27:02'),
-(13, 4, NULL, NULL, NULL, NULL, '2022-05-02 12:07:54', '2022-05-02 12:10:08');
+(14, 26, 3500, 5000, 3500, 4000, '2022-05-08 01:30:38', '2022-05-08 01:30:38'),
+(15, 22, 1000, 5000, 3000, 4000, '2022-05-09 00:11:18', '2022-05-09 00:11:18'),
+(16, 16, 4800, 5000, 3500, 4500, '2022-05-11 00:22:50', '2022-05-11 00:23:09');
 
 -- --------------------------------------------------------
 
@@ -176,7 +178,6 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `bill_number`, `branch_id`, `name`, `address`, `mobile_no1`, `mobile_no2`, `function_date`, `function_place`, `no_of_bestmen`, `no_of_pageboys`, `dressing_place`, `going_away_change_place`, `status`, `postponed`, `dress_description`, `measurement_date`, `special_notes`, `created_at`, `updated_at`, `user_id`, `total_amount`, `discount`, `advance_payment`, `bridal_dressing_place`, `bridal_color`, `sec_bridal_group_color`, `photography_place`) VALUES
 (2, '2006', 1, 'Sabhira Wijesiri', 'Hidellana, Ratnapura', '0713889100', NULL, '2022-05-02', 'Kaluthara', 4, 0, 0, NULL, 1, NULL, NULL, '2022-04-23', NULL, '2022-04-22 20:10:58', '2022-04-24 04:26:19', 1, 50000, NULL, 5000, NULL, NULL, NULL, NULL),
-(4, '4', 1, 'test', 'test', '3423', NULL, '2022-04-24', 'test', 1, 2, 1, NULL, 0, NULL, NULL, NULL, NULL, '2022-04-23 11:50:57', '2022-05-02 22:23:30', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (5, '2021', 1, 'Prabhath nawalage', 'Kalawana', '0719127000', '0702900501', '2022-05-02', 'Grand guardian', 1, 0, 1, NULL, 1, NULL, NULL, '2022-04-22', NULL, '2022-04-23 22:33:30', '2022-04-24 05:05:38', 1, 34000, NULL, 10000, NULL, NULL, NULL, NULL),
 (6, '1199', 1, 'Y.H Ishan Prabhath', 'Dodampe', '0702243122', '0704378031', '2022-05-04', 'Rose Gradian', 1, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-04-23 22:47:15', '2022-04-23 22:47:15', 1, 35000, NULL, 8000, 'Elegant Salon', NULL, NULL, 'Supun'),
 (7, '2018', 1, 'A.K Prasanna Janaka Kumara Yasarathne', 'Ayagama', '0710538292', '0778394348', '2022-05-05', 'Deshani Reception hall', 0, 3, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-04-23 22:52:59', '2022-04-23 22:52:59', 1, 35000, NULL, 5000, 'Salon Wink', 'White', NULL, 'Thineth Studio'),
@@ -229,7 +230,44 @@ INSERT INTO `customers` (`id`, `bill_number`, `branch_id`, `name`, `address`, `m
 (55, '1254', 1, 'Danushka Laksiri', 'Kuruwita', '761567697', NULL, '2019-09-16', 'Grand guardian', 0, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-05 21:56:07', '2022-05-05 21:56:07', 4, 22000, NULL, 5000, NULL, NULL, NULL, NULL),
 (56, '1262', 1, 'Dhanushka Prabath', 'Kuruwita', '719415442', NULL, '2019-09-04', NULL, 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-05 21:58:52', '2022-05-05 21:58:52', 4, 37600, NULL, 10000, NULL, NULL, NULL, NULL),
 (57, '1264', 1, 'Ranil Udaya', 'Palmadulla', '716528834', NULL, '2019-09-11', 'Rose Garden - Malawa', 3, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-05 22:01:15', '2022-05-05 22:01:15', 4, 40000, NULL, 10000, NULL, NULL, NULL, NULL),
-(58, '1274', 1, 'Dammika', 'Kahangama', '783421199', NULL, '2019-09-12', NULL, 0, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-05 22:04:53', '2022-05-05 22:04:53', 4, 20000, NULL, 2000, NULL, NULL, NULL, NULL);
+(58, '1274', 1, 'Dammika', 'Kahangama', '783421199', NULL, '2019-09-12', NULL, 0, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-05 22:04:53', '2022-05-05 22:04:53', 4, 20000, NULL, 2000, NULL, NULL, NULL, NULL),
+(59, '1241', 1, 'Hasantha Nimesh', 'Malwala', '717596063', NULL, '2019-09-12', 'Kethumathie', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:01:38', '2022-05-09 00:01:38', 4, 38000, NULL, 10000, NULL, NULL, NULL, NULL),
+(60, '1248', 1, 'K.D asanka', 'Baduraliya', '774309389', NULL, '2019-09-12', 'Haraniyawaka Home', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:09:05', '2022-05-09 00:09:05', 4, 44000, NULL, 5000, NULL, NULL, NULL, NULL),
+(61, '1139', 1, 'Sajith Chathuranga', 'New town', '712820294', NULL, '2019-09-11', 'Grand guardian', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:14:29', '2022-05-09 00:14:29', 4, 38000, NULL, 5000, NULL, NULL, NULL, NULL),
+(62, '1209', 1, 'Hashan Palliyaguru', 'Ratnapura', '716633366', NULL, '2019-10-18', 'Grand guardian', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:19:29', '2022-05-09 00:19:29', 4, 38000, NULL, 5000, NULL, NULL, NULL, NULL),
+(63, '1255', 1, 'Tharanga Niroshana', 'Madampe', '702999055', NULL, '2019-11-01', 'Grand guardian', 3, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:24:27', '2022-05-09 00:24:27', 4, 38000, NULL, NULL, NULL, NULL, NULL, NULL),
+(64, '1269', 1, 'Hasindu Welihinda', 'Katandola, Ratnapura', '715749283', NULL, '2019-11-19', 'Grand guardian', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:28:12', '2022-05-09 00:28:12', 4, 37600, NULL, 10000, 'Lakshi Salon', NULL, NULL, NULL),
+(65, '1233', 1, 'O.K.S. Kumara', 'Kahawatta', '712129050', NULL, '2019-11-06', 'Owinrich Godakawela', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:32:48', '2022-05-09 00:32:48', 4, 38000, NULL, 10000, NULL, NULL, NULL, NULL),
+(66, '1301', 1, 'H.W.G Lakmal', 'Karawita', '714020561', NULL, '2019-11-14', 'Rajanawa Resort', 2, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 00:39:58', '2022-05-09 00:39:58', 4, 37800, NULL, 10000, NULL, NULL, NULL, NULL),
+(67, '1304', 1, 'Lasitha Niroshan', 'Avisawella', '774707789', NULL, '2020-01-30', 'Home - Awissawella', 1, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 07:17:13', '2022-05-09 07:17:13', 4, 38000, NULL, 20000, NULL, NULL, NULL, NULL),
+(68, '1306', 1, 'Pradeep Kumara', 'Lellopitiya', '704455762', NULL, '2019-12-27', 'Silveray', 3, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 07:21:50', '2022-05-09 07:21:50', 4, 42000, NULL, 10000, NULL, NULL, NULL, NULL),
+(69, '1307', 1, 'Thanushka Krishantha', 'Ratnapura', '712143054', NULL, '2020-01-30', 'Centuria', 1, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 07:25:39', '2022-05-09 07:25:39', 4, 35000, NULL, 5000, 'WOW Salon', NULL, NULL, NULL),
+(70, '1291', 1, 'Gayan Prasad', 'Hidellana', '716509424', NULL, '2019-11-22', 'Kethumathie', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-09 07:29:01', '2022-05-09 07:29:01', 4, 38000, NULL, 5000, NULL, NULL, NULL, NULL),
+(71, '1266', 1, 'Ruwan Udayakumara', 'Balangoda', '768295664', NULL, '2019-11-22', 'Mathara Solis', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:02:27', '2022-05-10 23:02:27', 4, 48000, NULL, 10000, NULL, NULL, NULL, NULL),
+(72, '1259', 1, 'Mahesh Chathuranga', 'Monaragala', '772640055', NULL, '2019-11-22', 'Black Lion Parakaduwa', 2, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:09:04', '2022-05-10 23:09:04', 4, 38000, NULL, 10000, NULL, NULL, NULL, NULL),
+(73, '1288', 1, 'Nirosh Chathuranga', 'Balangoda', '777220219', NULL, '2020-01-30', 'Balangoda Sandagiri Walawwa', 3, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:24:31', '2022-05-10 23:24:31', 4, 47600, NULL, 6000, 'Lakshi Salon', NULL, NULL, NULL),
+(74, '1257', 1, 'Nuwan Sampath', 'Awissawella', '719697239', NULL, '2020-01-30', 'Kolonna (Thalduwa)', 0, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:31:48', '2022-05-10 23:31:48', 4, 40000, NULL, 10000, NULL, NULL, NULL, NULL),
+(75, '1289', 1, 'Udayanga Pradeep', 'Ratnapura', '767725131', NULL, '2019-12-13', 'Rajanewa', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:36:38', '2022-05-10 23:36:38', 4, 37000, NULL, 2000, NULL, NULL, NULL, NULL),
+(76, '1311', 1, 'Pradeep Darshana', 'Kahawatta', '718160058', NULL, '2019-12-13', 'Owinrich Godakawela', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:41:44', '2022-05-10 23:41:44', 4, 46000, NULL, 10000, NULL, NULL, NULL, NULL),
+(77, '1312', 1, 'Deepal Padmasiri', 'Balangoda', '772631919', NULL, '2020-01-27', NULL, 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-10 23:47:22', '2022-05-10 23:47:22', 4, 42000, NULL, 12000, NULL, NULL, NULL, NULL),
+(78, '1272', 1, 'Thiwanka Nadeesh', 'Kuruvita', '715851468', NULL, '2020-01-30', 'Rose Garden - Malawa', 2, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 00:14:17', '2022-05-11 00:14:17', 4, 38000, NULL, 10000, NULL, NULL, NULL, NULL),
+(79, '1303', 1, 'Ruwan Udayanga', 'Nivithigala', '702338067', NULL, '2019-12-13', NULL, 3, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 00:22:02', '2022-05-11 00:22:02', 4, 42000, NULL, 10000, NULL, NULL, NULL, NULL),
+(80, '1292', 1, 'Channa Ranathunga', 'Awissawella', '702700094', NULL, '2020-01-20', 'Seethawaka Regency', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 00:31:06', '2022-05-11 00:31:06', 4, 39000, NULL, 25000, NULL, NULL, NULL, NULL),
+(81, '1317', 1, 'Lahiru Roshan', 'Samagipuraa', '779073585', NULL, '2020-01-23', NULL, 4, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 00:53:46', '2022-05-11 00:53:46', 4, 47000, NULL, 5000, 'Lakshi Salon', NULL, NULL, NULL),
+(82, '1297', 1, 'Sadun Kasthuri', 'Kuruvita', '712231801', NULL, '2020-01-23', 'Rose Gradian', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:11:24', '2022-05-11 07:11:24', 4, 42000, NULL, 10000, NULL, NULL, NULL, NULL),
+(83, '1224', 1, 'Prameel Madushan', 'Mulleriyawa', '767055037', NULL, '2020-01-30', 'Lavnenro', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:16:05', '2022-05-11 07:16:05', 4, 40000, NULL, 10000, NULL, NULL, NULL, NULL),
+(84, '1244', 1, 'Umayangana', 'karangoda', '712397766', NULL, '2020-01-23', 'Grand guardian', 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:21:40', '2022-05-11 07:21:40', 4, 42000, NULL, 10000, NULL, NULL, NULL, NULL),
+(85, '1318', 1, 'Tharindu Devinda', 'Ingiriya', '717604600', NULL, '2020-03-02', NULL, 2, 2, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:28:06', '2022-05-11 07:28:06', 4, 51000, NULL, 10000, NULL, NULL, NULL, NULL),
+(86, '1295', 1, 'G.L.N Dissanayake', 'Gatagatta', '760575899', NULL, '2020-03-05', 'Grand guardian', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:33:53', '2022-05-11 07:33:53', 4, 37700, NULL, 1000, NULL, NULL, NULL, NULL),
+(87, '1328', 1, 'Sanjeewa madusanka', 'Elapatha', '702156244', NULL, '2021-06-30', 'Grand guardian', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:41:42', '2022-05-11 07:45:39', 4, 38000, NULL, 20000, NULL, NULL, NULL, NULL),
+(88, '1326', 1, 'Nuwan Kumara', 'Dellabada', '718904967', NULL, '2020-05-28', NULL, 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:50:55', '2022-05-11 07:50:55', 4, 36000, NULL, 6000, NULL, NULL, NULL, NULL),
+(89, '1325', 1, 'Shan Asitha', 'Ratnapura', '776980808', NULL, '2021-01-25', 'Grand guardian', 4, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 07:55:56', '2022-05-11 07:55:56', 4, 48000, NULL, 10000, NULL, NULL, NULL, NULL),
+(90, '1320', 1, 'Lasith Athukorala', 'Godakawela', '711682044', NULL, '2020-02-19', 'Saru Blue Safari Godakawela', 2, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 08:04:29', '2022-05-11 08:04:29', 4, 38500, NULL, 10000, NULL, NULL, NULL, NULL),
+(91, '1310', 1, 'Chinthaka Abeygunawardhana', 'Kurunagala', '718297796', NULL, '2020-03-12', NULL, 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 08:09:55', '2022-05-11 08:09:55', 4, 42000, NULL, 10000, NULL, NULL, NULL, NULL),
+(92, '1337', 1, 'gihan darshana', 'Kuruvita', '778977106', NULL, '2020-03-19', NULL, 2, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 08:12:33', '2022-05-11 08:12:33', 4, 38000, NULL, 10000, NULL, NULL, NULL, NULL),
+(93, '1334', 1, 'Thurya Darshana', 'Wagurugama, Gampaha', '711022750', NULL, '2020-06-11', 'Grand guardian', 0, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 08:15:48', '2022-05-11 08:15:48', 4, 20000, NULL, 2000, NULL, NULL, NULL, NULL),
+(94, '1330', 1, 'Hasitha Madushanka', 'Ratnapura', '717572084', NULL, '2020-06-25', 'Kethumathie', 2, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 08:19:41', '2022-05-11 08:19:41', 4, 36000, NULL, 6000, NULL, NULL, NULL, NULL),
+(95, '1161', 1, 'Lasitha Madushanka', 'Hidellana', '715192954', NULL, '2020-06-15', 'Palamino Reception Hall', 0, 0, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-05-11 08:23:39', '2022-05-11 08:23:39', 4, 25000, 5000, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -301,7 +339,7 @@ INSERT INTO `dress_selections` (`id`, `customer_id`, `type`, `name`, `status`, `
 (55, 13, 'Bestman\'s Jacket - 1', NULL, 0, '2022-04-24 09:15:26', '2022-04-24 09:15:26'),
 (56, 13, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-04-24 09:15:26', '2022-04-24 09:15:26'),
 (57, 13, 'Group Cavani', NULL, 0, '2022-04-24 09:15:26', '2022-04-24 09:15:26'),
-(58, 16, 'Groom\'s Jacket', 'JBS03 - Black Dull gold spring work 221 new (17 1/2)', 0, '2022-04-24 09:21:17', '2022-05-07 01:39:13'),
+(58, 16, 'Groom\'s Jacket', 'MPW05 - Maroon Pearl work 221 [Min ] swan (18)', 0, '2022-04-24 09:21:17', '2022-05-11 00:24:17'),
 (59, 16, 'Groom\'s Cavani', NULL, 0, '2022-04-24 09:21:17', '2022-04-24 09:21:17'),
 (60, 16, 'Bestman\'s Jacket - 1', 'LG06 - Light Gray [ASH] 222 (17)', 0, '2022-04-24 09:21:17', '2022-04-24 09:21:17'),
 (61, 16, 'Bestman\'s Jacket - 2', 'LG07 - Light Gray [ASH] 222 (17 1/2)', 0, '2022-04-24 09:21:17', '2022-04-24 09:21:17'),
@@ -334,12 +372,6 @@ INSERT INTO `dress_selections` (`id`, `customer_id`, `type`, `name`, `status`, `
 (161, 28, 'Bestman\'s Jacket - 2', 'LIB02 - Light Ivory Bead work 217 (16 1/2)', 0, '2022-05-03 00:09:31', '2022-05-03 00:09:31'),
 (162, 28, 'Pageboy\'s Jacket - 1', 'LIB07 - Light Ivory Bead work 217 (12+)', 0, '2022-05-03 00:09:31', '2022-05-03 00:09:31'),
 (163, 28, 'Group Cavani', NULL, 0, '2022-05-03 00:09:31', '2022-05-03 00:09:31'),
-(164, 4, 'Groom\'s Jacket', NULL, 0, '2022-05-03 04:24:41', '2022-05-03 04:24:41'),
-(165, 4, 'Groom\'s Cavani', NULL, 0, '2022-05-03 04:24:41', '2022-05-03 04:24:41'),
-(166, 4, 'Bestman\'s Jacket - 1', 'SGS06 - Silver gold spring work (16 1/2+) [220]', 0, '2022-05-03 04:24:41', '2022-05-03 04:24:41'),
-(167, 4, 'Pageboy\'s Jacket - 1', 'DI02 - Gold Ivory Bead work 218 (13 1/2)', 0, '2022-05-03 04:24:41', '2022-05-03 04:24:58'),
-(168, 4, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-03 04:24:41', '2022-05-03 04:24:41'),
-(169, 4, 'Group Cavani', NULL, 0, '2022-05-03 04:24:41', '2022-05-03 04:24:41'),
 (170, 33, 'Groom\'s Jacket', NULL, 0, '2022-05-03 23:49:12', '2022-05-03 23:49:12'),
 (171, 33, 'Groom\'s Cavani', NULL, 0, '2022-05-03 23:49:12', '2022-05-03 23:49:12'),
 (172, 33, 'Bestman\'s Jacket - 1', 'CS05 - Ivory Spring [cream] 218 (17-)', 0, '2022-05-03 23:49:12', '2022-05-03 23:49:12'),
@@ -542,7 +574,226 @@ INSERT INTO `dress_selections` (`id`, `customer_id`, `type`, `name`, `status`, `
 (369, 18, 'Bestman\'s Jacket - 1', NULL, 0, '2022-05-07 02:47:11', '2022-05-07 02:47:11'),
 (370, 18, 'Bestman\'s Jacket - 2', NULL, 0, '2022-05-07 02:47:11', '2022-05-07 02:47:11'),
 (371, 18, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-05-07 02:47:11', '2022-05-07 02:47:11'),
-(372, 18, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-07 02:47:11', '2022-05-07 02:47:11');
+(372, 18, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-07 02:47:11', '2022-05-07 02:47:11'),
+(373, 26, 'Groom\'s Jacket', 'BCW01 - Black Cutwork 218 (17 1/2)', 0, '2022-05-08 01:30:15', '2022-05-08 01:30:15'),
+(374, 26, 'Groom\'s Cavani', NULL, 0, '2022-05-08 01:30:15', '2022-05-08 01:30:15'),
+(375, 26, 'Bestman\'s Jacket - 1', 'DRB02 - Dark Red Bead work 217 (17)', 0, '2022-05-08 01:30:15', '2022-05-08 01:30:15'),
+(376, 26, 'Bestman\'s Jacket - 2', 'DRB04 - Dark Red Bead work 217 (17-)', 0, '2022-05-08 01:30:15', '2022-05-08 01:30:15'),
+(377, 26, 'Group Cavani', NULL, 0, '2022-05-08 01:30:15', '2022-05-08 01:30:15'),
+(378, 59, 'Groom\'s Jacket', NULL, 0, '2022-05-09 00:04:39', '2022-05-09 00:04:39'),
+(379, 59, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:04:39', '2022-05-09 00:04:39'),
+(380, 59, 'Bestman\'s Jacket - 1', 'DRB02 - Dark Red Bead work 217 (17)', 0, '2022-05-09 00:04:39', '2022-05-09 00:04:39'),
+(381, 59, 'Bestman\'s Jacket - 2', 'DRB03 - Dark Red Bead work 217 (16)', 0, '2022-05-09 00:04:39', '2022-05-09 00:04:39'),
+(382, 59, 'Pageboy\'s Jacket - 1', 'DRB07 - Dark Red Bead work 217 (12-)', 0, '2022-05-09 00:04:39', '2022-05-09 00:04:39'),
+(383, 59, 'Group Cavani', NULL, 0, '2022-05-09 00:04:39', '2022-05-09 00:04:39'),
+(384, 60, 'Groom\'s Jacket', 'DRC01 - Dark Red Cutwork 218 [Nis] (17 1/2)', 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(385, 60, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(386, 60, 'Bestman\'s Jacket - 1', 'DIS03 - Dark Ivory Bead work 216 (16 1/2)', 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(387, 60, 'Bestman\'s Jacket - 2', 'DIS04 - Dark Ivory Bead work 216  (17)', 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(388, 60, 'Pageboy\'s Jacket - 1', 'DI01 - Gold Ivory Bead work 218 (12 1/2)', 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(389, 60, 'Pageboy\'s Jacket - 2', 'DIS06 - Dark Ivory Bead work 216 (11)', 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(390, 60, 'Group Cavani', NULL, 0, '2022-05-09 00:10:32', '2022-05-09 00:10:32'),
+(391, 61, 'Groom\'s Jacket', 'MPW02 - Maroon Pearl work 219 [elephant] (17 1/2)', 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(392, 61, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(393, 61, 'Bestman\'s Jacket - 1', NULL, 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(394, 61, 'Bestman\'s Jacket - 2', NULL, 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(395, 61, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(396, 61, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(397, 61, 'Group Cavani', NULL, 0, '2022-05-09 00:15:30', '2022-05-09 00:15:30'),
+(398, 62, 'Groom\'s Jacket', 'MSS01 - Maroon Silver Spring work 219 (17)', 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(399, 62, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(400, 62, 'Bestman\'s Jacket - 1', 'DB01 - Dark Beige Spring work [two tone] 219 (18-)', 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(401, 62, 'Bestman\'s Jacket - 2', 'DB02 - Dark Beige Spring work [two tone] 219 (17+)', 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(402, 62, 'Pageboy\'s Jacket - 1', 'DB06 - Dark Beige Spring work [two tone] 219  (13-)', 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(403, 62, 'Pageboy\'s Jacket - 2', 'DB07 - Dark Beige Spring work [two tone] 219 (13+)', 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(404, 62, 'Group Cavani', NULL, 0, '2022-05-09 00:21:22', '2022-05-09 00:21:22'),
+(405, 63, 'Groom\'s Jacket', 'PDC01 - Dark Purple dull gold cutwork 218 (16 1/2)', 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(406, 63, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(407, 63, 'Bestman\'s Jacket - 1', NULL, 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(408, 63, 'Bestman\'s Jacket - 2', NULL, 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(409, 63, 'Bestman\'s Jacket - 3', NULL, 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(410, 63, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(411, 63, 'Group Cavani', NULL, 0, '2022-05-09 00:24:56', '2022-05-09 00:24:56'),
+(412, 64, 'Groom\'s Jacket', 'MDC02 - Maroon Dull Gold Cutwork Soft Velvet 218 [Min] (17)', 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(413, 64, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(414, 64, 'Bestman\'s Jacket - 1', 'DB01 - Dark Beige Spring work [two tone] 219 (18-)', 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(415, 64, 'Bestman\'s Jacket - 2', 'DB02 - Dark Beige Spring work [two tone] 219 (17+)', 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(416, 64, 'Pageboy\'s Jacket - 1', 'DB06 - Dark Beige Spring work [two tone] 219  (13-)', 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(417, 64, 'Pageboy\'s Jacket - 2', 'DB07 - Dark Beige Spring work [two tone] 219 (13+)', 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(418, 64, 'Group Cavani', NULL, 0, '2022-05-09 00:28:55', '2022-05-09 00:28:55'),
+(419, 65, 'Groom\'s Jacket', 'MDS05 - Maroon Dull Gold Springwork 219 [Akhil](17)', 0, '2022-05-09 00:33:31', '2022-05-09 00:33:31'),
+(420, 65, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:33:31', '2022-05-09 00:33:31'),
+(421, 65, 'Bestman\'s Jacket - 1', 'RS04 - Red Spring work 218 (16 1/2)', 0, '2022-05-09 00:33:31', '2022-05-09 00:33:31'),
+(422, 65, 'Bestman\'s Jacket - 2', 'RS05 - Red Spring work 218 (17+)', 0, '2022-05-09 00:33:31', '2022-05-09 00:33:31'),
+(423, 65, 'Pageboy\'s Jacket - 1', 'RS06 - Red Spring work 218 (11+)', 0, '2022-05-09 00:33:31', '2022-05-09 00:33:31'),
+(424, 65, 'Group Cavani', NULL, 0, '2022-05-09 00:33:31', '2022-05-09 00:33:31'),
+(425, 66, 'Groom\'s Jacket', 'PDC01 - Dark Purple dull gold cutwork 218 (16 1/2)', 0, '2022-05-09 00:40:30', '2022-05-09 00:40:30'),
+(426, 66, 'Groom\'s Cavani', NULL, 0, '2022-05-09 00:40:30', '2022-05-09 00:40:30'),
+(427, 66, 'Bestman\'s Jacket - 1', 'DI05 - Gold Ivory Bead work 218 (16 1/2)', 0, '2022-05-09 00:40:30', '2022-05-09 00:40:30'),
+(428, 66, 'Bestman\'s Jacket - 2', 'DI08 - Gold Ivory Bead work 218 (17 1/2)', 0, '2022-05-09 00:40:30', '2022-05-09 00:40:30'),
+(429, 66, 'Group Cavani', NULL, 0, '2022-05-09 00:40:30', '2022-05-09 00:40:30'),
+(430, 67, 'Groom\'s Jacket', 'DBC01 - Dark Blue dull gold cutwork 217 (16)', 0, '2022-05-09 07:17:57', '2022-05-09 07:17:57'),
+(431, 67, 'Groom\'s Cavani', NULL, 0, '2022-05-09 07:17:57', '2022-05-09 07:17:57'),
+(432, 67, 'Bestman\'s Jacket - 1', 'LIB01 - Light Ivory Bead work 217 (17-)', 0, '2022-05-09 07:17:57', '2022-05-09 07:17:57'),
+(433, 67, 'Pageboy\'s Jacket - 1', 'LIB05 - Light Ivory Bead work 217 (11)', 0, '2022-05-09 07:17:57', '2022-05-09 07:17:57'),
+(434, 67, 'Pageboy\'s Jacket - 2', 'LIB06 - Light Ivory Bead work 217 (11)', 0, '2022-05-09 07:17:57', '2022-05-09 07:17:57'),
+(435, 67, 'Group Cavani', NULL, 0, '2022-05-09 07:17:57', '2022-05-09 07:17:57'),
+(436, 68, 'Groom\'s Jacket', 'JBS02 - Black Spring work Blue+Red+Dull gold work 219  (17)', 0, '2022-05-09 07:22:46', '2022-05-09 07:22:46'),
+(437, 68, 'Groom\'s Cavani', NULL, 0, '2022-05-09 07:22:46', '2022-05-09 07:22:46'),
+(438, 68, 'Bestman\'s Jacket - 1', 'RS01 - Red Spring work 218 (17 1/2+)', 0, '2022-05-09 07:22:46', '2022-05-09 07:22:46'),
+(439, 68, 'Bestman\'s Jacket - 2', 'RS04 - Red Spring work 218 (16 1/2)', 0, '2022-05-09 07:22:46', '2022-05-09 07:22:46'),
+(440, 68, 'Bestman\'s Jacket - 3', 'RS05 - Red Spring work 218 (17+)', 0, '2022-05-09 07:22:46', '2022-05-09 07:22:46'),
+(441, 68, 'Group Cavani', NULL, 0, '2022-05-09 07:22:46', '2022-05-09 07:22:46'),
+(442, 69, 'Groom\'s Jacket', 'MDS02 - Maroon Dull Gold Springwork Two tone 218 [Han] (18)', 0, '2022-05-09 07:26:13', '2022-05-09 07:26:13'),
+(443, 69, 'Groom\'s Cavani', NULL, 0, '2022-05-09 07:26:13', '2022-05-09 07:26:13'),
+(444, 69, 'Bestman\'s Jacket - 1', 'LIB03 - Light Ivory Bead work 217 (17)', 0, '2022-05-09 07:26:13', '2022-05-09 07:26:13'),
+(445, 69, 'Pageboy\'s Jacket - 1', 'LIB08 - Light Ivory Bead work 217 (13)', 0, '2022-05-09 07:26:13', '2022-05-09 07:26:13'),
+(446, 69, 'Group Cavani', NULL, 0, '2022-05-09 07:26:13', '2022-05-09 07:26:13'),
+(447, 70, 'Groom\'s Jacket', 'PDC01 - Dark Purple dull gold cutwork 218 (16 1/2)', 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(448, 70, 'Groom\'s Cavani', NULL, 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(449, 70, 'Bestman\'s Jacket - 1', 'CS05 - Ivory Spring [cream] 218 (17-)', 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(450, 70, 'Bestman\'s Jacket - 2', 'CS08 - Ivory Spring [cream] 218 (17 1/2)', 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(451, 70, 'Pageboy\'s Jacket - 1', 'CS03 - Ivory Spring [cream] 218 (13)', 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(452, 70, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(453, 70, 'Group Cavani', NULL, 0, '2022-05-09 07:30:33', '2022-05-09 07:30:33'),
+(454, 71, 'Groom\'s Jacket', 'DBS01 - Dark Blue Spring work [dull gold work] 218  (18)', 0, '2022-05-10 23:04:39', '2022-05-10 23:04:39'),
+(455, 71, 'Groom\'s Cavani', NULL, 0, '2022-05-10 23:04:39', '2022-05-10 23:04:39'),
+(456, 71, 'Bestman\'s Jacket - 1', 'SDB01 - Dark Blue Bead work 217  (17 1/2+)', 0, '2022-05-10 23:04:39', '2022-05-10 23:04:39'),
+(457, 71, 'Bestman\'s Jacket - 2', 'SDB02 - Dark Blue Bead work 217 (17 1/2)', 0, '2022-05-10 23:04:39', '2022-05-10 23:04:39'),
+(458, 71, 'Pageboy\'s Jacket - 1', 'SDB08 - Dark Blue Bead work 217 (12+)', 0, '2022-05-10 23:04:39', '2022-05-10 23:04:39'),
+(459, 71, 'Group Cavani', NULL, 0, '2022-05-10 23:04:39', '2022-05-10 23:04:39'),
+(460, 72, 'Groom\'s Jacket', 'JBS02 - Black Spring work Blue+Red+Dull gold work 219  (17)', 0, '2022-05-10 23:10:53', '2022-05-10 23:10:53'),
+(461, 72, 'Groom\'s Cavani', NULL, 0, '2022-05-10 23:10:53', '2022-05-10 23:10:53'),
+(462, 72, 'Bestman\'s Jacket - 1', 'LIB01 - Light Ivory Bead work 217 (17-)', 0, '2022-05-10 23:10:53', '2022-05-10 23:10:53'),
+(463, 72, 'Bestman\'s Jacket - 2', 'LIB02 - Light Ivory Bead work 217 (16 1/2)', 0, '2022-05-10 23:10:53', '2022-05-10 23:10:53'),
+(464, 72, 'Group Cavani', NULL, 0, '2022-05-10 23:10:53', '2022-05-10 23:10:53'),
+(465, 73, 'Groom\'s Jacket', 'GSW01 - Gray(ASH) Spring work  Dull gold design [two tone] 219 (17-)', 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(466, 73, 'Groom\'s Cavani', NULL, 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(467, 73, 'Bestman\'s Jacket - 1', 'SDB02 - Dark Blue Bead work 217 (17 1/2)', 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(468, 73, 'Bestman\'s Jacket - 2', 'SDB03 - Dark Blue Bead work 217 (16+)', 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(469, 73, 'Bestman\'s Jacket - 3', 'SDB04 - Dark Blue Bead work 217 (16 1/2+)', 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(470, 73, 'Pageboy\'s Jacket - 1', 'SDB05 - Dark Blue Bead work 217 (14-)', 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(471, 73, 'Group Cavani', NULL, 0, '2022-05-10 23:28:16', '2022-05-10 23:28:16'),
+(472, 74, 'Groom\'s Jacket', 'BPW01 - Dark Brown Pearl Work (17) [220]', 0, '2022-05-10 23:32:07', '2022-05-10 23:32:07'),
+(473, 74, 'Groom\'s Cavani', NULL, 0, '2022-05-10 23:32:07', '2022-05-10 23:32:07'),
+(474, 74, 'Group Cavani', NULL, 0, '2022-05-10 23:32:07', '2022-05-10 23:32:07'),
+(475, 75, 'Groom\'s Jacket', 'GDC01 - Dark Green Dull gold Cutwork 219 (17)', 0, '2022-05-10 23:37:39', '2022-05-10 23:37:39'),
+(476, 75, 'Groom\'s Cavani', NULL, 0, '2022-05-10 23:37:39', '2022-05-10 23:37:39'),
+(477, 75, 'Bestman\'s Jacket - 1', 'CS05 - Ivory Spring [cream] 218 (17-)', 0, '2022-05-10 23:37:39', '2022-05-10 23:37:39'),
+(478, 75, 'Bestman\'s Jacket - 2', 'CS08 - Ivory Spring [cream] 218 (17 1/2)', 0, '2022-05-10 23:37:39', '2022-05-10 23:37:39'),
+(479, 75, 'Pageboy\'s Jacket - 1', 'CS04 - Ivory Spring [cream] 218 (14 1/2)', 0, '2022-05-10 23:37:39', '2022-05-10 23:37:39'),
+(480, 75, 'Group Cavani', NULL, 0, '2022-05-10 23:37:39', '2022-05-10 23:37:39'),
+(481, 76, 'Groom\'s Jacket', 'MDS03 - Maroon Dull gold Spring work Checks 219  [Han] (16)', 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(482, 76, 'Groom\'s Cavani', NULL, 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(483, 76, 'Bestman\'s Jacket - 1', 'CS06 - Ivory Spring [cream] 218 (16+)', 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(484, 76, 'Bestman\'s Jacket - 2', 'CS07 - Ivory Spring [cream] 218 (16 1/2)', 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(485, 76, 'Pageboy\'s Jacket - 1', 'CS02 - Ivory Spring [cream] 218 (12)', 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(486, 76, 'Pageboy\'s Jacket - 2', 'CS03 - Ivory Spring [cream] 218 (13)', 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(487, 76, 'Group Cavani', NULL, 0, '2022-05-10 23:43:07', '2022-05-10 23:43:07'),
+(488, 78, 'Groom\'s Jacket', 'MPW02 - Maroon Pearl work 219 [elephant] (17 1/2)', 0, '2022-05-11 00:15:19', '2022-05-11 00:15:19'),
+(489, 78, 'Groom\'s Cavani', NULL, 0, '2022-05-11 00:15:19', '2022-05-11 00:15:19'),
+(490, 78, 'Bestman\'s Jacket - 1', 'CS06 - Ivory Spring [cream] 218 (16+)', 0, '2022-05-11 00:15:19', '2022-05-11 00:15:19'),
+(491, 78, 'Bestman\'s Jacket - 2', 'CS08 - Ivory Spring [cream] 218 (17 1/2)', 0, '2022-05-11 00:15:19', '2022-05-11 00:15:19'),
+(492, 78, 'Group Cavani', NULL, 0, '2022-05-11 00:15:19', '2022-05-11 00:15:19'),
+(493, 79, 'Groom\'s Jacket', 'JBS01 - Black Dull gold spring work 217 (17 1/2)', 0, '2022-05-11 00:23:52', '2022-05-11 00:23:52'),
+(494, 79, 'Groom\'s Cavani', NULL, 0, '2022-05-11 00:23:52', '2022-05-11 00:23:52'),
+(495, 79, 'Bestman\'s Jacket - 1', 'RS01 - Red Spring work 218 (17 1/2+)', 0, '2022-05-11 00:23:52', '2022-05-11 00:23:52'),
+(496, 79, 'Bestman\'s Jacket - 2', 'RS04 - Red Spring work 218 (16 1/2)', 0, '2022-05-11 00:23:52', '2022-05-11 00:23:52'),
+(497, 79, 'Bestman\'s Jacket - 3', 'RS05 - Red Spring work 218 (17+)', 0, '2022-05-11 00:23:52', '2022-05-11 00:23:52'),
+(498, 79, 'Group Cavani', NULL, 0, '2022-05-11 00:23:52', '2022-05-11 00:23:52'),
+(499, 80, 'Groom\'s Jacket', 'MDS05 - Maroon Dull Gold Springwork 219 [Akhil](17)', 0, '2022-05-11 00:44:35', '2022-05-11 00:44:35'),
+(500, 80, 'Groom\'s Cavani', NULL, 0, '2022-05-11 00:44:35', '2022-05-11 00:44:35'),
+(501, 80, 'Bestman\'s Jacket - 1', 'DRB04 - Dark Red Bead work 217 (17-)', 0, '2022-05-11 00:44:35', '2022-05-11 00:44:35'),
+(502, 80, 'Bestman\'s Jacket - 2', 'DRB12 - Dark Red Bead work 217 (18-)', 0, '2022-05-11 00:44:35', '2022-05-11 00:44:35'),
+(503, 80, 'Pageboy\'s Jacket - 1', 'DRB08 - Dark Red Bead work 217 (13 1/2+)', 0, '2022-05-11 00:44:35', '2022-05-11 00:44:35'),
+(504, 80, 'Group Cavani', NULL, 0, '2022-05-11 00:44:35', '2022-05-11 00:44:35'),
+(505, 77, 'Groom\'s Jacket', 'MPW02 - Maroon Pearl work 219 [elephant] (17 1/2)', 0, '2022-05-11 00:47:45', '2022-05-11 00:47:45'),
+(506, 77, 'Groom\'s Cavani', NULL, 0, '2022-05-11 00:47:45', '2022-05-11 00:47:45'),
+(507, 77, 'Bestman\'s Jacket - 1', 'DB03 - Dark Beige Spring work [two tone] 219 (15 1/2)', 0, '2022-05-11 00:47:45', '2022-05-11 00:47:45'),
+(508, 77, 'Bestman\'s Jacket - 2', 'DB05 - Dark Beige Spring work [two tone] 219 (16)', 0, '2022-05-11 00:47:45', '2022-05-11 00:47:45'),
+(509, 77, 'Pageboy\'s Jacket - 1', 'DB06 - Dark Beige Spring work [two tone] 219  (13-)', 0, '2022-05-11 00:47:45', '2022-05-11 00:47:45'),
+(510, 77, 'Group Cavani', NULL, 0, '2022-05-11 00:47:45', '2022-05-11 00:47:45'),
+(511, 81, 'Groom\'s Jacket', 'MDC02 - Maroon Dull Gold Cutwork Soft Velvet 218 [Min] (17)', 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(512, 81, 'Groom\'s Cavani', NULL, 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(513, 81, 'Bestman\'s Jacket - 1', 'DRB01 - Dark Red Bead work 217 (17)', 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(514, 81, 'Bestman\'s Jacket - 2', 'DRB02 - Dark Red Bead work 217 (17)', 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(515, 81, 'Bestman\'s Jacket - 3', 'DRB04 - Dark Red Bead work 217 (17-)', 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(516, 81, 'Bestman\'s Jacket - 4', 'DRB12 - Dark Red Bead work 217 (18-)', 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(517, 81, 'Group Cavani', NULL, 0, '2022-05-11 00:56:09', '2022-05-11 00:56:09'),
+(518, 82, 'Groom\'s Jacket', 'MDS05 - Maroon Dull Gold Springwork 219 [Akhil](17)', 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(519, 82, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(520, 82, 'Bestman\'s Jacket - 1', 'LIB01 - Light Ivory Bead work 217 (17-)', 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(521, 82, 'Bestman\'s Jacket - 2', 'LIB03 - Light Ivory Bead work 217 (17)', 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(522, 82, 'Pageboy\'s Jacket - 1', 'LIB05 - Light Ivory Bead work 217 (11)', 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(523, 82, 'Pageboy\'s Jacket - 2', 'LIB06 - Light Ivory Bead work 217 (11)', 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(524, 82, 'Group Cavani', NULL, 0, '2022-05-11 07:12:06', '2022-05-11 07:12:06'),
+(525, 83, 'Groom\'s Jacket', 'BPW02 - Dark Blue Pearl Work (17) [220]', 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(526, 83, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(527, 83, 'Bestman\'s Jacket - 1', 'SGS01 - Silver gold spring work (18) [220]', 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(528, 83, 'Bestman\'s Jacket - 2', 'SGS03 - Silver gold spring work (17) [220]', 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(529, 83, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(530, 83, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(531, 83, 'Group Cavani', NULL, 0, '2022-05-11 07:17:25', '2022-05-11 07:17:25'),
+(532, 84, 'Groom\'s Jacket', 'MPW03 - Maroon Pearl work 220 [Min ] (17)', 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(533, 84, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(534, 84, 'Bestman\'s Jacket - 1', 'RS04 - Red Spring work 218 (16 1/2)', 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(535, 84, 'Bestman\'s Jacket - 2', 'RS05 - Red Spring work 218 (17+)', 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(536, 84, 'Pageboy\'s Jacket - 1', 'RS06 - Red Spring work 218 (11+)', 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(537, 84, 'Pageboy\'s Jacket - 2', 'RS08 - Red Spring work 218 (13-)', 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(538, 84, 'Group Cavani', NULL, 0, '2022-05-11 07:23:41', '2022-05-11 07:23:41'),
+(539, 85, 'Groom\'s Jacket', 'BPW01 - Dark Brown Pearl Work (17) [220]', 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53'),
+(540, 85, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53'),
+(541, 85, 'Bestman\'s Jacket - 1', 'SGS04 - Silver gold spring work (17 1/2) [220]', 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53');
+INSERT INTO `dress_selections` (`id`, `customer_id`, `type`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(542, 85, 'Bestman\'s Jacket - 2', 'SGS05 - Silver gold spring work (16 1/2) [220]', 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53'),
+(543, 85, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53'),
+(544, 85, 'Pageboy\'s Jacket - 2', NULL, 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53'),
+(545, 85, 'Group Cavani', NULL, 0, '2022-05-11 07:29:53', '2022-05-11 07:29:53'),
+(546, 86, 'Groom\'s Jacket', 'MPW02 - Maroon Pearl work 219 [elephant] (17 1/2)', 0, '2022-05-11 07:35:04', '2022-05-11 07:35:04'),
+(547, 86, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:35:05', '2022-05-11 07:35:05'),
+(548, 86, 'Bestman\'s Jacket - 1', 'PS05 - Purple Spring work 218 (16+)', 0, '2022-05-11 07:35:05', '2022-05-11 07:35:05'),
+(549, 86, 'Bestman\'s Jacket - 2', 'PS06 - Purple Spring work 218 (16 1/2+)', 0, '2022-05-11 07:35:05', '2022-05-11 07:35:05'),
+(550, 86, 'Pageboy\'s Jacket - 1', 'PS01 - Purple Spring work 218 (11+)', 0, '2022-05-11 07:35:05', '2022-05-11 07:35:05'),
+(551, 86, 'Group Cavani', NULL, 0, '2022-05-11 07:35:05', '2022-05-11 07:35:05'),
+(552, 87, 'Groom\'s Jacket', 'MDS07 - Dark Maroon Dull gold Spring work XXL 219 [Han] 20+', 0, '2022-05-11 07:44:44', '2022-05-11 07:44:44'),
+(553, 87, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:44:44', '2022-05-11 07:44:44'),
+(554, 87, 'Bestman\'s Jacket - 1', NULL, 0, '2022-05-11 07:44:44', '2022-05-11 07:44:44'),
+(555, 87, 'Bestman\'s Jacket - 2', NULL, 0, '2022-05-11 07:44:44', '2022-05-11 07:44:44'),
+(556, 87, 'Pageboy\'s Jacket - 1', NULL, 0, '2022-05-11 07:44:44', '2022-05-11 07:44:44'),
+(557, 87, 'Group Cavani', NULL, 0, '2022-05-11 07:44:44', '2022-05-11 07:44:44'),
+(558, 88, 'Groom\'s Jacket', 'MDC04 - Maroon Dull Gold Cutwork with Red Springs 219 (17)', 0, '2022-05-11 07:52:10', '2022-05-11 07:52:10'),
+(559, 88, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:52:10', '2022-05-11 07:52:10'),
+(560, 88, 'Bestman\'s Jacket - 1', 'LIB01 - Light Ivory Bead work 217 (17-)', 0, '2022-05-11 07:52:10', '2022-05-11 07:52:10'),
+(561, 88, 'Bestman\'s Jacket - 2', 'LIB02 - Light Ivory Bead work 217 (16 1/2)', 0, '2022-05-11 07:52:10', '2022-05-11 07:52:10'),
+(562, 88, 'Pageboy\'s Jacket - 1', 'LIB06 - Light Ivory Bead work 217 (11)', 0, '2022-05-11 07:52:10', '2022-05-11 07:52:10'),
+(563, 88, 'Group Cavani', NULL, 0, '2022-05-11 07:52:10', '2022-05-11 07:52:10'),
+(564, 89, 'Groom\'s Jacket', 'BPW02 - Dark Blue Pearl Work (17) [220]', 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(565, 89, 'Groom\'s Cavani', NULL, 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(566, 89, 'Bestman\'s Jacket - 1', 'SGS02 - Silver gold spring work (18 1/2) [220]', 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(567, 89, 'Bestman\'s Jacket - 2', 'SGS03 - Silver gold spring work (17) [220]', 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(568, 89, 'Bestman\'s Jacket - 3', 'SGS04 - Silver gold spring work (17 1/2) [220]', 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(569, 89, 'Bestman\'s Jacket - 4', 'SGS05 - Silver gold spring work (16 1/2) [220]', 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(570, 89, 'Group Cavani', NULL, 0, '2022-05-11 07:57:51', '2022-05-11 07:57:51'),
+(571, 90, 'Groom\'s Jacket', 'MPW02 - Maroon Pearl work 219 [elephant] (17 1/2)', 0, '2022-05-11 08:05:15', '2022-05-11 08:05:15'),
+(572, 90, 'Groom\'s Cavani', NULL, 0, '2022-05-11 08:05:15', '2022-05-11 08:05:15'),
+(573, 90, 'Bestman\'s Jacket - 1', 'PS05 - Purple Spring work 218 (16+)', 0, '2022-05-11 08:05:15', '2022-05-11 08:05:15'),
+(574, 90, 'Bestman\'s Jacket - 2', 'PS06 - Purple Spring work 218 (16 1/2+)', 0, '2022-05-11 08:05:15', '2022-05-11 08:05:15'),
+(575, 90, 'Group Cavani', NULL, 0, '2022-05-11 08:05:15', '2022-05-11 08:05:15'),
+(576, 93, 'Groom\'s Jacket', 'MDS05 - Maroon Dull Gold Springwork 219 [Akhil](17)', 0, '2022-05-11 08:16:17', '2022-05-11 08:16:17'),
+(577, 93, 'Groom\'s Cavani', NULL, 0, '2022-05-11 08:16:17', '2022-05-11 08:16:17'),
+(578, 93, 'Group Cavani', NULL, 0, '2022-05-11 08:16:17', '2022-05-11 08:16:17'),
+(579, 94, 'Groom\'s Jacket', 'JBS02 - Black Spring work Blue+Red+Dull gold work 219  (17)', 0, '2022-05-11 08:20:29', '2022-05-11 08:20:29'),
+(580, 94, 'Groom\'s Cavani', NULL, 0, '2022-05-11 08:20:29', '2022-05-11 08:20:29'),
+(581, 94, 'Bestman\'s Jacket - 1', 'DRB01 - Dark Red Bead work 217 (17)', 0, '2022-05-11 08:20:29', '2022-05-11 08:20:29'),
+(582, 94, 'Bestman\'s Jacket - 2', 'DRB02 - Dark Red Bead work 217 (17)', 0, '2022-05-11 08:20:29', '2022-05-11 08:20:29'),
+(583, 94, 'Pageboy\'s Jacket - 1', 'DRB07 - Dark Red Bead work 217 (12-)', 0, '2022-05-11 08:20:29', '2022-05-11 08:20:29'),
+(584, 94, 'Group Cavani', NULL, 0, '2022-05-11 08:20:29', '2022-05-11 08:20:29'),
+(585, 95, 'Groom\'s Jacket', 'BPW01 - Dark Brown Pearl Work (17) [220]', 0, '2022-05-11 08:24:55', '2022-05-11 08:24:55'),
+(586, 95, 'Groom\'s Cavani', NULL, 0, '2022-05-11 08:24:55', '2022-05-11 08:24:55'),
+(587, 95, 'Group Cavani', NULL, 0, '2022-05-11 08:24:55', '2022-05-11 08:24:55'),
+(588, 95, 'Groom\'s Jacket', 'BPW01 - Dark Brown Pearl Work (17) [220]', 0, '2022-05-11 08:25:07', '2022-05-11 08:25:07'),
+(589, 95, 'Groom\'s Cavani', NULL, 0, '2022-05-11 08:25:07', '2022-05-11 08:25:07'),
+(590, 95, 'Group Cavani', NULL, 0, '2022-05-11 08:25:07', '2022-05-11 08:25:07');
 
 -- --------------------------------------------------------
 
@@ -581,8 +832,7 @@ CREATE TABLE `intering_payments` (
 INSERT INTO `intering_payments` (`id`, `customer_id`, `intering_payment`, `created_at`, `updated_at`) VALUES
 (1, 2, 47000, '2022-04-24 06:41:53', '2022-04-24 06:41:53'),
 (2, 6, 27000, '2022-04-24 07:02:13', '2022-04-24 07:02:13'),
-(3, 4, NULL, '2022-04-24 12:37:15', '2022-05-02 12:09:49'),
-(4, 4, NULL, '2022-04-24 13:09:45', '2022-05-02 12:09:53');
+(5, 22, 30000, '2022-05-09 00:11:25', '2022-05-09 00:11:25');
 
 -- --------------------------------------------------------
 
@@ -848,7 +1098,6 @@ INSERT INTO `measurements` (`id`, `customer_id`, `type`, `head`, `shoulder`, `ch
 (5, 8, 'GROOM', '23', '18+', '42', '0', '40', '11', '0', '0', '0', '2022-04-24 06:33:06', '2022-04-28 07:04:22'),
 (6, 8, 'BESTMAN - 1', '22+', '16', '35', '0', '39', '11', '0', '0', '0', '2022-04-24 06:33:20', '2022-04-28 07:04:31'),
 (7, 8, 'PAGEBOY - 1', '20', '12', '23', NULL, '23', '9', NULL, NULL, NULL, '2022-04-24 06:33:29', '2022-04-24 06:33:29'),
-(8, 4, 'GROOM', '1-', '22.6+', '5.6-', '0', '0', '0', '0', '0', '0', '2022-04-24 07:50:51', '2022-05-02 12:03:17'),
 (9, 7, 'GROOM', '22', '17', '39', NULL, '42', '11', NULL, NULL, NULL, '2022-04-24 08:46:18', '2022-04-24 08:46:18'),
 (10, 7, 'PAGEBOY - 1', '19.5+', '13', '22.5', NULL, '28', '8', NULL, NULL, NULL, '2022-04-24 08:46:57', '2022-04-24 08:46:57'),
 (11, 7, 'PAGEBOY - 2', '20', '12', '28', NULL, '34', '9', NULL, NULL, NULL, '2022-04-24 08:47:19', '2022-04-24 08:47:19'),
@@ -863,7 +1112,6 @@ INSERT INTO `measurements` (`id`, `customer_id`, `type`, `head`, `shoulder`, `ch
 (20, 19, 'BESTMAN - 1', '22', '18', '34', NULL, '38+', '10', NULL, NULL, NULL, '2022-04-29 23:08:56', '2022-04-29 23:08:56'),
 (21, 19, 'BESTMAN - 2', '21.5+', '17', '38', NULL, '37+', '10.5', NULL, NULL, NULL, '2022-04-29 23:26:11', '2022-04-29 23:26:11'),
 (22, 19, 'PAGEBOY - 1', '20', '13+', '24', NULL, '32', '9', NULL, NULL, NULL, '2022-04-29 23:26:27', '2022-04-29 23:26:27'),
-(23, 4, 'PAGEBOY - 2', NULL, '1', '1', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-02 12:04:24', '2022-05-02 12:04:24'),
 (24, 6, 'BESTMAN - 1', '22.5', '17', '38', NULL, '38', '10', NULL, NULL, NULL, '2022-05-03 00:46:12', '2022-05-03 00:46:12'),
 (25, 6, 'PAGEBOY - 1', '19.5', '11', '22', NULL, '29', '8', NULL, NULL, NULL, '2022-05-03 00:46:25', '2022-05-03 00:46:25'),
 (26, 11, 'GROOM', '21.5+', '16+', '37', NULL, '36', '10', NULL, NULL, NULL, '2022-05-03 00:47:25', '2022-05-03 00:47:25'),
@@ -877,11 +1125,12 @@ INSERT INTO `measurements` (`id`, `customer_id`, `type`, `head`, `shoulder`, `ch
 (34, 9, 'PAGEBOY - 1', '20.5', '13', '26', '0', '30', '9', NULL, NULL, NULL, '2022-05-03 01:12:10', '2022-05-03 01:12:10'),
 (35, 9, 'PAGEBOY - 2', '19.5', '10', '22', NULL, '25', '7', NULL, NULL, NULL, '2022-05-03 01:12:24', '2022-05-03 01:12:24'),
 (36, 20, 'GROOM', NULL, NULL, NULL, '0', NULL, NULL, '0', '0', '0', '2022-05-06 03:09:55', '2022-05-06 03:10:52'),
-(37, 4, 'BESTMAN - 1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2022-05-06 07:16:56', '2022-05-06 07:17:03'),
 (38, 16, 'GROOM', '23', '18+', '42+', '33', '39', '11-', NULL, NULL, NULL, '2022-05-07 01:51:30', '2022-05-07 01:51:30'),
 (39, 16, 'BESTMAN - 1', '22.5', '18', '42', '33', '37', '11-', NULL, NULL, NULL, '2022-05-07 01:51:53', '2022-05-07 01:51:53'),
 (40, 16, 'BESTMAN - 2', '23', '18.5', '42.5', '36', '39', '9-', NULL, NULL, NULL, '2022-05-07 01:52:24', '2022-05-07 01:52:24'),
-(41, 16, 'PAGEBOY - 1', '20.5', '14+', '26', '0', '30', '9-', '0', '0', '++++', '2022-05-07 01:52:57', '2022-05-07 01:53:14');
+(41, 16, 'PAGEBOY - 1', '20.5', '14+', '26', '0', '30', '9-', '0', '0', '++++', '2022-05-07 01:52:57', '2022-05-07 01:53:14'),
+(42, 26, 'GROOM', '22+', '19', '36+', '32', '41', '11', NULL, NULL, NULL, '2022-05-08 01:29:10', '2022-05-08 01:29:10'),
+(43, 26, 'BESTMAN - 1', '22+', '17', '33', '30', '41', '10+', NULL, NULL, NULL, '2022-05-08 01:29:31', '2022-05-08 01:29:31');
 
 -- --------------------------------------------------------
 
@@ -976,7 +1225,20 @@ INSERT INTO `notes` (`id`, `customer_id`, `note`, `status`, `created_at`, `updat
 (33, 29, '4.00am IN\r\n6.00am OUT', 0, '2022-05-06 03:09:04', '2022-05-06 03:09:04'),
 (34, 16, 'transport added to bill', 0, '2022-05-07 01:54:06', '2022-05-07 01:54:06'),
 (35, 18, 'Came to meet \r\nChanged group mems', 0, '2022-05-07 02:45:18', '2022-05-07 02:45:18'),
-(36, 18, 'Pole', 0, '2022-05-07 02:45:25', '2022-05-07 02:45:25');
+(36, 18, 'Pole', 0, '2022-05-07 02:45:25', '2022-05-07 02:45:25'),
+(37, 59, 'DRB02', 0, '2022-05-09 00:05:05', '2022-05-09 00:05:05'),
+(38, 61, 'MPW02', 0, '2022-05-09 00:14:50', '2022-05-09 00:14:50'),
+(39, 64, 'Lakshi Salon', 0, '2022-05-09 00:29:11', '2022-05-09 00:29:11'),
+(40, 66, '4 am arrival', 0, '2022-05-09 00:42:00', '2022-05-09 00:42:00'),
+(41, 67, 'no going away.  near house change', 0, '2022-05-09 07:18:14', '2022-05-09 07:18:14'),
+(42, 69, 'WOW Salon', 0, '2022-05-09 07:26:26', '2022-05-09 07:26:26'),
+(43, 71, 'With Transport', 0, '2022-05-10 23:05:02', '2022-05-10 23:05:02'),
+(44, 76, 'With Transport', 0, '2022-05-10 23:43:28', '2022-05-10 23:43:28'),
+(45, 16, '4.30 out', 0, '2022-05-11 00:26:19', '2022-05-11 00:26:19'),
+(46, 80, 'Transport', 0, '2022-05-11 00:44:53', '2022-05-11 00:44:53'),
+(47, 85, 'Card payment done. With transport. 3500 for three wheel called and confirmed', 0, '2022-05-11 07:30:09', '2022-05-11 07:30:09'),
+(48, 90, 'With Transport', 0, '2022-05-11 08:05:41', '2022-05-11 08:05:41'),
+(49, 92, 'With transport', 0, '2022-05-11 08:12:53', '2022-05-11 08:12:53');
 
 -- --------------------------------------------------------
 
@@ -1066,12 +1328,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Indexes for table `additional_payments`
 --
 ALTER TABLE `additional_payments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `branches`
---
-ALTER TABLE `branches`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1179,12 +1435,6 @@ ALTER TABLE `additional_payments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `branches`
---
-ALTER TABLE `branches`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `branch_user`
 --
 ALTER TABLE `branch_user`
@@ -1194,19 +1444,19 @@ ALTER TABLE `branch_user`
 -- AUTO_INCREMENT for table `costs`
 --
 ALTER TABLE `costs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `dress_selections`
 --
 ALTER TABLE `dress_selections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=591;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1218,7 +1468,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `intering_payments`
 --
 ALTER TABLE `intering_payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -1236,7 +1486,7 @@ ALTER TABLE `item_categories`
 -- AUTO_INCREMENT for table `measurements`
 --
 ALTER TABLE `measurements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1248,7 +1498,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
