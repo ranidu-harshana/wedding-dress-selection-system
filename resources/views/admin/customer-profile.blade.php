@@ -296,7 +296,7 @@
                                             @if ($balance == 0)
                                                 <span class="text-success"><b>Payment Success</b></span> 
                                             @else
-                                                <b>{{ $balance }}.00</b>
+                                                <b>{{ number_format($balance, 2) }}</b>
                                             @endif
                                         </a></span>
                                     </li>
