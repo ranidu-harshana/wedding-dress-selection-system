@@ -24,7 +24,7 @@
         <x-admin.admin-top-nav></x-admin.admin-top-nav>
         <x-admin.admin-side-bar></x-admin.admin-side-bar>
         <div class="page-wrapper">
-            <div class="content">
+            <div class="content" style="overflow-x: scroll">
                 @yield('content')
             </div>
             
